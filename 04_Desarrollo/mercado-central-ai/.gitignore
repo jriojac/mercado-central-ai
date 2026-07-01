@@ -1,0 +1,25 @@
+# Virtual Environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# VSCode
+.vscode/
+
+# Logs
+logs/
+
+# Vector DB
+vector_db/
+
+# Temporary files
+temp/
+
+# OS
+.DS_Store
+Thumbs.db

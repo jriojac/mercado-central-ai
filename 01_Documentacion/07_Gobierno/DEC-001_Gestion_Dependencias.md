@@ -1,0 +1,19 @@
+# DEC-001 – Gestión de Dependencias
+
+## Objetivo
+Definir la estrategia oficial para administrar las dependencias.
+
+## Decisión
+Se utilizará langchain-google-genai como integración oficial con Gemini. No se instalará google-generativeai directamente por conflictos de dependencias.
+
+## Dependencias aprobadas
+- streamlit==1.49.0
+- langchain==0.3.27
+- langchain-community==0.3.27
+- langchain-google-genai==2.1.10
+- faiss-cpu==1.12.0
+- pypdf==6.0.0
+- python-dotenv==1.1.1
+
+## Estado
+Aprobado
