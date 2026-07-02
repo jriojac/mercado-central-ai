@@ -20,7 +20,7 @@ load_dotenv()
 
 PROJECT_NAME = "Mercado Central AI"
 
-PROJECT_VERSION = "1.0.0"
+PROJECT_VERSION = "0.1.1"
 
 # -------------------------------------------------------
 # Directorio raíz del proyecto
@@ -62,7 +62,8 @@ METADATA_DIR = KNOWLEDGE_BASE / "04_Metadata"
 
 EMBEDDINGS_DIR = KNOWLEDGE_BASE / "05_Embeddings"
 
-FAISS_DIR = KNOWLEDGE_BASE / "06_VectorDB"
+# ---- FAISS_DIR = KNOWLEDGE_BASE / "06_VectorDB"
+VECTOR_STORE_DIR = KNOWLEDGE_BASE / "06_VectorDB"
 
 # -------------------------------------------------------
 # API KEY
