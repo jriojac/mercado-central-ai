@@ -1,6 +1,56 @@
 # Changelog
 
 
+
+
+---
+
+## [0.3.0] - 2026-07-03
+
+### Added
+
+- Implementación del módulo **Metadata Manager**.
+- Validación de metadata obligatoria.
+- Normalización automática de metadata.
+- Enriquecimiento automático de metadata.
+- Incorporación de `document_id`.
+- Incorporación de `ingest_date`.
+- Incorporación de `pipeline_version`.
+- Incorporación de `language`.
+- Incorporación de `category`.
+- Archivo `src/core/exceptions.py` para centralizar las excepciones del proyecto.
+- Script de integración `check_metadata.py`.
+- Pruebas automatizadas mediante `pytest`.
+- Archivo `tests/test_metadata.py`.
+- Nueve casos de prueba (CP-001 a CP-009).
+
+### Changed
+
+- Actualización del README del proyecto.
+- Actualización del HANDBOOK con la estrategia oficial de pruebas.
+- Actualización de la Matriz de Trazabilidad (MTR).
+- Actualización del LOG del proyecto.
+- Incorporación del DOC-016 correspondiente al Metadata Manager.
+- Actualización del SDS-003.
+- Actualización del pipeline RAG incorporando el Metadata Manager.
+- Incorporación oficial de la metodología de Casos de Prueba (CP).
+- Separación entre scripts locales de validación (`temp/`) utilizados durante el desarrollo y pruebas automatizadas oficiales (`tests/`) versionadas en el repositorio.
+- Adopción oficial de `pytest` como framework de pruebas del proyecto.
+- Estandarización del uso de `python -m pip` para la instalación de dependencias.
+
+### Validated
+
+- Validación de metadata obligatoria.
+- Validación de colecciones de documentos.
+- Normalización de metadata.
+- Enriquecimiento automático de metadata.
+- Integración Text Splitter → Metadata Manager.
+- Ejecución satisfactoria de `check_metadata.py`.
+- Ejecución satisfactoria de `test_metadata.py`.
+- **9 casos de prueba aprobados (9 passed).**
+
+-------------------------------------------------------
+
 ## [0.2.0] - 2026-07-02
 
 ### Added
@@ -29,7 +79,7 @@
 - Validación de documentos reales de la Knowledge Base.
 - Generación correcta de 367 chunks sin errores.
 
----
+-------------------------------------------------------
 
 ## [0.1.1] - 2026-07-01
 

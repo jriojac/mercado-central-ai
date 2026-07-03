@@ -8,16 +8,21 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 
 ## Estado del Proyecto
 
+> **Versión estable:** **v0.3.0**
+
+> **Estado:** Desarrollo activo
+
 | Elemento | Estado |
 |-----------|--------|
 | Arquitectura | ✅ Consolidada |
 | Documentación | ✅ Actualizada |
 | Hito 1 – Document Loader | ✅ Finalizado |
 | Hito 2 – Text Splitter | ✅ Finalizado |
-| Sprint actual | Sprint 4 |
-| Próximo módulo | Metadata |
-| Release estable | v0.1.1 |
-| Próxima Release | v0.2.0 (En preparación) |
+| Hito 3 – Metadata Manager | ✅ Finalizado |
+| Sprint actual | Sprint 5 |
+| Próximo módulo | Embeddings |
+| Release estable | v0.3.0 |
+| Próxima Release | v0.4.0 (Embeddings) |
 ---
 
 ## Objetivo
@@ -47,7 +52,7 @@ Document Loader
 Text Splitter
         │
         ▼
-Metadata
+Metadata Manager
         │
         ▼
 Embeddings
@@ -101,7 +106,9 @@ Release
 01_Documentacion/
 HANDBOOK/
 HANDBOOK-001_Guia_Desarrollo
-Estructura del Proyecto
+
+
+## Estructura del Proyecto
 Challenge-Alura-Agente-IA/
 │
 ├── 01_Documentacion/
@@ -110,6 +117,7 @@ Challenge-Alura-Agente-IA/
 │   ├── DOC/
 │   │   ├── Hito_01/
 │   │   └── Hito_02/
+│   │   └── Hito_03&
 │   ├── HANDBOOK/
 │   ├── INST/
 │   ├── LOG/
@@ -120,20 +128,34 @@ Challenge-Alura-Agente-IA/
 ├── 02_Recursos_Alura/
 │
 ├── 03_Knowledge_Base/
+│   ├── loader.py
+│   ├── splitter.py
+│   ├── metadata.py
 │
 ├── 04_Desarrollo/
 │   └── mercado-central-ai/
 │       ├── src/
 │       │   ├── config/
+│       │       ├──settings.py
 │       │   ├── core/
+│       │       ├── exceptions.py
 │       │   ├── knowledge/
+│       │       ├── loader.py
+│       │       ├── splitter.py
+│       │       ├── metadata.py
 │       │   ├── llm/
 │       │   ├── prompts/
 │       │   ├── tools/
 │       │   └── utils/
 │       │
 │       ├── temp/
+│       │    ├── check_settings.py
+│       │    ├── check_loader.py
+│       │    ├── check_text_splitter.py
+│       │    ├── check_loader_splitter.py
+│       │    ├── check_metadata.py
 │       ├── tests/
+│       │    ├── test_metadata.py
 │       └── app.py
 │
 ├── 05_Pruebas/
@@ -149,7 +171,7 @@ Sprint	Hito	Estado
 |---------|------|:------:|
 Sprint 3	Document Loader	✅
 Sprint 4	Text Splitter	✅
-Sprint 5	Metadata	⏳
+Sprint 5	Metadata Manager✅
 Sprint 6	Embeddings	⏳
 Sprint 7	Vector Store	⏳
 Sprint 8	Retriever	⏳
@@ -157,6 +179,82 @@ Sprint 9	Context Builder	⏳
 Sprint 10	Decision Engine	⏳
 Sprint 11	Tools	⏳
 Sprint 12	Streamlit	⏳
+
+---
+
+# Módulos implementados
+
+| Módulo | Estado |
+|--------|:------:|
+| Document Loader       | ✅ |
+| Text Splitter         | ✅ |
+| Metadata Manager      | ✅ |
+| Embeddings            | ⏳ |
+| Vector Store          | ⏳ |
+| Retriever             | ⏳ |
+| Context Builder       | ⏳ |
+| Decision Engine       | ⏳ |
+| Tools                 | ⏳ |
+| Streamlit UI          | ⏳ |
+
+---
+
+# Estrategia de Pruebas
+
+El proyecto utiliza dos niveles de validación.
+
+## 1. Pruebas de integración
+
+Ubicación:
+Estos scripts se utilizan durante el desarrollo para realizar validaciones rápidas de integración entre módulos.
+
+```text
+temp/
+```
+
+Scripts disponibles:
+
+- check_settings.py
+- check_loader.py
+- check_text_splitter.py
+- check_loader_splitter.py
+- check_metadata.py
+
+Estas pruebas permiten validar rápidamente la integración de cada módulo durante el desarrollo.
+
+---
+
+## 2. Pruebas automatizadas
+
+Ubicación:
+
+```text
+tests/
+```
+
+Framework utilizado:
+
+- pytest
+
+Actualmente se encuentran implementadas las pruebas automatizadas para:
+
+- Metadata Manager
+
+Ejecución:
+
+```bash
+python -m pytest
+```
+
+o
+
+```bash
+python -m pytest tests
+```
+
+---
+
+
 
 ## Validaciones oficiales
 
@@ -178,46 +276,57 @@ Estos scripts permiten validar la configuración del proyecto, el Document Loade
 
 La documentación del proyecto se organiza por categorías:
 
-Documento	Propósito
-HANDBOOK	Metodología
-ROADMAP	Planificación
-LOG	Bitácora técnica
-MTR	Trazabilidad
-SDS	Diseño técnico
-DOC	Documentación funcional
-ADR	Decisiones arquitectónicas
+| Documento | Propósito |
+|-----------|-----------|
+| HANDBOOK | Metodología |
+| ROADMAP | Planificación |
+| LOG | Bitácora técnica |
+| MTR | Matriz de trazabilidad |
+| SDS | Diseño técnico |
+| DOC | Documentación funcional |
+| ADR | Decisiones arquitectónicas |
 
 ## Tecnologías
 
-Python
-LangChain
-Google Gemini
-PyPDF
-ChromaDB (planificado)
-Streamlit (planificado)
-Release actual
+- Python
+- LangChain
+- Google Gemini
+- PyPDF
+- pytest
+- ChromaDB *(planificado)*
+- Streamlit *(planificado)*
 
 ## Versiones
 
-| Versión | Estado |
-|----------|--------|
-| v0.1.1 | Estable |
-| v0.2.0 | En preparación |
+| Versión | Contenido |
+|----------|-----------|
+| v0.1.1 | Document Loader |
+| v0.2.0 | Text Splitter |
+| v0.3.0 | Metadata Manager |
+| v0.4.0 | Embeddings *(planificada)* |
+
 
 ## Incluye:
 
-- Document Loader.
-- Text Splitter.
-- Arquitectura consolidada.
-- Auditoría Arquitectónica.
-- Scripts oficiales de validación.
-- Documentación actualizada.
+- Document Loader
+- Text Splitter
+- Metadata Manager
+- Excepciones personalizadas
+- Scripts oficiales de integración
+- Pruebas automatizadas con pytest
+- Arquitectura RAG
+- Auditoría Arquitectónica
+- Documentación técnica
+- Matriz de trazabilidad
+
 
 ## Próximo objetivo
 
-Sprint 5 – Metadata
+## Sprint 6 – Embeddings
 
-Implementar el módulo de Metadata del pipeline RAG para consolidar el manejo de información asociada a los documentos y preparar la integración con el módulo de Embeddings.
+Implementar el módulo **Embeddings**, responsable de transformar los chunks enriquecidos en vectores semánticos para su almacenamiento posterior en el Vector Store.
+
+---
 
 ## Licencia
 

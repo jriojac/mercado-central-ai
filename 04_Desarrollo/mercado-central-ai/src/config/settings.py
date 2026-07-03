@@ -8,6 +8,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+
 # -------------------------------------------------------
 # Cargar variables de entorno
 # -------------------------------------------------------
@@ -20,7 +21,7 @@ load_dotenv()
 
 PROJECT_NAME = "Mercado Central AI"
 
-PROJECT_VERSION = "0.1.1"
+PROJECT_VERSION = "0.2.0"
 
 # -------------------------------------------------------
 # Directorio raíz del proyecto
@@ -88,6 +89,17 @@ TEXT_SPLITTER = {
     ],
     "version": "1.0"
 }
+
+# -------------------------------------------------------
+# Metadata Manager
+# -------------------------------------------------------
+
+DEFAULT_LANGUAGE = "es"
+
+DEFAULT_CATEGORY = None
+
+
+
 
 # -------------------------------------------------------
 # Modelo Gemini
