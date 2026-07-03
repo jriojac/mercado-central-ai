@@ -73,14 +73,25 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # -------------------------------------------------------
 # Configuración RAG
+# TEXT_SPLITTER
 # -------------------------------------------------------
 
-CHUNK_SIZE = 1000
-
-CHUNK_OVERLAP = 200
+TEXT_SPLITTER = {
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "separators": [
+        "\n\n",
+        "\n",
+        ". ",
+        " ",
+        ""
+    ],
+    "version": "1.0"
+}
 
 # -------------------------------------------------------
 # Modelo Gemini
 # -------------------------------------------------------
 
 GEMINI_MODEL = "gemini-2.5-flash"
+
