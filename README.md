@@ -12,11 +12,12 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 |-----------|--------|
 | Arquitectura | ✅ Consolidada |
 | Documentación | ✅ Actualizada |
-| Hito 1 | ✅ Finalizado |
+| Hito 1 – Document Loader | ✅ Finalizado |
+| Hito 2 – Text Splitter | ✅ Finalizado |
 | Sprint actual | Sprint 4 |
-| Próximo módulo | Text Splitter |
-| Release actual | v0.1.1 |
-
+| Próximo módulo | Metadata |
+| Release estable | v0.1.1 |
+| Próxima Release | v0.2.0 (En preparación) |
 ---
 
 ## Objetivo
@@ -36,6 +37,7 @@ La información proviene exclusivamente de la Base de Conocimiento del proyecto.
 
 ## Arquitectura General
 
+```text
 Knowledge Base
         │
         ▼
@@ -64,8 +66,7 @@ Gemini
         │
         ▼
 Respuesta
-
-
+```
 ---
 
 ## Metodología del Proyecto
@@ -145,8 +146,9 @@ Challenge-Alura-Agente-IA/
 ## Roadmap
 
 Sprint	Hito	Estado
+|---------|------|:------:|
 Sprint 3	Document Loader	✅
-Sprint 4	Text Splitter	🔜
+Sprint 4	Text Splitter	✅
 Sprint 5	Metadata	⏳
 Sprint 6	Embeddings	⏳
 Sprint 7	Vector Store	⏳
@@ -155,15 +157,22 @@ Sprint 9	Context Builder	⏳
 Sprint 10	Decision Engine	⏳
 Sprint 11	Tools	⏳
 Sprint 12	Streamlit	⏳
-Validaciones oficiales
 
-## Los scripts oficiales del proyecto se ejecutan como módulos de Python:
+## Validaciones oficiales
 
+Los scripts oficiales del proyecto se ejecutan como módulos de Python:
+
+```bash
 python -m temp.check_settings
 
 python -m temp.check_loader
 
-Estos scripts permiten verificar la configuración del proyecto y el correcto funcionamiento del Document Loader.
+python -m temp.check_text_splitter
+
+python -m temp.check_loader_splitter
+```
+
+Estos scripts permiten validar la configuración del proyecto, el Document Loader, el Text Splitter y la integración entre ambos módulos.
 
 ## Documentación
 
@@ -177,7 +186,9 @@ MTR	Trazabilidad
 SDS	Diseño técnico
 DOC	Documentación funcional
 ADR	Decisiones arquitectónicas
-Tecnologías
+
+## Tecnologías
+
 Python
 LangChain
 Google Gemini
@@ -186,22 +197,27 @@ ChromaDB (planificado)
 Streamlit (planificado)
 Release actual
 
-## Versión
+## Versiones
 
-v0.1.1
+| Versión | Estado |
+|----------|--------|
+| v0.1.1 | Estable |
+| v0.2.0 | En preparación |
 
 ## Incluye:
 
-Document Loader.
-Arquitectura consolidada.
-Auditoría Arquitectónica.
-Scripts oficiales de validación.
-Documentación actualizada.
-Próximo objetivo
+- Document Loader.
+- Text Splitter.
+- Arquitectura consolidada.
+- Auditoría Arquitectónica.
+- Scripts oficiales de validación.
+- Documentación actualizada.
 
-## Sprint 4  - Hito 2
+## Próximo objetivo
 
-Text Splitter
+Sprint 5 – Metadata
+
+Implementar el módulo de Metadata del pipeline RAG para consolidar el manejo de información asociada a los documentos y preparar la integración con el módulo de Embeddings.
 
 ## Licencia
 
