@@ -31,3 +31,19 @@ class InvalidDocumentCollectionError(Exception):
 class InvalidDocumentError(Exception):
     """Se recibió un objeto que no es un Document de LangChain."""
     pass
+
+
+class EmbeddingProviderError(Exception):
+    """Error generado por el proveedor de embeddings."""
+
+
+class EmbeddingConfigurationError(Exception):
+    """Configuración inválida del módulo Embeddings."""
+
+
+class EmbeddingTimeoutError(Exception):
+    """Tiempo de espera agotado durante la generación de embeddings."""
+
+
+class InvalidDocumentError(Exception):
+    """Documento inválido para generar embeddings."""

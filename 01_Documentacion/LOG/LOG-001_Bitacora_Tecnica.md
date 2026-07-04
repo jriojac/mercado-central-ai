@@ -298,31 +298,31 @@ Embeddings             ⏳
 
 El Sprint permitió consolidar la estrategia de validación automática del proyecto mediante pytest y establecer una metodología reutilizable para los siguientes módulos del pipeline RAG.
 
+---
 # Registro de avance
-
 ---
 
 ## Fecha
 
-03/07/2026
+04/07/2026
 
 ## Sprint
 
-Sprint 5
+Sprint 6
 
 ## Hito
 
-Hito 3 – Metadata Manager
+Hito 4 – Embeddings
 
 ## Release objetivo
 
-v0.3.0
+v0.4.0
 
 ---
 
 ## Objetivo
 
-Implementar el módulo **Metadata Manager**, responsable de validar, normalizar y enriquecer la metadata asociada a los documentos generados por el Text Splitter antes del proceso de generación de embeddings.
+Implementar el módulo **Embeddings**, responsable de transformar los documentos enriquecidos por el Metadata Manager en representaciones vectoriales (embeddings) mediante Google Generative AI, preparando la información para el futuro módulo Vector Store.
 
 ---
 
@@ -330,123 +330,141 @@ Implementar el módulo **Metadata Manager**, responsable de validar, normalizar 
 
 ### Planificación
 
-- Definición del alcance del Metadata Manager.
-- Identificación de los requisitos funcionales RF-011 a RF-015.
-- Definición de la estrategia de implementación del módulo.
+- Definición del alcance del módulo Embeddings.
+- Identificación de los requisitos funcionales RF-040 a RF-045.
+- Definición de la arquitectura del proveedor de embeddings.
 
 ### Diseño
 
-- Elaboración del documento **SDS-003 – Software Design Specification**.
-- Definición de la arquitectura interna del Metadata Manager.
-- Definición de reglas oficiales para la normalización de metadata.
-- Incorporación de trazabilidad entre requisitos funcionales, implementaciones y casos de prueba.
+- Elaboración del documento **SDS-004 – Software Design Specification**.
+- Diseño de la arquitectura desacoplada entre el módulo Embeddings y el proveedor de IA.
+- Definición de la configuración centralizada mediante `settings.py`.
 
 ### Implementación
 
-Se implementó la clase:
+Se implementaron las clases:
 
 ```text
-MetadataManager
+Embeddings
+
+EmbeddingProvider
 ```
 
-con las siguientes responsabilidades:
+Con las siguientes responsabilidades:
 
-- Validación de metadata obligatoria.
-- Normalización de metadata.
-- Enriquecimiento automático de metadata.
-- Validación de colecciones de documentos.
-- Preparación de documentos para el módulo Embeddings.
+- Validación de documentos.
+- Inicialización del proveedor de embeddings.
+- Generación de embeddings para documentos.
+- Generación de embeddings para consultas.
+- Manejo centralizado de excepciones.
+- Configuración mediante variables de entorno.
 
-También se incorporó el archivo:
+También se incorporó la integración con:
 
 ```text
-src/core/exceptions.py
+Google Generative AI
 ```
 
-para centralizar las excepciones personalizadas del proyecto.
+utilizando el modelo:
+
+```text
+gemini-embedding-2
+```
+
+---
+
+## Configuración
+
+Durante este Sprint se incorporó la configuración del archivo:
+
+```text
+.env
+```
+
+con la variable:
+
+```text
+GOOGLE_API_KEY
+```
+
+La autenticación quedó desacoplada del código fuente, permitiendo mantener las credenciales fuera del repositorio.
 
 ---
 
 ## Pruebas
 
-Se incorporó por primera vez un framework de pruebas automatizadas basado en **pytest**.
-
-Se creó la siguiente estructura:
+Se implementó el script de integración:
 
 ```text
-tests/
-│
-├── __init__.py
-└── test_metadata.py
+temp/check_pipeline_embeddings.py
 ```
 
-Casos de prueba implementados:
-
-| Caso | Estado |
-|------|--------|
-| CP-001 | ✅ |
-| CP-002 | ✅ |
-| CP-003 | ✅ |
-| CP-004 | ✅ |
-| CP-005 | ✅ |
-| CP-006 | ✅ |
-| CP-007 | ✅ |
-| CP-008 | ✅ |
-| CP-009 | ✅ |
-
-Resultado:
+El script valida el flujo completo del pipeline:
 
 ```text
-9 passed
+Document Loader
+        │
+        ▼
+Text Splitter
+        │
+        ▼
+Metadata Manager
+        │
+        ▼
+Embeddings
 ```
 
-Se mantiene adicionalmente el script de integración:
-Estos scripts se utilizan durante el desarrollo para realizar validaciones rápidas de integración entre módulos.
+Resultado obtenido:
 
 ```text
-temp/check_metadata.py
+Document Loader      ✔
+
+Text Splitter        ✔
+
+Metadata Manager     ✔
+
+Embeddings           ✔
+
+Pipeline completado correctamente
 ```
+
+La validación se realizó utilizando una muestra reducida de documentos para respetar las restricciones de cuota del servicio gratuito de Google Generative AI.
+
+---
+
+## Problemas encontrados
+
+Durante el desarrollo se identificaron los siguientes inconvenientes:
+
+- Error por ausencia de `GOOGLE_API_KEY`.
+- Error de autenticación al utilizar claves pertenecientes a proyectos antiguos.
+- Error `RESOURCE_EXHAUSTED (429)` al procesar la totalidad de los chunks utilizando la cuota gratuita.
+- Necesidad de crear un proyecto específico para el Challenge en Google AI Studio.
+
+Todos los problemas fueron resueltos durante el Sprint.
 
 ---
 
 ## Mejoras metodológicas
 
-Durante este Sprint se incorporaron nuevas prácticas al proyecto:
+Se incorporaron nuevas prácticas al proyecto:
 
-- Uso oficial de **pytest** para pruebas funcionales.
-- Separación entre pruebas de integración (`temp/`) y pruebas automatizadas (`tests/`).
-- Incorporación de Casos de Prueba (CP) dentro del SDS.
-- Trazabilidad completa:
-
-```text
-RF
- ↓
-SDS
- ↓
-IMP
- ↓
-CP
- ↓
-Release
-```
-
-- Recomendación oficial de utilizar:
-
-```bash
-python -m pip
-```
-
-en lugar de `pip` para la instalación de dependencias.
+- Configuración mediante archivo `.env`.
+- Validación explícita de credenciales antes de inicializar el proveedor.
+- Separación entre lógica de negocio y proveedor de IA.
+- Reutilización de una única instancia del proveedor de embeddings.
+- Uso de muestras representativas durante las pruebas de integración para optimizar el consumo de cuota.
 
 ---
 
 ## Archivos creados
 
 ```text
-src/knowledge/metadata.py
-src/core/exceptions.py
-tests/test_metadata.py
-temp/check_metadata.py
+src/llm/embedding_provider.py
+
+src/knowledge/embeddings.py
+
+temp/check_pipeline_embeddings.py
 ```
 
 ---
@@ -456,64 +474,58 @@ temp/check_metadata.py
 ```text
 src/config/settings.py
 
-SDS-003_Document_Metadata.md
+src/core/exceptions.py
+
+SDS-004_Embeddings.md
 
 README.md (pendiente)
 
-LOG-001_Bitacora_Tecnica.md
-
-MTR-001_Matriz_Trazabilidad.md (pendiente)
-
 CHANGELOG.md (pendiente)
+
+LOG-001_Bitacora_Tecnica.md
 ```
 
 ---
 
 ## Resultado del Sprint
 
-Estado del Metadata Manager:
+Estado del pipeline:
 
 ```text
-MetadataManager
+Knowledge Base         ✔
 
-✔ Validación
+Document Loader        ✔
 
-✔ Normalización
+Text Splitter          ✔
 
-✔ Enriquecimiento
+Metadata Manager       ✔
 
-✔ Integración
+Embeddings             ✔
 
-✔ Pruebas automatizadas
-```
-
-Estado general del pipeline:
-
-```text
-Knowledge Base
-      │
-      ▼
-Document Loader        ✅
-      │
-      ▼
-Text Splitter          ✅
-      │
-      ▼
-Metadata Manager       ✅
-      │
-      ▼
-Embeddings             ⏳
+Vector Store           ⏳
 ```
 
 ---
 
 ## Observaciones
 
-El Sprint permitió consolidar la estrategia de validación automática del proyecto mediante pytest y establecer una metodología reutilizable para los siguientes módulos del pipeline RAG.
+Con la finalización del módulo Embeddings queda concluida la primera etapa del pipeline RAG correspondiente al procesamiento documental.
+
+El proyecto ya es capaz de:
+
+- cargar documentos;
+- fragmentarlos;
+- enriquecer su metadata;
+- generar embeddings utilizando un modelo real de Google Generative AI.
+
+---
 
 ## Lecciones aprendidas
 
-- Centralizar la configuración en `settings.py` simplifica el mantenimiento del proyecto.
-- El uso de `python -m pip` evita problemas con entornos virtuales en Windows.
-- La incorporación de `pytest` mejora significativamente la calidad y automatización de las pruebas.
-- Mantener trazabilidad entre RF, IMP y CP facilita la validación y evolución del sistema.
+- La autenticación debe mantenerse completamente desacoplada del código fuente.
+- Las pruebas de integración deben adaptarse a las limitaciones del nivel gratuito del proveedor.
+- La reutilización del proveedor reduce la cantidad de inicializaciones innecesarias.
+- La separación entre `Embeddings` y `EmbeddingProvider` facilita futuras migraciones hacia otros modelos o proveedores.
+- Los scripts ubicados en `temp/` son herramientas de validación para el desarrollo local y no forman parte de la Release del proyecto.
+---
+

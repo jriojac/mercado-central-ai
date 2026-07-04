@@ -107,3 +107,17 @@ DEFAULT_CATEGORY = None
 
 GEMINI_MODEL = "gemini-2.5-flash"
 
+
+# ==========================================================
+# EMBEDDINGS
+# ==========================================================
+
+EMBEDDING_PROVIDER = "google"    # Puede ser cualquiera de estos proveedores "openai" , "cohere" , "cohere"
+
+EMBEDDING_MODEL = "gemini-embedding-2-preview"
+
+EMBEDDING_BATCH_SIZE = 32
+
+EMBEDDING_TIMEOUT = 30
+
+EMBEDDING_RETRIES = 3

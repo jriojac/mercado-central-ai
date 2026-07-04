@@ -8,7 +8,7 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 
 ## Estado del Proyecto
 
-> **Versión estable:** **v0.3.0**
+> **Versión estable:** **v0.4.0**
 
 > **Estado:** Desarrollo activo
 
@@ -16,13 +16,14 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 |-----------|--------|
 | Arquitectura | ✅ Consolidada |
 | Documentación | ✅ Actualizada |
-| Hito 1 – Document Loader | ✅ Finalizado |
-| Hito 2 – Text Splitter | ✅ Finalizado |
-| Hito 3 – Metadata Manager | ✅ Finalizado |
-| Sprint actual | Sprint 5 |
-| Próximo módulo | Embeddings |
-| Release estable | v0.3.0 |
-| Próxima Release | v0.4.0 (Embeddings) |
+| Sprint 3 – Hito 1 – Document Loader | ✅ Finalizado |
+| Sprint 4 – Hito 2 – Text Splitter | ✅ Finalizado |
+| Sprint 5 – Hito 3 – Metadata Manager | ✅ Finalizado |
+| Sprint 6 – Hito 4 – Embeddings | ✅ Finalizado |
+| Release estable | v0.4.0 |
+| Próxima Release | v0.5.0 (Vector Store) |
+
+
 ---
 
 ## Objetivo
@@ -128,10 +129,7 @@ Challenge-Alura-Agente-IA/
 ├── 02_Recursos_Alura/
 │
 ├── 03_Knowledge_Base/
-│   ├── loader.py
-│   ├── splitter.py
-│   ├── metadata.py
-│
+│ 
 ├── 04_Desarrollo/
 │   └── mercado-central-ai/
 │       ├── src/
@@ -141,9 +139,11 @@ Challenge-Alura-Agente-IA/
 │       │       ├── exceptions.py
 │       │   ├── knowledge/
 │       │       ├── loader.py
-│       │       ├── splitter.py
+│       │       ├── text_splitter.py
 │       │       ├── metadata.py
+│       │       ├── embeddings.py
 │       │   ├── llm/
+│       │       ├── embedding_provider.py
 │       │   ├── prompts/
 │       │   ├── tools/
 │       │   └── utils/
@@ -154,6 +154,7 @@ Challenge-Alura-Agente-IA/
 │       │    ├── check_text_splitter.py
 │       │    ├── check_loader_splitter.py
 │       │    ├── check_metadata.py
+│       │    ├── check_pipeline_embeddings.py
 │       ├── tests/
 │       │    ├── test_metadata.py
 │       └── app.py
@@ -172,7 +173,7 @@ Sprint	Hito	Estado
 Sprint 3	Document Loader	✅
 Sprint 4	Text Splitter	✅
 Sprint 5	Metadata Manager✅
-Sprint 6	Embeddings	⏳
+Sprint 6	Embeddings	✅
 Sprint 7	Vector Store	⏳
 Sprint 8	Retriever	⏳
 Sprint 9	Context Builder	⏳
@@ -189,7 +190,7 @@ Sprint 12	Streamlit	⏳
 | Document Loader       | ✅ |
 | Text Splitter         | ✅ |
 | Metadata Manager      | ✅ |
-| Embeddings            | ⏳ |
+| Embeddings            | ✅ |
 | Vector Store          | ⏳ |
 | Retriever             | ⏳ |
 | Context Builder       | ⏳ |
@@ -220,7 +221,7 @@ Scripts disponibles:
 - check_loader_splitter.py
 - check_metadata.py
 
-Estas pruebas permiten validar rápidamente la integración de cada módulo durante el desarrollo.
+Estas pruebas permiten validar la integración progresiva del pipeline RAG durante el desarrollo.
 
 ---
 
@@ -268,6 +269,8 @@ python -m temp.check_loader
 python -m temp.check_text_splitter
 
 python -m temp.check_loader_splitter
+
+python -m temp.check_pipeline_embeddings
 ```
 
 Estos scripts permiten validar la configuración del proyecto, el Document Loader, el Text Splitter y la integración entre ambos módulos.
@@ -286,12 +289,29 @@ La documentación del proyecto se organiza por categorías:
 | DOC | Documentación funcional |
 | ADR | Decisiones arquitectónicas |
 
+
+## Configuración
+
+### Variables de entorno
+
+El proyecto utiliza un archivo `.env` ubicado en la raíz de `04_Desarrollo/mercado-central-ai`.
+
+Variables requeridas:
+
+```env
+GOOGLE_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+El archivo `.env` no debe incluirse en el repositorio y se utiliza para configurar de forma segura el acceso a Google Generative AI.
+
+
 ## Tecnologías
 
 - Python
 - LangChain
 - Google Gemini
 - PyPDF
+- python-dotenv
 - pytest
 - ChromaDB *(planificado)*
 - Streamlit *(planificado)*
@@ -303,7 +323,7 @@ La documentación del proyecto se organiza por categorías:
 | v0.1.1 | Document Loader |
 | v0.2.0 | Text Splitter |
 | v0.3.0 | Metadata Manager |
-| v0.4.0 | Embeddings *(planificada)* |
+| v0.4.0 | Embeddings |
 
 
 ## Incluye:
@@ -318,13 +338,16 @@ La documentación del proyecto se organiza por categorías:
 - Auditoría Arquitectónica
 - Documentación técnica
 - Matriz de trazabilidad
+- Embeddings
+- Embedding Provider
+- Integración con Google Generative AI
 
 
 ## Próximo objetivo
 
-## Sprint 6 – Embeddings
+## Sprint 7 – Vector Store
 
-Implementar el módulo **Embeddings**, responsable de transformar los chunks enriquecidos en vectores semánticos para su almacenamiento posterior en el Vector Store.
+Implementar el módulo Vector Store, responsable de almacenar los embeddings generados y proporcionar búsquedas vectoriales eficientes como base para el Retriever.
 
 ---
 

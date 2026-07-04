@@ -66,8 +66,15 @@ class DocumentLoader:
 
         loader = PyPDFLoader(str(pdf_path))
 
-        return loader.load()
+        documents = loader.load()
 
+        documents = self._enrich_metadata(
+            documents,
+            pdf_path,
+        )
+
+        return documents
+   
     def load_all(self) -> List[Document]:
         """
         Carga todos los documentos PDF encontrados.
@@ -117,3 +124,31 @@ class DocumentLoader:
         print("=" * 45)
 
         return documents
+
+
+    def _enrich_metadata(
+        self,
+        documents: List[Document],
+        pdf_path: Path,
+    ) -> List[Document]:
+        """
+        Enriquece la metadata básica de los documentos cargados.
+
+        Args:
+            documents: Lista de documentos cargados.
+            pdf_path: Ruta del archivo PDF.
+
+        Returns:
+            Lista de documentos con metadata enriquecida.
+        """
+
+        for document in documents:
+
+            document.metadata["file_name"] = pdf_path.name
+
+            document.metadata["file_type"] = (
+                pdf_path.suffix.lower().replace(".", "")
+            )
+
+        return documents
+
