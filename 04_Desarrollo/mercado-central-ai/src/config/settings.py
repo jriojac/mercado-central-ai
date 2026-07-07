@@ -21,7 +21,7 @@ load_dotenv()
 
 PROJECT_NAME = "Mercado Central AI"
 
-PROJECT_VERSION = "0.2.0"
+PROJECT_VERSION = "0.5.0-dev"
 
 # -------------------------------------------------------
 # Directorio raíz del proyecto
@@ -37,7 +37,7 @@ SRC_DIR = ROOT_DIR / "src"
 
 LOGS_DIR = ROOT_DIR / "logs"
 
-VECTOR_DB_DIR = ROOT_DIR / "vector_db"
+DATA_DIR = ROOT_DIR / "data"
 
 TEMP_DIR = ROOT_DIR / "temp"
 
@@ -63,7 +63,6 @@ METADATA_DIR = KNOWLEDGE_BASE / "04_Metadata"
 
 EMBEDDINGS_DIR = KNOWLEDGE_BASE / "05_Embeddings"
 
-# ---- FAISS_DIR = KNOWLEDGE_BASE / "06_VectorDB"
 VECTOR_STORE_DIR = KNOWLEDGE_BASE / "06_VectorDB"
 
 # -------------------------------------------------------
@@ -74,7 +73,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # -------------------------------------------------------
 # Configuración RAG
-# TEXT_SPLITTER
+# TEXT SPLITTER
 # -------------------------------------------------------
 
 TEXT_SPLITTER = {
@@ -98,21 +97,17 @@ DEFAULT_LANGUAGE = "es"
 
 DEFAULT_CATEGORY = None
 
-
-
-
-# -------------------------------------------------------
-# Modelo Gemini
-# -------------------------------------------------------
+# ==========================================================
+# GEMINI
+# ==========================================================
 
 GEMINI_MODEL = "gemini-2.5-flash"
-
 
 # ==========================================================
 # EMBEDDINGS
 # ==========================================================
 
-EMBEDDING_PROVIDER = "google"    # Puede ser cualquiera de estos proveedores "openai" , "cohere" , "cohere"
+EMBEDDING_PROVIDER = "google"
 
 EMBEDDING_MODEL = "gemini-embedding-2-preview"
 
@@ -121,3 +116,15 @@ EMBEDDING_BATCH_SIZE = 32
 EMBEDDING_TIMEOUT = 30
 
 EMBEDDING_RETRIES = 3
+
+# ==========================================================
+# VECTOR DATABASE
+# ==========================================================
+
+VECTOR_DB_PROVIDER = "chroma"
+
+VECTOR_DB_PATH = DATA_DIR / "chroma"
+
+VECTOR_DB_COLLECTION = "mercado_central_ai"
+
+VECTOR_SEARCH_K = 4

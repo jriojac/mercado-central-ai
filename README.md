@@ -8,20 +8,21 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 
 ## Estado del Proyecto
 
-> **Versión estable:** **v0.4.0**
+> **Versión estable:** **v0.5.0**
 
 > **Estado:** Desarrollo activo
 
-| Elemento | Estado |
-|-----------|--------|
-| Arquitectura | ✅ Consolidada |
-| Documentación | ✅ Actualizada |
-| Sprint 3 – Hito 1 – Document Loader | ✅ Finalizado |
-| Sprint 4 – Hito 2 – Text Splitter | ✅ Finalizado |
-| Sprint 5 – Hito 3 – Metadata Manager | ✅ Finalizado |
-| Sprint 6 – Hito 4 – Embeddings | ✅ Finalizado |
-| Release estable | v0.4.0 |
-| Próxima Release | v0.5.0 (Vector Store) |
+| Elemento                              | Estado                 |
+| ------------------------------------- | ---------------------- |
+| Arquitectura                          | ✅ Consolidada          |
+| Documentación                         | ✅ Actualizada          |
+| Sprint 3 – Hito 1 – Document Loader   | ✅ Finalizado           |
+| Sprint 4 – Hito 2 – Text Splitter     | ✅ Finalizado           |
+| Sprint 5 – Hito 3 – Metadata Manager  | ✅ Finalizado           |
+| Sprint 6 – Hito 4 – Embeddings Engine | ✅ Finalizado           |
+| Sprint 7 – Hito 5 – Vector Store      | ✅ Finalizado           |
+| Release estable                       | **v0.5.0**             |
+| Próxima Release                       | **v0.6.0 (Retriever)** |
 
 
 ---
@@ -38,6 +39,8 @@ Construir un agente inteligente capaz de responder consultas relacionadas con:
 - Información corporativa.
 
 La información proviene exclusivamente de la Base de Conocimiento del proyecto.
+
+
 
 ---
 
@@ -75,14 +78,67 @@ Respuesta
 ```
 ---
 
+## Estado del Pipeline RAG
+
+Knowledge Base          ✅
+
+↓
+
+Document Loader         ✅
+
+↓
+
+Text Splitter           ✅
+
+↓
+
+Metadata Manager        ✅
+
+↓
+
+Embeddings Engine       ✅
+
+↓
+
+Vector Store            ✅
+
+↓
+
+Retriever               ⏳
+
+↓
+
+Context Builder         ⏳
+
+↓
+
+Gemini                  ⏳
+
+↓
+
+Respuesta               ⏳
+
+
+
 ## Metodología del Proyecto
 
 ### El desarrollo sigue una metodología incremental basada en:
 
 Sprint
-      ↓
+   │
+   ▼
 Hito
-      ↓
+   │
+   ▼
+Implementación
+   │
+   ▼
+Pruebas
+   │
+   ▼
+Documentación
+   │
+   ▼
 Release
 
 ### Cada Hito sigue obligatoriamente el siguiente flujo:
@@ -142,6 +198,12 @@ Challenge-Alura-Agente-IA/
 │       │       ├── text_splitter.py
 │       │       ├── metadata.py
 │       │       ├── embeddings.py
+│       │       ├── vector_store.py
+│       │       ├── provider.py
+│       │       ├── constants.py
+│       │       ├── ypes.py
+│       │       ├── providers/
+│       │       ├── chroma_provider.py
 │       │   ├── llm/
 │       │       ├── embedding_provider.py
 │       │   ├── prompts/
@@ -157,6 +219,8 @@ Challenge-Alura-Agente-IA/
 │       │    ├── check_pipeline_embeddings.py
 │       ├── tests/
 │       │    ├── test_metadata.py
+│       │    ├── test_embeddings.py
+│       │    ├── test_vector_store.py
 │       └── app.py
 │
 ├── 05_Pruebas/
@@ -174,7 +238,7 @@ Sprint 3	Document Loader	✅
 Sprint 4	Text Splitter	✅
 Sprint 5	Metadata Manager✅
 Sprint 6	Embeddings	✅
-Sprint 7	Vector Store	⏳
+Sprint 7	Vector Store	✅
 Sprint 8	Retriever	⏳
 Sprint 9	Context Builder	⏳
 Sprint 10	Decision Engine	⏳
@@ -191,7 +255,7 @@ Sprint 12	Streamlit	⏳
 | Text Splitter         | ✅ |
 | Metadata Manager      | ✅ |
 | Embeddings            | ✅ |
-| Vector Store          | ⏳ |
+| Vector Store          | ✅ |
 | Retriever             | ⏳ |
 | Context Builder       | ⏳ |
 | Decision Engine       | ⏳ |
@@ -240,6 +304,9 @@ Framework utilizado:
 Actualmente se encuentran implementadas las pruebas automatizadas para:
 
 - Metadata Manager
+- Embeddings Engine
+- Vector Store
+
 
 Ejecución:
 
@@ -271,9 +338,11 @@ python -m temp.check_text_splitter
 python -m temp.check_loader_splitter
 
 python -m temp.check_pipeline_embeddings
+
+python -m temp.check_vector_store  
 ```
 
-Estos scripts permiten validar la configuración del proyecto, el Document Loader, el Text Splitter y la integración entre ambos módulos.
+El módulo Vector Store fue validado mediante pruebas automatizadas implementadas con pytest.
 
 ## Documentación
 
@@ -313,7 +382,7 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 - PyPDF
 - python-dotenv
 - pytest
-- ChromaDB *(planificado)*
+- ChromaDB
 - Streamlit *(planificado)*
 
 ## Versiones
@@ -324,7 +393,7 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 | v0.2.0 | Text Splitter |
 | v0.3.0 | Metadata Manager |
 | v0.4.0 | Embeddings |
-
+| v0.5.0 | Vector Store |
 
 ## Incluye:
 
@@ -341,13 +410,20 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 - Embeddings
 - Embedding Provider
 - Integración con Google Generative AI
+- Vector Store
+- VectorStoreProvider
+- ChromaProvider
+- ChromaDB
+- Persistencia vectorial
+- Búsqueda por similitud
+- Gestión de colecciones
 
 
 ## Próximo objetivo
 
-## Sprint 7 – Vector Store
+## Sprint 8 – Retriever
 
-Implementar el módulo Vector Store, responsable de almacenar los embeddings generados y proporcionar búsquedas vectoriales eficientes como base para el Retriever.
+Implementar el módulo **Retriever**, responsable de recuperar los documentos más relevantes del Vector Store mediante búsquedas semánticas, proporcionando el contexto que será utilizado posteriormente por el LLM para la generación de respuestas.
 
 ---
 

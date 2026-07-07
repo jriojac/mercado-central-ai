@@ -4,8 +4,87 @@
 Este documento registra los cambios relevantes realizados en el proyecto siguiendo las recomendaciones de Keep a Changelog y versionado semántico adaptado al Challenge Alura + Oracle Next Education.
 #----------------------------------------------------------------------------------------------------------------
 
+## Convención utilizada
+
+Este documento sigue las recomendaciones de **Keep a Changelog**, adaptadas al ciclo de desarrollo incremental del proyecto.
+
+Cada Release registra:
+
+- Funcionalidades incorporadas (**Added**).
+- Cambios relevantes (**Changed**).
+- Correcciones (**Fixed**, cuando aplique).
+- Validaciones realizadas (**Validated**).
+
+Las versiones se publican al cierre de cada Sprint/Hito estable del proyecto.
 
 
+## [0.5.0] - 2026-07-05
+
+### Added
+
+- Implementación del módulo Vector Store.
+- Implementación de la interfaz VectorStoreProvider.
+- Implementación de ChromaProvider como proveedor de almacenamiento vectorial.
+- Integración con ChromaDB para la persistencia local de documentos vectoriales.
+- Implementación del modelo VectorDocument.
+- Implementación del modelo SearchResult.
+- Incorporación de provider.py.
+- Incorporación de constants.py.
+- Administración de colecciones vectoriales.
+- Inserción de documentos vectoriales.
+- Búsquedas por similitud (similarity_search()).
+- Eliminación de documentos (delete_documents()).
+- Reinicio completo de colecciones (reset()).
+- Conteo de documentos (count_documents()).
+- Persistencia local del Vector Store.
+- Pruebas automatizadas mediante pytest.
+- Archivo tests/test_vector_store.py.
+- Ocho casos de prueba automatizados (CP-501 a CP-508).
+
+### Changed
+
+- Actualización de settings.py para incorporar la configuración del Vector Store.
+- Actualización del README del proyecto.
+- Actualización de la Matriz de Trazabilidad (MTR-001).
+- Actualización de LOG-001_Bitacora_Tecnica.md.
+- Actualización de SDS-005_Vector_Store.md.
+- Actualización del pipeline RAG incorporando el módulo Vector Store.
+- Refactorización de la suite de pruebas mediante pytest.fixture.
+- Estandarización de la interfaz VectorStoreProvider.
+- Separación entre la interfaz pública y la implementación específica del proveedor ChromaDB.
+
+### Validated
+
+- Creación de colecciones vectoriales.
+- Carga de colecciones existentes.
+- Inserción de documentos vectoriales.
+- Persistencia local mediante ChromaDB.
+- Conteo de documentos almacenados.
+- Búsquedas por similitud.
+- Eliminación de documentos.
+- Reinicio completo de colecciones.
+- Ejecución satisfactoria de las ocho pruebas automatizadas (8 passed).
+- Validación completa de la interfaz pública del módulo.
+
+### Pipeline actualizado
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+```
 
 ---
 
@@ -55,7 +134,7 @@ Text Splitter
 Metadata Manager
       │
       ▼
-Embeddings
+Embeddings Engine
 ```
 
 - Generación exitosa de embeddings de **3072 dimensiones**.

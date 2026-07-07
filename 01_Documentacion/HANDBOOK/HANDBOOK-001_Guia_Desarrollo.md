@@ -90,21 +90,43 @@ Cada Hito deberá seguir obligatoriamente el siguiente flujo.
 
 ```text
 Planificación
-      ↓
+      │
+      ▼
 SDS
-      ↓
+      │
+      ▼
 Implementación
-      ↓
+      │
+      ▼
 Pruebas
-      ↓
-Documentación
-      ↓
+      │
+      ▼
+MTR
+      │
+      ▼
+README
+      │
+      ▼
+CHANGELOG
+      │
+      ▼
+LOG
+      │
+      ▼
+ROADMAP
+      │
+      ▼
+HANDBOOK
+      │
+      ▼
+Acta de Cierre
+      │
+      ▼
 Git
-      ↓
+      │
+      ▼
 Release
 ```
-
-No deberá iniciarse un nuevo Hito hasta completar el ciclo anterior.
 
 ---
 
@@ -158,8 +180,7 @@ Componentes comunes del proyecto y manejo de excepciones compartidas.
 ```text
 knowledge/
 ```
-
-Pipeline RAG.
+Implementación del pipeline RAG, incluyendo la carga documental, procesamiento, generación de embeddings, almacenamiento vectorial y recuperación semántica.
 
 ```text
 llm/
@@ -235,6 +256,10 @@ No deberán ejecutarse mediante rutas directas.
 
 El proyecto utiliza dos niveles de validación.
 
+### Uso de fixtures
+
+Las pruebas automatizadas deberán utilizar `pytest.fixture` cuando sea necesario compartir configuraciones o recursos comunes entre múltiples casos de prueba, evitando duplicidad de código y facilitando el mantenimiento de la suite de pruebas.
+
 ### Pruebas de integración
 
 Ubicación:
@@ -306,10 +331,13 @@ Cada nuevo módulo deberá incluir como mínimo:
 - Implementación.
 - Pruebas de integración.
 - Pruebas automatizadas.
-- Actualización del LOG.
-- Actualización de la MTR.
+- Actualización del MTR.
 - Actualización del README.
 - Actualización del CHANGELOG.
+- Actualización del LOG.
+- Actualización del ROADMAP (cuando corresponda).
+- Actualización del HANDBOOK (si se incorpora una nueva práctica metodológica).
+- Acta de Cierre.
 - Release correspondiente.
 
 ---
@@ -325,6 +353,10 @@ Cada documento debe contener:
 - objetivo;
 - control de versiones.
 
+Toda mejora metodológica aprobada durante un Sprint deberá incorporarse al HANDBOOK antes de la publicación de la Release correspondiente.
+
+El HANDBOOK constituye la referencia oficial de las prácticas de desarrollo vigentes del proyecto.
+
 Se mantendrá un único documento vivo.
 
 Git conservará el historial completo.
@@ -339,10 +371,11 @@ Cada Hito deberá finalizar con:
 
 1. Validación técnica.
 2. Ejecución de pruebas automatizadas.
-3. Actualización documental.
-4. Revisión de `git status`.
+3. Actualización de la documentación.
+4. Revisión del estado del repositorio (`git status`).
 5. Commit descriptivo.
-6. Push al repositorio.
+6. Push al repositorio remoto.
+7. Creación del tag de Release (cuando corresponda).
 
 Las Releases únicamente se publicarán cuando el Hito haya sido completamente validado.
 
@@ -360,20 +393,25 @@ Un Hito se considerará finalizado únicamente cuando se cumplan todos los sigui
 - Documentación actualizada.
 - Git actualizado.
 - Release preparada.
+- ROADMAP actualizado (cuando corresponda).
+- HANDBOOK actualizado (cuando se aprueben nuevas prácticas metodológicas).
 
 ---
 
 # 10. Relación con otros documentos
 
-| Documento | Propósito |
-|-----------|-----------|
-| ROADMAP | Planificación |
-| LOG | Registro cronológico |
-| MTR | Matriz de trazabilidad |
-| SDS | Diseño técnico |
-| DOC | Documentación funcional |
-| README | Estado general del proyecto |
-| CHANGELOG | Historial de Releases |
+| Documento      | Propósito                                                |
+| -------------- | -------------------------------------------------------- |
+| ROADMAP        | Planificación estratégica del proyecto.                  |
+| PLAN           | Planificación del Sprint.                                |
+| LOG            | Registro de decisiones y evolución técnica.              |
+| MTR            | Trazabilidad entre requisitos, implementación y pruebas. |
+| SDS            | Diseño técnico del módulo.                               |
+| DOC            | Documentación funcional y de apoyo.                      |
+| README         | Estado general y guía del proyecto.                      |
+| CHANGELOG      | Historial de Releases.                                   |
+| Acta de Cierre | Evidencia formal del cierre del Sprint.                  |
+
 
 ---
 
@@ -394,3 +432,5 @@ Las mejoras metodológicas aprobadas durante un Sprint deberán incorporarse a e
 | 1.0 | Junio 2026 | Guía inicial del proyecto. |
 | 2.0 | 02/07/2026 | Reestructuración completa tras la Auditoría Arquitectónica. Incorporación de la metodología Sprint → Hito → Release. |
 | 2.1 | 03/07/2026 | Incorporación de la estrategia oficial de pruebas con pytest, separación entre pruebas de integración y automatizadas, reglas para instalación de dependencias, actualización del flujo de cierre de Hitos y formalización de las mejoras metodológicas derivadas del Sprint 5. |
+| Versión | Fecha          | Descripción                                                                                          
+| **2.2** | **05/07/2026** | Actualización metodológica derivada del Sprint 7. Incorporación del flujo documental completo (MTR, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y Acta de Cierre), formalización del uso de `pytest.fixture`, actualización de los criterios de cierre de Hitos y consolidación de la metodología documental del proyecto. |

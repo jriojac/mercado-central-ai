@@ -668,8 +668,8 @@ La arquitectura propuesta reduce estos riesgos mediante la separación entre el 
 | IMP-06 | ✅ | RF-043 |
 | IMP-07 | ✅ | RF-044, RF-045 |
 | IMP-08 | ✅ | Scripts de validación (temp/) |
-| IMP-09 | ⏳ | Pruebas automatizadas (tests/) |
-| IMP-10 | ⏳ | Documentación y preparación de Release |
+| IMP-09 | ✅ | Pruebas automatizadas (tests/) |
+| IMP-10 | ✅ | Documentación y preparación de Release |
 
 ---
 

@@ -25,11 +25,11 @@ Estado del proyecto:
 -   Proyecto documentado y versionado.
 -   Listo para iniciar el Sprint 4.
 
-# Registro de Avances (LOG)
+### Registro de Avances (LOG)
 
 ---
 
-## Sprint 4 – Hito 2
+### Sprint 4 – Hito 2
 
 ## 2026-07-01 -- Cierre del Hito 2
 
@@ -86,50 +86,44 @@ Sprint 4 – Hito 2 listo para documentación final, control de versiones y prep
 ---
 
 
-# Registro de avance
+### Registro de avance
 
 ---
 
-## Fecha
 
-03/07/2026
 
-## Sprint
 
-Sprint 5
 
-## Hito
 
-Hito 3 – Metadata Manager
 
-## Release objetivo
+### Sprint 5 – Hito 3
 
-v0.3.0
+## 2026-07-03 -- Cierre del Hito 3 
 
----
+### Modulo 
 
-## Objetivo
+Metadata Manager
 
-Implementar el módulo **Metadata Manager**, responsable de validar, normalizar y enriquecer la metadata asociada a los documentos generados por el Text Splitter antes del proceso de generación de embeddings.
+### Estado
 
----
+Finalizado
 
-## Actividades realizadas
+### Actividades realizadas
 
-### Planificación
+#### Planificación
 
 - Definición del alcance del Metadata Manager.
 - Identificación de los requisitos funcionales RF-011 a RF-015.
 - Definición de la estrategia de implementación del módulo.
 
-### Diseño
+#### Diseño
 
 - Elaboración del documento **SDS-003 – Software Design Specification**.
 - Definición de la arquitectura interna del Metadata Manager.
 - Definición de reglas oficiales para la normalización de metadata.
 - Incorporación de trazabilidad entre requisitos funcionales, implementaciones y casos de prueba.
 
-### Implementación
+#### Implementación
 
 Se implementó la clase:
 
@@ -155,7 +149,7 @@ para centralizar las excepciones personalizadas del proyecto.
 
 ---
 
-## Pruebas
+#### Pruebas
 
 Se incorporó por primera vez un framework de pruebas automatizadas basado en **pytest**.
 
@@ -182,7 +176,7 @@ Casos de prueba implementados:
 | CP-008 | ✅ |
 | CP-009 | ✅ |
 
-Resultado:
+### Resultado:
 
 ```text
 9 passed
@@ -196,7 +190,7 @@ temp/check_metadata.py
 
 ---
 
-## Mejoras metodológicas
+### Mejoras metodológicas
 
 Durante este Sprint se incorporaron nuevas prácticas al proyecto:
 
@@ -227,7 +221,7 @@ en lugar de `pip` para la instalación de dependencias.
 
 ---
 
-## Archivos creados
+#### Archivos creados
 
 ```text
 src/knowledge/metadata.py
@@ -238,7 +232,7 @@ temp/check_metadata.py  | Herramientas y scripts de apoyo para el desarrollo (lo
 
 ---
 
-## Archivos actualizados
+#### Archivos actualizados
 
 ```text
 src/config/settings.py
@@ -256,7 +250,7 @@ CHANGELOG.md (pendiente)
 
 ---
 
-## Resultado del Sprint
+#### Resultado del Sprint
 
 Estado del Metadata Manager:
 
@@ -294,53 +288,48 @@ Embeddings             ⏳
 
 ---
 
-## Observaciones
+#### Observaciones
 
 El Sprint permitió consolidar la estrategia de validación automática del proyecto mediante pytest y establecer una metodología reutilizable para los siguientes módulos del pipeline RAG.
 
 ---
-# Registro de avance
+#### Registro de avance
 ---
 
-## Fecha
 
-04/07/2026
 
-## Sprint
 
-Sprint 6
 
-## Hito
 
-Hito 4 – Embeddings
 
-## Release objetivo
 
-v0.4.0
+## 2026-07-01 -- Cierre del Hito 4
 
----
+### Sprint 6 - Hito 4
 
-## Objetivo
+### Módulo
+
+Embeddings
+
+### Objetivo
 
 Implementar el módulo **Embeddings**, responsable de transformar los documentos enriquecidos por el Metadata Manager en representaciones vectoriales (embeddings) mediante Google Generative AI, preparando la información para el futuro módulo Vector Store.
 
----
+### Actividades realizadas
 
-## Actividades realizadas
-
-### Planificación
+#### Planificación
 
 - Definición del alcance del módulo Embeddings.
 - Identificación de los requisitos funcionales RF-040 a RF-045.
 - Definición de la arquitectura del proveedor de embeddings.
 
-### Diseño
+#### Diseño
 
 - Elaboración del documento **SDS-004 – Software Design Specification**.
 - Diseño de la arquitectura desacoplada entre el módulo Embeddings y el proveedor de IA.
 - Definición de la configuración centralizada mediante `settings.py`.
 
-### Implementación
+#### Implementación
 
 Se implementaron las clases:
 
@@ -373,7 +362,7 @@ gemini-embedding-2
 
 ---
 
-## Configuración
+#### Configuración
 
 Durante este Sprint se incorporó la configuración del archivo:
 
@@ -391,7 +380,7 @@ La autenticación quedó desacoplada del código fuente, permitiendo mantener la
 
 ---
 
-## Pruebas
+#### Pruebas
 
 Se implementó el script de integración:
 
@@ -432,7 +421,7 @@ La validación se realizó utilizando una muestra reducida de documentos para re
 
 ---
 
-## Problemas encontrados
+#### Problemas encontrados
 
 Durante el desarrollo se identificaron los siguientes inconvenientes:
 
@@ -445,7 +434,7 @@ Todos los problemas fueron resueltos durante el Sprint.
 
 ---
 
-## Mejoras metodológicas
+#### Mejoras metodológicas
 
 Se incorporaron nuevas prácticas al proyecto:
 
@@ -457,7 +446,7 @@ Se incorporaron nuevas prácticas al proyecto:
 
 ---
 
-## Archivos creados
+#### Archivos creados
 
 ```text
 src/llm/embedding_provider.py
@@ -469,7 +458,7 @@ temp/check_pipeline_embeddings.py
 
 ---
 
-## Archivos actualizados
+#### Archivos actualizados
 
 ```text
 src/config/settings.py
@@ -487,7 +476,7 @@ LOG-001_Bitacora_Tecnica.md
 
 ---
 
-## Resultado del Sprint
+### Resultado
 
 Estado del pipeline:
 
@@ -507,7 +496,7 @@ Vector Store           ⏳
 
 ---
 
-## Observaciones
+### Observaciones
 
 Con la finalización del módulo Embeddings queda concluida la primera etapa del pipeline RAG correspondiente al procesamiento documental.
 
@@ -520,7 +509,7 @@ El proyecto ya es capaz de:
 
 ---
 
-## Lecciones aprendidas
+### Lecciones aprendidas
 
 - La autenticación debe mantenerse completamente desacoplada del código fuente.
 - Las pruebas de integración deben adaptarse a las limitaciones del nivel gratuito del proveedor.
@@ -529,3 +518,189 @@ El proyecto ya es capaz de:
 - Los scripts ubicados en `temp/` son herramientas de validación para el desarrollo local y no forman parte de la Release del proyecto.
 ---
 
+## 2026-07-05 -- Cierre del Hito 5
+
+### Sprint 7 - Hito 5
+
+### Registro de avance
+Hito 5 – Vector Store
+v0.5.0
+
+#### Objetivo
+Implementar el módulo Vector Store, responsable de almacenar, administrar y recuperar documentos vectoriales generados por el módulo Embeddings Engine, proporcionando la infraestructura de persistencia necesaria para el pipeline RAG.
+
+####  Actividades realizadas
+
+##### Planificación
+- Definición del alcance del módulo Vector Store.
+- Identificación de los requisitos funcionales RF-501 a RF-506.
+- Definición de la estrategia de almacenamiento vectorial.
+- Selección de ChromaDB como proveedor inicial del proyecto.
+
+##### Diseño
+- Elaboración del documento SDS-005 – Vector Store.
+- Definición de la arquitectura desacoplada mediante interfaces.
+- Diseño del proveedor abstracto VectorStoreProvider.
+- Definición de los modelos VectorDocument y SearchResult.
+- Diseño de la gestión de colecciones vectoriales.
+- Integración con la configuración centralizada mediante settings.py.
+
+##### Implementación
+Se implementaron los siguientes componentes:
+- VectorStore
+- VectorStoreProvider
+- ChromaProvider
+- VectorDocument
+- SearchResult
+
+Se desarrollaron las siguientes funcionalidades:
+
+- creación de colecciones;
+- carga de colecciones existentes;
+- inserción de documentos;
+- búsqueda por similitud;
+- conteo de documentos;
+- eliminación de documentos;
+- reinicio completo de colecciones.
+
+#### Decisiones de arquitectura
+Durante el desarrollo del módulo se adoptaron las siguientes decisiones arquitectónicas:
+
+ - DA-701
+Implementar una arquitectura basada en interfaces para desacoplar el almacenamiento vectorial del resto del pipeline.
+
+- DA-702
+Utilizar el patrón Strategy para permitir la incorporación de nuevos proveedores vectoriales sin modificar la lógica del sistema.
+
+- DA-703
+Centralizar toda la configuración del proveedor mediante settings.py.
+
+- DA-704
+Representar los documentos mediante el modelo VectorDocument y los resultados de búsqueda mediante SearchResult.
+
+#### Problemas encontrados
+Durante el Sprint se identificaron y resolvieron los siguientes inconvenientes:
+
+- incompatibilidades de versiones entre ChromaDB y LangChain;
+- errores de importación del proveedor;
+- ajustes de tipado para VectorDocument;
+- errores de identación durante la implementación;
+- gestión de colecciones inexistentes;
+- diferencias entre las pruebas manuales y automatizadas;
+- ajustes en la configuración del proveedor mediante settings.py.
+
+Todos los problemas fueron resueltos durante el desarrollo del Sprint.
+
+#### Pruebas
+Se implementó la suite automatizada:
+tests/
+└── test_vector_store.py
+
+Resultado obtenido : 8 passed
+
+Se validaron satisfactoriamente:
+
+- creación de colecciones;
+- inserción de documentos;
+- búsqueda por similitud;
+- conteo de documentos;
+- eliminación de documentos;
+- reinicio de colecciones;
+- persistencia local mediante ChromaDB;
+- validación completa de la interfaz pública.
+
+#### Refactorización
+Durante el Sprint se realizaron diversas actividades de mejora del código:
+
+- incorporación de pytest.fixture;
+- eliminación de código duplicado;
+- centralización de la resolución del nombre de la colección;
+- incorporación de métodos privados para reducir duplicidad;
+- reorganización de la inicialización del proveedor;
+- mejora de la mantenibilidad del módulo;
+- simplificación de la suite de pruebas.
+
+#### Mejoras metodológicas
+Durante este Sprint se consolidaron nuevas prácticas de desarrollo:
+
+- adopción de una arquitectura basada en interfaces;
+- desacoplamiento entre dominio e infraestructura;
+- incorporación del patrón Strategy;
+- consolidación de pruebas automatizadas mediante pytest;
+- actualización de la metodología documental del proyecto (SDS, MTR, README y CHANGELOG).
+
+#### Archivos creados
+- src/knowledge/vector_store.py
+- src/knowledge/provider.py
+- src/knowledge/providers/chroma_provider.py
+- src/knowledge/types.py
+- src/knowledge/constants.py
+- tests/test_vector_store.py
+
+#### Archivos actualizados
+- src/config/settings.py
+- README.md
+- CHANGELOG.md
+- MTR-001_Matriz_Trazabilidad.md
+- SDS-005_Vector_Store.md
+- LOG-001_Bitacora_Tecnica.md
+
+#### Resultado
+##### Vector Store
+
+✔ create_collection()
+
+✔ load_collection()
+
+✔ add_documents()
+
+✔ similarity_search()
+
+✔ count_documents()
+
+✔ delete_documents()
+
+✔ reset()
+
+##### Estado pipeline
+Knowledge Base
+      │
+      ▼
+Document Loader        ✔
+      │
+      ▼
+Text Splitter          ✔
+      │
+      ▼
+Metadata Manager       ✔
+      │
+      ▼
+Embeddings Engine      ✔
+      │
+      ▼
+Vector Store           ✔
+      │
+      ▼
+Retriever              ⏳
+
+#### Lecciones aprendidas
+- Diseñar primero la arquitectura facilita la implementación.
+- Definir interfaces reduce el acoplamiento entre módulos.
+- La validación incremental simplifica la depuración.
+- El uso de pytest.fixture mejora significativamente la mantenibilidad de las pruebas.
+- La separación entre interfaz e implementación permitirá incorporar nuevos proveedores vectoriales - con un impacto mínimo sobre el resto del sistema.
+
+#### Observaciones
+
+Con la finalización del módulo Vector Store, el proyecto completa la etapa de preparación e indexación de la información dentro del pipeline RAG.
+
+El sistema es capaz de:
+
+- cargar documentos desde la Base de Conocimiento;
+- fragmentar documentos en chunks;
+- enriquecer la metadata;
+- generar embeddings;
+- almacenar documentos vectoriales de forma persistente;
+- ejecutar búsquedas semánticas mediante ChromaDB.
+
+El siguiente Sprint estará orientado al desarrollo del módulo Retriever, responsable de recuperar los documentos más relevantes del Vector Store para la construcción del contexto que será utilizado por el modelo de lenguaje.
