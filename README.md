@@ -8,7 +8,7 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 
 ## Estado del Proyecto
 
-> **Versión estable:** **v0.5.0**
+> **Versión estable:** **v0.6.0**
 
 > **Estado:** Desarrollo activo
 
@@ -21,8 +21,9 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 | Sprint 5 – Hito 3 – Metadata Manager  | ✅ Finalizado           |
 | Sprint 6 – Hito 4 – Embeddings Engine | ✅ Finalizado           |
 | Sprint 7 – Hito 5 – Vector Store      | ✅ Finalizado           |
-| Release estable                       | **v0.5.0**             |
-| Próxima Release                       | **v0.6.0 (Retriever)** |
+| Sprint 8 – Hito 6 – Retriever         | ✅ Finalizado           |
+| Release estable                       | **v0.6.0**              |
+| Próxima Release                       | **v0.7.0 ( ? )** |
 
 
 ---
@@ -104,7 +105,7 @@ Vector Store            ✅
 
 ↓
 
-Retriever               ⏳
+Retriever               ✅
 
 ↓
 
@@ -201,11 +202,15 @@ Challenge-Alura-Agente-IA/
 │       │       ├── vector_store.py
 │       │       ├── provider.py
 │       │       ├── constants.py
-│       │       ├── ypes.py
+│       │       ├── types.py
 │       │       ├── providers/
 │       │       ├── chroma_provider.py
 │       │   ├── llm/
 │       │       ├── embedding_provider.py
+│       │   ├── retriever/
+│       │       ├── interfaces.py
+│       │       ├── chroma_retriever.py
+│       │       ├── retriever_factory.py
 │       │   ├── prompts/
 │       │   ├── tools/
 │       │   └── utils/
@@ -221,6 +226,7 @@ Challenge-Alura-Agente-IA/
 │       │    ├── test_metadata.py
 │       │    ├── test_embeddings.py
 │       │    ├── test_vector_store.py
+│       │    ├── test_retriever.py
 │       └── app.py
 │
 ├── 05_Pruebas/
@@ -239,10 +245,10 @@ Sprint 4	Text Splitter	✅
 Sprint 5	Metadata Manager✅
 Sprint 6	Embeddings	✅
 Sprint 7	Vector Store	✅
-Sprint 8	Retriever	⏳
+Sprint 8	Retriever	✅
 Sprint 9	Context Builder	⏳
 Sprint 10	Decision Engine	⏳
-Sprint 11	Tools	⏳
+Sprint 11	Tools	        ⏳
 Sprint 12	Streamlit	⏳
 
 ---
@@ -306,6 +312,7 @@ Actualmente se encuentran implementadas las pruebas automatizadas para:
 - Metadata Manager
 - Embeddings Engine
 - Vector Store
+- Retriever
 
 
 Ejecución:
@@ -340,6 +347,7 @@ python -m temp.check_loader_splitter
 python -m temp.check_pipeline_embeddings
 
 python -m temp.check_vector_store  
+
 ```
 
 El módulo Vector Store fue validado mediante pruebas automatizadas implementadas con pytest.
@@ -394,6 +402,7 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 | v0.3.0 | Metadata Manager |
 | v0.4.0 | Embeddings |
 | v0.5.0 | Vector Store |
+| v0.6.0 | Retriever |
 
 ## Incluye:
 
@@ -417,13 +426,19 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 - Persistencia vectorial
 - Búsqueda por similitud
 - Gestión de colecciones
+- IRetriever
+- ChromaRetriever
+- RetrieverFactory
+- Configuración del Retriever
+- Arquitectura basada en interfaces
+- Factory Pattern
 
 
 ## Próximo objetivo
 
-## Sprint 8 – Retriever
+## Sprint 9 - Hito 7 – Context Builder
 
-Implementar el módulo **Retriever**, responsable de recuperar los documentos más relevantes del Vector Store mediante búsquedas semánticas, proporcionando el contexto que será utilizado posteriormente por el LLM para la generación de respuestas.
+Implementar el módulo responsable de construir el contexto a partir de los documentos recuperados por el Retriever, preparando la información que será enviada al modelo de lenguaje.
 
 ---
 

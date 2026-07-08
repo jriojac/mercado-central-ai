@@ -180,7 +180,7 @@ Componentes comunes del proyecto y manejo de excepciones compartidas.
 ```text
 knowledge/
 ```
-Implementación del pipeline RAG, incluyendo la carga documental, procesamiento, generación de embeddings, almacenamiento vectorial y recuperación semántica.
+Implementación del pipeline RAG, incluyendo carga documental, fragmentación, gestión de metadata, generación de embeddings, almacenamiento vectorial y recuperación semántica mediante el módulo Retriever.
 
 ```text
 llm/
@@ -255,6 +255,7 @@ No deberán ejecutarse mediante rutas directas.
 ## Estrategia oficial de pruebas
 
 El proyecto utiliza dos niveles de validación.
+Las pruebas unitarias deberán validar preferentemente contratos públicos e interfaces, evitando dependencias directas con implementaciones concretas cuando sea posible.
 
 ### Uso de fixtures
 
@@ -329,6 +330,7 @@ Cada nuevo módulo deberá incluir como mínimo:
 - Planificación.
 - Documento SDS.
 - Implementación.
+- Validación incremental mediante microentregas.
 - Pruebas de integración.
 - Pruebas automatizadas.
 - Actualización del MTR.
@@ -354,6 +356,8 @@ Cada documento debe contener:
 - control de versiones.
 
 Toda mejora metodológica aprobada durante un Sprint deberá incorporarse al HANDBOOK antes de la publicación de la Release correspondiente.
+
+Antes de incorporar una mejora arquitectónica o metodológica, deberá analizarse su impacto sobre los Sprint previamente cerrados. Ninguna modificación estructural se implementará sin una evaluación previa y su correspondiente aprobación.
 
 El HANDBOOK constituye la referencia oficial de las prácticas de desarrollo vigentes del proyecto.
 
@@ -395,6 +399,7 @@ Un Hito se considerará finalizado únicamente cuando se cumplan todos los sigui
 - Release preparada.
 - ROADMAP actualizado (cuando corresponda).
 - HANDBOOK actualizado (cuando se aprueben nuevas prácticas metodológicas).
+- Arquitectura validada y sin regresiones respecto a Sprint anteriores.
 
 ---
 
@@ -423,6 +428,8 @@ Toda modificación deberá registrarse en el control de versiones del documento.
 
 Las mejoras metodológicas aprobadas durante un Sprint deberán incorporarse a este HANDBOOK antes del cierre de la Release correspondiente, garantizando que el documento represente siempre el estándar oficial vigente del proyecto.
 
+Las mejoras metodológicas deberán incorporarse respetando la estabilidad de los módulos previamente liberados.
+
 ---
 
 # Control de versiones
@@ -432,5 +439,5 @@ Las mejoras metodológicas aprobadas durante un Sprint deberán incorporarse a e
 | 1.0 | Junio 2026 | Guía inicial del proyecto. |
 | 2.0 | 02/07/2026 | Reestructuración completa tras la Auditoría Arquitectónica. Incorporación de la metodología Sprint → Hito → Release. |
 | 2.1 | 03/07/2026 | Incorporación de la estrategia oficial de pruebas con pytest, separación entre pruebas de integración y automatizadas, reglas para instalación de dependencias, actualización del flujo de cierre de Hitos y formalización de las mejoras metodológicas derivadas del Sprint 5. |
-| Versión | Fecha          | Descripción                                                                                          
-| **2.2** | **05/07/2026** | Actualización metodológica derivada del Sprint 7. Incorporación del flujo documental completo (MTR, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y Acta de Cierre), formalización del uso de `pytest.fixture`, actualización de los criterios de cierre de Hitos y consolidación de la metodología documental del proyecto. |
+| 2.2 | 05/07/2026  | Actualización metodológica derivada del Sprint 7. Incorporación del flujo documental completo (MTR, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y Acta de Cierre), formalización del uso de `pytest.fixture`, actualización de los criterios de cierre de Hitos y consolidación de la metodología documental del proyecto. |
+| **2.3** | **08/07/2026** | Actualización derivada del Sprint 8. Formalización del estándar oficial de imports (`src.` entre paquetes e imports relativos dentro del mismo paquete), incorporación del patrón Factory como mecanismo oficial de ensamblado de dependencias, adopción de la validación incremental mediante microentregas y consolidación de la política de no introducir cambios arquitectónicos sin análisis previo de impacto. |

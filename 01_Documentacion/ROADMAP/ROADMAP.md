@@ -8,13 +8,14 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 
 # Estado actual
 
-| Proyecto | Mercado Central AI |
-|-----------|--------------------|
-| Versión estable | **v0.5.0** |
-| Sprint actual | **Sprint 7** |
-| Hito actual | **Hito 5 – Vector Store** |
-| Estado | ✅ En desarrollo |
-| Próximo Sprint | **Sprint 8 – Retriever** |
+| Campo               | Valor                          |
+| ------------------- | ------------------------------ |
+| Proyecto            | Mercado Central AI             |
+| **Versión estable** | **v0.6.0**                     |
+| **Sprint actual**   | **Sprint 8**                   |
+| **Hito actual**     | **Hito 6 – Retriever**         |
+| **Estado**          | ✅ Finalizado                   |
+| **Próximo Sprint**  | **Sprint 9 – Context Builder** |
 
 ---
 
@@ -27,7 +28,7 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Sprint 5 | Hito 3 | Metadata Manager | v0.3.0 | ✅ |
 | Sprint 6 | Hito 4 | Embeddings Engine | v0.4.0 | ✅ |
 | Sprint 7 | Hito 5 | Vector Store | v0.5.0 | ✅ |
-| Sprint 8 | Hito 6 | Retriever | v0.6.0 | ⏳ |
+| Sprint 8 | Hito 6 | Retriever | v0.6.0 | ✅ |
 | Sprint 9 | Hito 7 | Context Builder | v0.7.0 | ⏳ |
 | Sprint 10 | Hito 8 | Decision Engine | v0.8.0 | ⏳ |
 | Sprint 11 | Hito 9 | Tools | v0.9.0 | ⏳ |
@@ -56,7 +57,7 @@ Embeddings Engine          ✅
 Vector Store               ✅
         │
         ▼
-Retriever                  ⏳
+Retriever                  ✅
         │
         ▼
 Context Builder            ⏳
@@ -75,24 +76,25 @@ Interfaz Streamlit         ⏳
 
 # Avance del proyecto
 
-| Indicador | Valor |
-|-----------|-------:|
-| Sprint completados | **5 / 10** |
-| Releases publicadas | **5** |
-| Avance estimado | **50 %** |
-| Próxima Release | **v0.6.0** |
+| Indicador           |      Valor |
+| ------------------- | ---------: |
+| Sprint completados  | **6 / 10** |
+| Releases publicadas |      **6** |
+| Avance estimado     |   **60 %** |
+| Próxima Release     | **v0.7.0** |
+| Prueba automatizada | 18 (100% aprobado) |
+
 
 ---
 
 # Objetivos de las próximas Releases
 
-| Release | Objetivo |
-|----------|----------|
-| **v0.6.0** | Implementar el módulo Retriever. |
-| **v0.7.0** | Construir automáticamente el contexto para el LLM. |
-| **v0.8.0** | Implementar el motor de decisión del Agente. |
-| **v0.9.0** | Integrar herramientas (Tools) del Agente IA. |
-| **v1.0.0** | Desarrollar la interfaz web mediante Streamlit e integrar el pipeline completo. |
+| Release    | Objetivo                                                           |
+| ---------- | ------------------------------------------------------------------ |
+| **v0.7.0** | Construir automáticamente el contexto para el LLM.                 |
+| **v0.8.0** | Implementar el Decision Engine del Agente.                         |
+| **v0.9.0** | Integrar las Tools del Agente IA.                                  |
+| **v1.0.0** | Desarrollar la interfaz Streamlit e integrar el pipeline completo. |
 
 ---
 

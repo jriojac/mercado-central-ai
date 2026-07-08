@@ -128,3 +128,11 @@ VECTOR_DB_PATH = DATA_DIR / "chroma"
 VECTOR_DB_COLLECTION = "mercado_central_ai"
 
 VECTOR_SEARCH_K = 4
+
+# ==========================================================
+# RETRIEVER
+# ==========================================================
+
+RETRIEVER_TOP_K = 4
+
+RETRIEVER_VALIDATE_QUERY = True

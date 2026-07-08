@@ -81,7 +81,7 @@ Esta metodología fue aprobada durante la Auditoría Arquitectónica (DOC-014).
 | Metadata Manager   |  Sprint 5 |  Hito 3 | **RF-301 – RF-305**   | SDS-003 | `metadata.py` + `exceptions.py` | `check_metadata.py` / `test_metadata.py`              |  v0.3.0 |    ✅   |
 | Embeddings Engine  |  Sprint 6 |  Hito 4 | **RF-401 – RF-405**   | SDS-004 | `embeddings.py`                 | `test_embeddings.py`                                  |  v0.4.0 |    ✅   |
 | Vector Store       |  Sprint 7 |  Hito 5 | **RF-501 – RF-506**   | SDS-005 | `vector_store.py`               | `test_vector_store.py`                                |  v0.5.0 |    ✅   |
-| Retriever          |  Sprint 8 |  Hito 6 | **RF-601 – RF-605**   | SDS-006 | `retriever.py`                  | `test_retriever.py`                                   |  v0.6.0 |    ⏳   |
+| Retriever          |  Sprint 8 |  Hito 6 | **RF-601 – RF-607**   | SDS-006 | `retriever/`                  | `test_retriever.py`                                   |  v0.6.0 |    ✅    |
 | Context Builder    |  Sprint 9 |  Hito 7 | **RF-701 – RF-705**   | SDS-007 | `context_builder.py`            | `test_context_builder.py`                             |  v0.7.0 |    ⏳   |
 | Decision Engine    | Sprint 10 |  Hito 8 | **RF-801 – RF-805**   | SDS-008 | `decision_engine.py`            | `test_decision_engine.py`                             |  v0.8.0 |    ⏳   |
 | Tools              | Sprint 11 |  Hito 9 | **RF-901 – RF-905**   | SDS-009 | `tools/*.py`                    | `test_tools.py`                                       |  v0.9.0 |    ⏳   |
@@ -422,19 +422,64 @@ El Sprint concluyó con la publicación de la Release v0.5.0, consolidando la in
 
 ---
 
-## 5.6 Sprint Y – Hito Z
+## 5.6 Sprint 8 – Hito 6
 
 ### Módulo
+Retriever
 
 ### Información general
+| Campo   | Valor                     |
+| ------- | ------------------------- |
+| Sprint  | 8                         |
+| Hito    | 6                         |
+| Módulo  | Retriever                 |
+| Estado  | ✅ Implementado y validado |
+| Release | v0.6.0                    |
 
 ### Matriz de trazabilidad
 
+| RF     | Descripción                          | SDS     | Implementación | Código                                   | Caso   |
+| ------ | ------------------------------------ | ------- | -------------- | ---------------------------------------- | ------ |
+| RF-601 | Definir `IRetriever`                 | SDS-006 | IMP-01         | `interfaces.py`                          | CP-601 |
+| RF-602 | Implementar `ChromaRetriever`        | SDS-006 | IMP-02         | `chroma_retriever.py`                    | CP-602 |
+| RF-603 | Integrar con `VectorStore`           | SDS-006 | IMP-03         | `chroma_retriever.py`                    | CP-603 |
+| RF-604 | Validar consultas                    | SDS-006 | IMP-04         | `chroma_retriever.py`                    | CP-604 |
+| RF-605 | Configuración centralizada           | SDS-006 | IMP-05         | `settings.py`                            | CP-605 |
+| RF-606 | Implementar `RetrieverFactory`       | SDS-006 | IMP-06         | `retriever_factory.py`                   | CP-606 |
+| RF-607 | Mantener independencia del proveedor | SDS-006 | Arquitectura   | `interfaces.py` + `retriever_factory.py` | CP-607 |
+
+
 ### Cobertura de requisitos
+
+| Tipo             |  Cantidad |
+| ---------------- | --------: |
+| RF               |         7 |
+| Implementaciones |         6 |
+| Casos de prueba  |         6 |
+| Cobertura        | **100 %** |
+
 
 ### Inventario de artefactos
 
+| Categoría     | Artefacto              |
+| ------------- | ---------------------- |
+| Código        | `interfaces.py`        |
+| Código        | `chroma_retriever.py`  |
+| Código        | `retriever_factory.py` |
+| Configuración | `settings.py`          |
+| Pruebas       | `test_retriever.py`    |
+| Documentación | `SDS-006_Retriever.md` |
+| Release       | `v0.6.0`               |
+
+
 ### Resultados
+
+- implementación de IRetriever;
+- implementación de ChromaRetriever;
+- configuración centralizada;
+- RetrieverFactory;
+- integración con VectorStore;
+- 18 pruebas aprobadas.
 
 ---
 
@@ -501,6 +546,7 @@ La numeración se reinicia por Sprint utilizando centenas para facilitar la iden
 | Sprint 5 | RF-301 | IMP-301 | CP-301 |
 | Sprint 6 | RF-401 | IMP-401 | CP-401 |
 | Sprint 7 | RF-501 | IMP-501 | CP-501 |
+| Sprint 8 | RF-601 | IMP-601 | CP-601 |
 
 
 ## Estados
@@ -567,12 +613,17 @@ Esta trazabilidad permite auditar el ciclo completo de desarrollo de cada funcio
 
 ## Estado actual del proyecto
 
-Al cierre del Sprint 7 – Hito 5, el proyecto cuenta con cinco módulos funcionales implementados y validados:
+Al cierre del Sprint 8 – Hito 6, el proyecto cuenta con cinco módulos funcionales implementados y validados:
 
 - ✅ Document Loader
 - ✅ Text Splitter
 - ✅ Metadata Manager
 - ✅ Embeddings Engine
 - ✅ Vector Store
+- ✅ Retriever
+- ⏳ Context Builder
+- ⏳ Decision Engine
+- ⏳ Tools
+- ⏳ Interfaz Streamlit
 
 Estos componentes constituyen la infraestructura base del pipeline RAG y preparan el proyecto para el desarrollo del módulo Retriever, correspondiente al Sprint 8 – Hito 6.

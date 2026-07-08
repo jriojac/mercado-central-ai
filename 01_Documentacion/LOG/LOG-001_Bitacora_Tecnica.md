@@ -704,3 +704,176 @@ El sistema es capaz de:
 - ejecutar búsquedas semánticas mediante ChromaDB.
 
 El siguiente Sprint estará orientado al desarrollo del módulo Retriever, responsable de recuperar los documentos más relevantes del Vector Store para la construcción del contexto que será utilizado por el modelo de lenguaje.
+
+
+## 2026-07-08 -- Cierre del Hito 6
+
+### Sprint 8 - Hito 6
+
+### Registro de avance
+Hito 6 – Retriever
+v0.6.0
+
+#### Objetivo
+Implementar el módulo Retriever, responsable de recuperar los documentos más relevantes desde el Vector Store mediante búsquedas semánticas, manteniendo una arquitectura desacoplada basada en interfaces y preparada para futuras implementaciones de proveedores vectoriales.
+
+####  Actividades realizadas
+
+##### Planificación
+- Definición del alcance del módulo Retriever.
+- Identificación de los requisitos funcionales RF-601 a RF-607.
+- Diseño de la estrategia de recuperación documental.
+- Definición del contrato público mediante IRetriever.
+
+##### Diseño
+- Elaboración del documento SDS-006 – Retriever.
+- Definición de la arquitectura basada en interfaces.
+- Diseño del patrón Factory para el ensamblado de dependencias.
+- Integración con la configuración centralizada mediante settings.py.
+
+##### Implementación
+Se implementaron los siguientes componentes:
+- IRetriever
+- ChromaRetriever
+- RetrieverFactory
+
+Se desarrollaron las siguientes funcionalidades:
+
+- recuperación de documentos mediante consultas semánticas;
+- validación de consultas de entrada;
+- configuración de top_k desde settings.py;
+- integración con VectorStore;
+- desacoplamiento entre la lógica del Retriever y el proveedor vectorial.
+
+#### Decisiones de arquitectura
+Durante el desarrollo del módulo se adoptaron las siguientes decisiones arquitectónicas:
+
+ - DA-801
+Utilizar una interfaz (IRetriever) como contrato único para el módulo.
+
+- DA-802
+Mantener el desacoplamiento reutilizando VectorStore como fachada, evitando dependencias directas con ChromaDB.
+
+- DA-803
+Centralizar la configuración del Retriever mediante settings.py.
+
+- DA-804
+Implementar la primera Factory oficial del proyecto (RetrieverFactory) como punto único de creación de dependencias.
+
+#### Problemas encontrados
+Durante el Sprint se identificaron y resolvieron los siguientes inconvenientes:
+
+- diferencias en la convención de imports entre paquetes;
+- ausencia inicial de la implementación física de IRetriever;
+- ajustes de estructura del paquete retriever;
+- eliminación de valores hardcodeados (magic numbers);
+- normalización del uso de src. para imports entre paquetes.
+
+Todos los problemas fueron resueltos durante el desarrollo del Sprint.
+
+#### Pruebas
+Se implementó la suite automatizada:
+tests/
+└── test_retriever.py
+
+Resultado obtenido : 18 passed
+
+Se validaron satisfactoriamente:
+
+- implementación de IRetriever;
+- funcionamiento de ChromaRetriever;
+- integración con VectorStore;
+- configuración centralizada;
+- funcionamiento de RetrieverFactory;
+- compatibilidad con todos los módulos desarrollados previamente.
+
+#### Refactorización
+Durante el Sprint se realizaron diversas actividades de mejora del código:
+
+- estandarización de imports utilizando src. entre paquetes;
+- adopción de imports relativos dentro del mismo paquete;
+- centralización de la configuración del Retriever;
+- eliminación de valores fijos mediante settings.py;
+- consolidación del patrón Factory.
+
+#### Mejoras metodológicas
+Durante este Sprint se consolidaron nuevas prácticas de desarrollo:
+
+- definición del estándar oficial de imports;
+- incorporación del patrón Factory como mecanismo oficial de ensamblado;
+- validación de la existencia física de archivos antes de avanzar entre microentregas;
+- fortalecimiento de la estrategia incremental basada en análisis, implementación, validación y documentación.
+
+#### Archivos creados
+- src/retriever/interfaces.py
+- src/retriever/chroma_retriever.py
+- src/retriever/retriever_factory.py
+- tests/test_retriever.py
+
+#### Archivos actualizados
+- src/config/settings.py
+- README.md
+- CHANGELOG.md
+- MTR-001_Matriz_Trazabilidad.md
+- SDS-006_Retriever.md
+- LOG-001_Bitacora_Tecnica.md
+
+#### Resultado
+##### Retriever
+
+✔ IRetriever
+
+✔ ChromaRetriever
+
+✔ RetrieverFactory
+
+✔ Configuración centralizada
+
+✔ Integración con VectorStore
+
+✔ Pruebas automatizadas
+
+##### Estado pipeline
+Knowledge Base
+      │
+      ▼
+Document Loader        ✔
+      │
+      ▼
+Text Splitter          ✔
+      │
+      ▼
+Metadata Manager       ✔
+      │
+      ▼
+Embeddings Engine      ✔
+      │
+      ▼
+Vector Store           ✔
+      │
+      ▼
+Retriever              ✔
+      │
+      ▼
+Context Builder        ⏳
+
+#### Lecciones aprendidas
+- Definir primero las interfaces reduce el acoplamiento entre módulos.
+- Centralizar la configuración simplifica la evolución del sistema.
+- La validación incremental evita regresiones en módulos ya cerrados.
+- El patrón Factory facilita el ensamblado de dependencias y prepara la arquitectura para futuras extensiones.
+
+#### Observaciones
+
+Con la finalización del módulo Retriever, el proyecto completa la etapa de recuperación documental del pipeline RAG.
+
+El sistema ya es capaz de:
+
+- cargar documentos;
+- fragmentarlos;
+- enriquecer su metadata;
+- generar embeddings;
+- almacenarlos en el Vector Store;
+- recuperar los documentos más relevantes mediante búsquedas semánticas.
+
+El siguiente Sprint estará orientado al desarrollo del Context Builder, responsable de construir el contexto que será enviado al modelo de lenguaje.
