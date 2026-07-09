@@ -4,7 +4,7 @@
 | -------------------- | ---------------------- |
 | Código               | MTR-001                |
 | Nombre               | Matriz de Trazabilidad |
-| Versión              | 2.1                    |
+| Versión              | 2.2                    |
 | Estado               | Activo                 |
 | Proyecto             | Mercado Central AI     |
 | Responsable          | Jacqueline Rioja       |
@@ -82,7 +82,7 @@ Esta metodología fue aprobada durante la Auditoría Arquitectónica (DOC-014).
 | Embeddings Engine  |  Sprint 6 |  Hito 4 | **RF-401 – RF-405**   | SDS-004 | `embeddings.py`                 | `test_embeddings.py`                                  |  v0.4.0 |    ✅   |
 | Vector Store       |  Sprint 7 |  Hito 5 | **RF-501 – RF-506**   | SDS-005 | `vector_store.py`               | `test_vector_store.py`                                |  v0.5.0 |    ✅   |
 | Retriever          |  Sprint 8 |  Hito 6 | **RF-601 – RF-607**   | SDS-006 | `retriever/`                  | `test_retriever.py`                                   |  v0.6.0 |    ✅    |
-| Context Builder    |  Sprint 9 |  Hito 7 | **RF-701 – RF-705**   | SDS-007 | `context_builder.py`            | `test_context_builder.py`                             |  v0.7.0 |    ⏳   |
+| Context Builder    |  Sprint 9 |  Hito 7 | **RF-701 – RF-707**   | SDS-007 | `context_builder.py`            | `test_context_builder.py`                             |  v0.7.0 |    ✅   |
 | Decision Engine    | Sprint 10 |  Hito 8 | **RF-801 – RF-805**   | SDS-008 | `decision_engine.py`            | `test_decision_engine.py`                             |  v0.8.0 |    ⏳   |
 | Tools              | Sprint 11 |  Hito 9 | **RF-901 – RF-905**   | SDS-009 | `tools/*.py`                    | `test_tools.py`                                       |  v0.9.0 |    ⏳   |
 | Interfaz Streamlit | Sprint 12 | Hito 10 | **RF-1001 – RF-1005** | SDS-010 | `app.py`                        | `test_ui.py`                                          |  v1.0.0 |    ⏳   |
@@ -483,6 +483,65 @@ Retriever
 
 ---
 
+## 5.7 Sprint 9 – Hito 7
+
+### Módulo
+Context Builder
+
+### Información general
+
+| Campo   | Valor                     |
+| ------- | ------------------------- |
+| Sprint  | 9                         |
+| Hito    | 7                         |
+| Módulo  | Context Builder           |
+| Estado  | ✅ Implementado y validado |
+| Release | v0.7.0                    |
+
+
+### Matriz de trazabilidad
+
+| RF     | Implementación | Caso   |
+| ------ | -------------- | ------ |
+| RF-701 | IMP-701        | CP-040 |
+| RF-702 | IMP-702        | CP-041 |
+| RF-703 | IMP-703        | CP-043 |
+| RF-704 | IMP-704        | CP-045 |
+| RF-705 | IMP-705        | CP-042 |
+| RF-706 | IMP-706        | CP-045 |
+| RF-707 | Arquitectura   | CP-045 |
+
+
+### Cobertura de requisitos
+
+| Tipo             |  Cantidad |
+| ---------------- | --------: |
+| RF               |         7 |
+| Implementaciones |         6 |
+| Casos de prueba  |         6 |
+| Cobertura        | **100 %** |
+
+
+### Inventario de artefactos
+
+- interfaces.py
+- simple_context_builder.py
+- context_builder_factory.py
+- settings.py
+- test_context_builder.py
+- SDS-007_Context_Builder.md
+- Release v0.7.0
+
+### Resultados
+
+- implementación de IRetriever;
+- implementación de ChromaRetriever;
+- configuración centralizada;
+- RetrieverFactory;
+- integración con VectorStore;
+- 18 pruebas aprobadas.
+---
+
 ## 5.X Sprint Y – Hito Z
 
 ### Módulo
@@ -547,6 +606,7 @@ La numeración se reinicia por Sprint utilizando centenas para facilitar la iden
 | Sprint 6 | RF-401 | IMP-401 | CP-401 |
 | Sprint 7 | RF-501 | IMP-501 | CP-501 |
 | Sprint 8 | RF-601 | IMP-601 | CP-601 |
+| Sprint 9 | RF-701 | IMP-701 | CP-701 |
 
 
 ## Estados
@@ -621,7 +681,7 @@ Al cierre del Sprint 8 – Hito 6, el proyecto cuenta con cinco módulos funcion
 - ✅ Embeddings Engine
 - ✅ Vector Store
 - ✅ Retriever
-- ⏳ Context Builder
+- ✅ Context Builder
 - ⏳ Decision Engine
 - ⏳ Tools
 - ⏳ Interfaz Streamlit

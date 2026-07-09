@@ -17,6 +17,130 @@ Cada Release registra:
 
 Las versiones se publican al cierre de cada Sprint/Hito estable del proyecto.
 
+## [0.7.0] - 2026-07-09
+
+### Added
+
+- Implementación del módulo Context Builder.
+- Implementación de ContextBuilderInterface.
+- Implementación de SimpleContextBuilder.
+- Implementación de ContextBuilderFactory.
+- Construcción de contexto textual a partir de documentos recuperados.
+- Preservación del orden de relevancia entregado por el Retriever.
+- Configuración centralizada del Context Builder mediante settings.py.
+- Incorporación de CONTEXT_SEPARATOR.
+- Incorporación de MAX_CONTEXT_CHARS.
+- Incorporación de INCLUDE_METADATA.
+- Pruebas automatizadas mediante pytest.
+- Archivo tests/test_context_builder.py.
+- Seis nuevos casos de prueba automatizados (CP-040 a CP-045).
+
+### Changed
+
+- Actualización de README.md.
+- Actualización de PLAN-007.
+- Actualización de SDS-007_Context_Builder.md.
+- Actualización de HANDBOOK.
+- Actualización de ROADMAP.
+- Actualización de MTR-001.
+- Actualización de LOG.
+- Actualización del pipeline RAG incorporando el módulo Context Builder.
+- Consolidación de la arquitectura basada en interfaces y Factory Pattern para el nuevo módulo.
+
+
+### Validated
+
+- Construcción de contexto con documentos válidos.
+- Construcción de contexto vacío.
+- Preservación del orden recibido del Retriever.
+- Exclusión de documentos sin contenido.
+- Validación de ContextBuilderFactory.
+- Ejecución satisfactoria de todas las pruebas automatizadas del módulo.
+- Validación arquitectónica del desacoplamiento entre Retriever, Context Builder y Decision Engine.
+
+### Pipeline actualizado
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+
+```
+
+
+## [0.6.0] - 2026-07-08
+
+### Added
+
+- Implementación del módulo Retriever.
+- Definición de RetrieverInterface.
+- Implementación de ChromaRetriever.
+- Implementación de RetrieverFactory.
+- Integración con ChromaDB para recuperación por similitud.
+- Configuración centralizada del Retriever.
+- Pruebas automatizadas del módulo.
+
+### Changed
+- Actualización del pipeline RAG incorporando el módulo Retriever.
+- Actualización del README.
+- Actualización del SDS-006.
+- Actualización del PLAN-006.
+- Actualización del HANDBOOK.
+- Actualización del MTR.
+- Actualización del ROADMAP.
+
+### Validated
+
+-  Recuperación de documentos por similitud.
+-  Validación de consultas.
+-  Integración Vector Store → Retriever.
+-  Ejecución satisfactoria de las pruebas automatizadas del módulo.
+-  Validación de la arquitectura basada en interfaces.
+
+### Pipeline actualizado
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+      │
+      ▼
+Retriever
+
+```
+
 
 ## [0.5.0] - 2026-07-05
 

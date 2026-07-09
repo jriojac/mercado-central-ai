@@ -11,11 +11,11 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Campo               | Valor                          |
 | ------------------- | ------------------------------ |
 | Proyecto            | Mercado Central AI             |
-| **Versión estable** | **v0.6.0**                     |
-| **Sprint actual**   | **Sprint 8**                   |
-| **Hito actual**     | **Hito 6 – Retriever**         |
+| **Versión estable** | **v0.7.0**                     |
+| **Sprint actual**   | **Sprint 9**                   |
+| **Hito actual**     | **Hito 7 – Context Builder**         |
 | **Estado**          | ✅ Finalizado                   |
-| **Próximo Sprint**  | **Sprint 9 – Context Builder** |
+| **Próximo Sprint**  | **Sprint 10 – Decision Engine** |
 
 ---
 
@@ -29,7 +29,7 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Sprint 6 | Hito 4 | Embeddings Engine | v0.4.0 | ✅ |
 | Sprint 7 | Hito 5 | Vector Store | v0.5.0 | ✅ |
 | Sprint 8 | Hito 6 | Retriever | v0.6.0 | ✅ |
-| Sprint 9 | Hito 7 | Context Builder | v0.7.0 | ⏳ |
+| Sprint 9 | Hito 7 | Context Builder | v0.7.0 | ✅ |
 | Sprint 10 | Hito 8 | Decision Engine | v0.8.0 | ⏳ |
 | Sprint 11 | Hito 9 | Tools | v0.9.0 | ⏳ |
 | Sprint 12 | Hito 10 | Interfaz Streamlit | v1.0.0 | ⏳ |
@@ -38,63 +38,41 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 
 # Estado del Pipeline RAG
 
-```text
-Knowledge Base
-        │
-        ▼
-Document Loader            ✅
-        │
-        ▼
-Text Splitter              ✅
-        │
-        ▼
-Metadata Manager           ✅
-        │
-        ▼
-Embeddings Engine          ✅
-        │
-        ▼
-Vector Store               ✅
-        │
-        ▼
-Retriever                  ✅
-        │
-        ▼
-Context Builder            ⏳
-        │
-        ▼
-Decision Engine            ⏳
-        │
-        ▼
-Tools                      ⏳
-        │
-        ▼
-Interfaz Streamlit         ⏳
-```
+| Elemento        | Estado |
+| --------------- | :----: |
+| Document Loader |    ✅   |
+| Text Splitter   |    ✅   |
+| Metadata        |    ✅   |
+| Embeddings      |    ✅   |
+| Vector Store    |    ✅   |
+| Retriever       |    ✅   |
+| Context Builder |    ✅   |
+| Decision Engine |    ⏳   |
+
 
 ---
 
 # Avance del proyecto
 
-| Indicador           |      Valor |
-| ------------------- | ---------: |
-| Sprint completados  | **6 / 10** |
-| Releases publicadas |      **6** |
-| Avance estimado     |   **60 %** |
-| Próxima Release     | **v0.7.0** |
-| Prueba automatizada | 18 (100% aprobado) |
+| Indicador             |                                      Valor |
+| --------------------- | -----------------------------------------: |
+| Sprint completados    |                                 **7 / 10** |
+| Releases publicadas   |                                      **7** |
+| Avance estimado       |                                   **70 %** |
+| Pruebas automatizadas |                                     **25** |
+| Versión estable       |                                 **v0.7.0** |
+| Próxima Release       |                                 **v0.8.0** |
 
 
 ---
 
 # Objetivos de las próximas Releases
 
-| Release    | Objetivo                                                           |
-| ---------- | ------------------------------------------------------------------ |
-| **v0.7.0** | Construir automáticamente el contexto para el LLM.                 |
-| **v0.8.0** | Implementar el Decision Engine del Agente.                         |
-| **v0.9.0** | Integrar las Tools del Agente IA.                                  |
-| **v1.0.0** | Desarrollar la interfaz Streamlit e integrar el pipeline completo. |
+| Release    | Objetivo                                               |
+| ---------- | ------------------------------------------------------ |
+| **v0.8.0** | Implementar el Decision Engine del Agente.             |
+| **v0.9.0** | Integrar las Tools del Agente IA.                      |
+| **v1.0.0** | Desarrollar Streamlit e integrar el pipeline completo. |
 
 ---
 
@@ -114,6 +92,24 @@ Objetivos de la versión estable:
 - Cobertura de pruebas automatizadas para todos los módulos.
 
 ---
+
+# Historial de Releases
+
+| Release    | Sprint | Módulo              | Estado |
+| ---------- | :----: | ------------------- | :----: |
+| v0.1.1     |    3   | Document Loader     |    ✅   |
+| v0.2.0     |    4   | Text Splitter       |    ✅   |
+| v0.3.0     |    5   | Metadata Manager    |    ✅   |
+| v0.4.0     |    6   | Embeddings Engine   |    ✅   |
+| v0.5.0     |    7   | Vector Store        |    ✅   |
+| v0.6.0     |    8   | Retriever           |    ✅   |
+| **v0.7.0** |  **9** | **Context Builder** |    ✅   |
+| v0.8.0     |   10   | Decision Engine     |    ⏳   |
+| v0.9.0     |   11   | Tools               |    ⏳   |
+| v1.0.0     |   12   | Streamlit           |    ⏳   |
+
+
+
 
 # Observaciones
 

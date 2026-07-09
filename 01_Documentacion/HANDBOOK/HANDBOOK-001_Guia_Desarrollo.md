@@ -2,7 +2,7 @@
 
 **Código:** HANDBOOK-001
 
-**Versión:** 2.1
+**Versión:** 2.4
 
 **Estado:** Activo
 
@@ -101,9 +101,6 @@ Implementación
 Pruebas
       │
       ▼
-MTR
-      │
-      ▼
 README
       │
       ▼
@@ -117,6 +114,9 @@ ROADMAP
       │
       ▼
 HANDBOOK
+      │
+      ▼
+MTR
       │
       ▼
 Acta de Cierre
@@ -180,7 +180,7 @@ Componentes comunes del proyecto y manejo de excepciones compartidas.
 ```text
 knowledge/
 ```
-Implementación del pipeline RAG, incluyendo carga documental, fragmentación, gestión de metadata, generación de embeddings, almacenamiento vectorial y recuperación semántica mediante el módulo Retriever.
+Implementación del pipeline RAG, incluyendo carga documental, fragmentación, gestión de metadata, generación de embeddings, almacenamiento vectorial, recuperación semántica (Retriever) y construcción de contexto (Context Builder).
 
 ```text
 llm/
@@ -341,6 +341,21 @@ Cada nuevo módulo deberá incluir como mínimo:
 - Actualización del HANDBOOK (si se incorpora una nueva práctica metodológica).
 - Acta de Cierre.
 - Release correspondiente.
+- Revisión arquitectónica.
+- Refactorización antes del cierre documental.
+
+
+| Actividad                   | Obligatoria |
+| --------------------------- | :---------: |
+| Planificación               |      ✅      |
+| SDS                         |      ✅      |
+| Implementación              |      ✅      |
+| Validación incremental      |      ✅      |
+| **Revisión arquitectónica** |      ✅      |
+| **Refactorización**         |      ✅      |
+| Pruebas                     |      ✅      |
+| Documentación               |      ✅      |
+| Release                     |      ✅      |
 
 ---
 
@@ -430,6 +445,8 @@ Las mejoras metodológicas aprobadas durante un Sprint deberán incorporarse a e
 
 Las mejoras metodológicas deberán incorporarse respetando la estabilidad de los módulos previamente liberados.
 
+Toda mejora metodológica deberá ser analizada, justificada y aprobada antes de incorporarse al HANDBOOK.
+
 ---
 
 # Control de versiones
@@ -440,4 +457,5 @@ Las mejoras metodológicas deberán incorporarse respetando la estabilidad de lo
 | 2.0 | 02/07/2026 | Reestructuración completa tras la Auditoría Arquitectónica. Incorporación de la metodología Sprint → Hito → Release. |
 | 2.1 | 03/07/2026 | Incorporación de la estrategia oficial de pruebas con pytest, separación entre pruebas de integración y automatizadas, reglas para instalación de dependencias, actualización del flujo de cierre de Hitos y formalización de las mejoras metodológicas derivadas del Sprint 5. |
 | 2.2 | 05/07/2026  | Actualización metodológica derivada del Sprint 7. Incorporación del flujo documental completo (MTR, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y Acta de Cierre), formalización del uso de `pytest.fixture`, actualización de los criterios de cierre de Hitos y consolidación de la metodología documental del proyecto. |
-| **2.3** | **08/07/2026** | Actualización derivada del Sprint 8. Formalización del estándar oficial de imports (`src.` entre paquetes e imports relativos dentro del mismo paquete), incorporación del patrón Factory como mecanismo oficial de ensamblado de dependencias, adopción de la validación incremental mediante microentregas y consolidación de la política de no introducir cambios arquitectónicos sin análisis previo de impacto. |
+| 2.3 | 08/07/2026 | Actualización derivada del Sprint 8. Formalización del estándar oficial de imports (`src.` entre paquetes e imports relativos dentro del mismo paquete), incorporación del patrón Factory como mecanismo oficial de ensamblado de dependencias, adopción de la validación incremental mediante microentregas y consolidación de la política de no introducir cambios arquitectónicos sin análisis previo de impacto. |
+| **2.4** | **09/07/2026** | Actualización derivada del Sprint 9. Incorporación del flujo documental optimizado (MTR al final del proceso), formalización de la revisión arquitectónica previa al cierre, consolidación de los estándares permanentes del proyecto (interfaces, Factory Pattern, configuración centralizada, tipado fuerte y validación incremental) y actualización del pipeline RAG con el módulo Context Builder. |

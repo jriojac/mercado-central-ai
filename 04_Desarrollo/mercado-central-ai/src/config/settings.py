@@ -136,3 +136,17 @@ VECTOR_SEARCH_K = 4
 RETRIEVER_TOP_K = 4
 
 RETRIEVER_VALIDATE_QUERY = True
+
+
+# ==========================================
+# Context Builder
+# ==========================================
+
+# Separador utilizado entre documentos del contexto.
+CONTEXT_SEPARATOR = "\n\n----------------------------------------\n\n"
+
+# Longitud máxima permitida para el contexto consolidado.
+MAX_CONTEXT_CHARS = 12_000
+
+# Indica si el Context Builder debe incluir metadatos de los documentos.
+INCLUDE_METADATA = False

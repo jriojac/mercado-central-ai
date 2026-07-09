@@ -877,3 +877,188 @@ El sistema ya es capaz de:
 - recuperar los documentos más relevantes mediante búsquedas semánticas.
 
 El siguiente Sprint estará orientado al desarrollo del Context Builder, responsable de construir el contexto que será enviado al modelo de lenguaje.
+
+
+## 2026-07-09 -- Cierre del Hito 7
+
+### Sprint 9 - Hito 7
+
+### Registro de avance
+Hito 7 – Context Builder
+v0.7.0
+
+#### Objetivo
+Implementar el módulo Context Builder, responsable de transformar los documentos recuperados por el Retriever en un contexto textual consolidado, preservando el orden por relevancia y manteniendo independencia respecto al modelo de lenguaje.
+
+####  Actividades realizadas
+
+##### Planificación
+- Definición del alcance del Context Builder.
+- Identificación de los requisitos funcionales RF-701 a RF-707.
+- Definición del contrato público mediante ContextBuilderInterface.
+- Diseño de la estrategia inicial de construcción de contexto.
+
+##### Diseño
+- Elaboración del documento SDS-007 – Context Builder.
+- Definición de la arquitectura basada en interfaces.
+- Diseño del patrón Factory para el ensamblado del módulo.
+- Integración con la configuración centralizada mediante settings.py.
+
+##### Implementación
+Se implementaron los siguientes componentes:
+- ContextBuilderInterface
+- SimpleContextBuilder
+- ContextBuilderFactory
+
+Se desarrollaron las siguientes funcionalidades:
+
+- construcción de contexto textual;
+- preservación del orden recibido del Retriever;
+- eliminación de documentos sin contenido;
+- configuración centralizada;
+- desacoplamiento respecto al modelo LLM.
+
+#### Decisiones de arquitectura
+Durante el desarrollo del módulo se adoptaron las siguientes decisiones arquitectónicas:
+
+- DA-901
+Implementar ContextBuilderInterface como contrato público del módulo.
+
+- DA-902
+Mantener el Context Builder independiente del Decision Engine y del modelo Gemini.
+
+- DA-903
+Centralizar la configuración del módulo mediante settings.py.
+
+- DA-904
+Implementar ContextBuilderFactory como punto único de creación de dependencias.
+
+- DA-905
+Preparar la arquitectura para incorporar futuras estrategias de construcción de contexto sin modificar los módulos consumidores.
+
+#### Problemas encontrados
+Durante el Sprint se identificaron y resolvieron los siguientes inconvenientes:
+
+- revisión de la estructura del nuevo paquete context_builder;
+- eliminación de constantes hardcodeadas;
+- normalización del contrato público;
+- sincronización de la configuración centralizada;
+- alineación con la arquitectura consolidada durante los Sprint anteriores.
+
+Todos los problemas fueron resueltos durante el desarrollo del Sprint.
+
+#### Pruebas
+Se implementó la suite automatizada:
+tests/
+└── test_context_builder.py
+
+Resultado obtenido : 25 passed
+
+Se validaron satisfactoriamente:
+
+- implementación de ContextBuilderInterface;
+- funcionamiento de SimpleContextBuilder;
+- funcionamiento de ContextBuilderFactory;
+- preservación del orden de documentos;
+- construcción de contexto con múltiples documentos;
+- manejo de documentos vacíos.
+
+#### Refactorización
+Durante el Sprint se realizaron diversas actividades de mejora del código:
+
+- eliminación de constantes internas;
+- centralización de la configuración;
+- estandarización de imports;
+- fortalecimiento del tipado fuerte;
+- consolidación de la arquitectura desacoplada.
+
+#### Mejoras metodológicas
+Durante este Sprint se consolidaron nuevas prácticas de desarrollo:
+
+- documentación incremental mediante microentregas;
+- sincronización progresiva entre PLAN, SDS y README;
+- consolidación del Context Builder como módulo independiente;
+- fortalecimiento de la arquitectura basada en interfaces;
+- incorporación de estándares permanentes del proyecto dentro del SDS.
+
+#### Archivos creados
+- src/context_builder/interfaces.py
+- src/context_builder/simple_context_builder.py
+- src/context_builder/context_builder_factory.py
+- tests/test_context_builder.py
+
+#### Archivos actualizados
+- src/config/settings.py
+- README.md
+- CHANGELOG.md
+- PLAN-007.md
+- SDS-007_Context_Builder.md
+- LOG-001_Bitacora_Tecnica.md
+- ROADMAP.md
+- HANDBOOK.md
+- MTR-001_Matriz_Trazabilidad.md
+
+#### Resultado
+##### Context Builder
+
+✔ ContextBuilderInterface
+
+✔ SimpleContextBuilder
+
+✔ ContextBuilderFactory
+
+✔ Configuración centralizada
+
+✔ Construcción de contexto
+
+✔ Pruebas automatizadas
+
+##### Estado pipeline
+Knowledge Base
+      │
+      ▼
+Document Loader        ✔
+      │
+      ▼
+Text Splitter          ✔
+      │
+      ▼
+Metadata Manager       ✔
+      │
+      ▼
+Embeddings Engine      ✔
+      │
+      ▼
+Vector Store           ✔
+      │
+      ▼
+Retriever              ✔
+      │
+      ▼
+Context Builder        ✔
+      │
+      ▼
+Decision Engine        ⏳
+
+#### Lecciones aprendidas
+- Definir primero el contrato público simplifica la implementación.
+- Separar la construcción del contexto del Decision Engine reduce el acoplamiento.
+- La configuración centralizada facilita la evolución del módulo.
+- El uso de Factory Pattern mantiene uniforme la arquitectura del proyecto.
+- La validación incremental permitió desarrollar el módulo sin afectar los Sprint cerrados.
+
+#### Observaciones
+
+Con la finalización del módulo Retriever, el proyecto completa la etapa de recuperación documental del pipeline RAG.
+
+El sistema ya es capaz de:
+
+- cargar documentos;
+- fragmentarlos;
+- enriquecer su metadata;
+- generar embeddings;
+- almacenarlos en el Vector Store;
+- recuperar información relevante;
+- construir un contexto textual listo para ser consumido por el siguiente módulo.
+
+El próximo Sprint estará orientado al desarrollo del **Decision Engine**, responsable de recibir el contexto generado, construir la solicitud para el modelo Gemini y coordinar la generación de respuestas del agente.

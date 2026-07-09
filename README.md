@@ -22,8 +22,8 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 | Sprint 6 – Hito 4 – Embeddings Engine | ✅ Finalizado           |
 | Sprint 7 – Hito 5 – Vector Store      | ✅ Finalizado           |
 | Sprint 8 – Hito 6 – Retriever         | ✅ Finalizado           |
-| Release estable                       | **v0.6.0**              |
-| Próxima Release                       | **v0.7.0 ( ? )** |
+| Release estable                       | **v0.7.0**              |
+| Próxima Release                       | **v0.8.0** |
 
 
 ---
@@ -60,7 +60,7 @@ Text Splitter
 Metadata Manager
         │
         ▼
-Embeddings
+Embeddings Engine
         │
         ▼
 Vector Store
@@ -70,6 +70,9 @@ Retriever
         │
         ▼
 Context Builder
+        │
+        ▼
+Decision Engine
         │
         ▼
 Gemini
@@ -109,7 +112,7 @@ Retriever               ✅
 
 ↓
 
-Context Builder         ⏳
+Context Builder         ✅
 
 ↓
 
@@ -211,10 +214,14 @@ Challenge-Alura-Agente-IA/
 │       │       ├── interfaces.py
 │       │       ├── chroma_retriever.py
 │       │       ├── retriever_factory.py
+│       │   ├──context_builder/
+│       │       ├── __init__.py
+│       │       ├── interfaces.py
+│       │       ├── simple_context_builder.py
+│       │       └── context_builder_factory.py
 │       │   ├── prompts/
 │       │   ├── tools/
 │       │   └── utils/
-│       │
 │       ├── temp/
 │       │    ├── check_settings.py
 │       │    ├── check_loader.py
@@ -227,6 +234,7 @@ Challenge-Alura-Agente-IA/
 │       │    ├── test_embeddings.py
 │       │    ├── test_vector_store.py
 │       │    ├── test_retriever.py
+│       │    ├── test_context_builde.py
 │       └── app.py
 │
 ├── 05_Pruebas/
@@ -246,7 +254,7 @@ Sprint 5	Metadata Manager✅
 Sprint 6	Embeddings	✅
 Sprint 7	Vector Store	✅
 Sprint 8	Retriever	✅
-Sprint 9	Context Builder	⏳
+Sprint 9	Context Builder	✅
 Sprint 10	Decision Engine	⏳
 Sprint 11	Tools	        ⏳
 Sprint 12	Streamlit	⏳
@@ -262,7 +270,7 @@ Sprint 12	Streamlit	⏳
 | Metadata Manager      | ✅ |
 | Embeddings            | ✅ |
 | Vector Store          | ✅ |
-| Retriever             | ⏳ |
+| Retriever             | ✅  |
 | Context Builder       | ⏳ |
 | Decision Engine       | ⏳ |
 | Tools                 | ⏳ |
@@ -313,7 +321,7 @@ Actualmente se encuentran implementadas las pruebas automatizadas para:
 - Embeddings Engine
 - Vector Store
 - Retriever
-
+- Context Builder
 
 Ejecución:
 
@@ -403,6 +411,8 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 | v0.4.0 | Embeddings |
 | v0.5.0 | Vector Store |
 | v0.6.0 | Retriever |
+| v0.7.0 | Context Builder |
+
 
 ## Incluye:
 
@@ -432,13 +442,18 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 - Configuración del Retriever
 - Arquitectura basada en interfaces
 - Factory Pattern
+- ContextBuilderInterface
+- SimpleContextBuilder
+- ContextBuilderFactory
+- Construcción de contexto
+- Configuración del Context Builder
 
 
 ## Próximo objetivo
 
-## Sprint 9 - Hito 7 – Context Builder
+## Sprint 10 - Hito 8 – Decision Engine 
 
-Implementar el módulo responsable de construir el contexto a partir de los documentos recuperados por el Retriever, preparando la información que será enviada al modelo de lenguaje.
+Implementar el módulo responsable de recibir el contexto generado por el Context Builder, aplicar la estrategia de decisión, construir la solicitud para el modelo Gemini y coordinar la generación de la respuesta del agente.
 
 ---
 
