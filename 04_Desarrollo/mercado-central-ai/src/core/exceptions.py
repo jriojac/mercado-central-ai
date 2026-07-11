@@ -107,3 +107,12 @@ class VectorStoreConfigurationError(VectorStoreError):
     Configuración inválida del módulo Vector Store.
     """
     pass
+
+# ==========================================================
+# TOOLS
+# ==========================================================
+class DuplicateToolError(Exception):
+    """
+    Se produce cuando se intenta registrar una herramienta
+    cuyo nombre ya existe.
+    """

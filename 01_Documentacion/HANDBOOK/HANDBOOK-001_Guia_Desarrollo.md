@@ -148,16 +148,9 @@ La carpeta **01_Documentacion** se organiza por categorías funcionales:
 
 Los documentos **DOC** se organizan por Hito.
 
-La numeración es global.
+Los documentos de planificación y diseño (PLAN, SDS, MTR y Acta de Cierre) se generan de forma independiente para cada Sprint/Hito.
 
-Ejemplo:
-
-```text
-DOC-001
-DOC-002
-DOC-003
-...
-```
+Una vez aprobados y publicados como parte de una Release, dichos documentos no deberán reutilizarse ni sobrescribirse. Cualquier corrección posterior deberá gestionarse mediante control de versiones del repositorio.
 
 ---
 
@@ -256,7 +249,11 @@ No deberán ejecutarse mediante rutas directas.
 ## Estrategia oficial de pruebas
 
 El proyecto utiliza dos niveles de validación.
-Las pruebas unitarias deberán validar preferentemente contratos públicos e interfaces, evitando dependencias directas con implementaciones concretas cuando sea posible.
+Las **pruebas unitarias** deberán validar preferentemente contratos públicos e interfaces, evitando dependencias directas con implementaciones concretas cuando sea posible.
+
+Las **pruebas automatizadas** no deberán depender de atributos o métodos privados de las implementaciones.
+
+Siempre que sea posible, la validación se realizará utilizando únicamente la API pública definida por los contratos del módulo.
 
 ### Uso de fixtures
 
@@ -375,6 +372,13 @@ Cada documento debe contener:
 
 Toda mejora metodológica aprobada durante un Sprint deberá incorporarse al HANDBOOK antes de la publicación de la Release correspondiente.
 
+Los documentos técnicos deberán diferenciar claramente entre:
+
+- especificación del diseño implementado;
+- decisiones arquitectónicas adoptadas durante el desarrollo.
+
+Las decisiones de arquitectura deberán registrarse inicialmente en el SDS correspondiente mediante ADR y únicamente incorporarse al HANDBOOK cuando se conviertan en estándares reutilizables para futuros Sprint.
+
 Toda decisión arquitectónica permanente deberá reflejarse primero en el SDS correspondiente y posteriormente incorporarse al HANDBOOK únicamente cuando represente un estándar reutilizable para futuros Sprint.
 
 Antes de incorporar una mejora arquitectónica o metodológica, deberá analizarse su impacto sobre los Sprint previamente cerrados. Ninguna modificación estructural se implementará sin una evaluación previa y su correspondiente aprobación.
@@ -421,6 +425,7 @@ Un Hito se considerará finalizado únicamente cuando se cumplan todos los sigui
 - ROADMAP actualizado (cuando corresponda).
 - HANDBOOK actualizado (cuando se aprueben nuevas prácticas metodológicas).
 - Arquitectura validada y sin regresiones respecto a Sprint anteriores.
+- Validación de la consistencia documental entre PLAN, SDS, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y MTR antes de preparar la Release.
 
 ---
 
@@ -467,4 +472,5 @@ Las mejoras metodológicas deberán mantenerse compatibles con los Sprint previa
 | 2.2 | 05/07/2026  | Actualización metodológica derivada del Sprint 7. Incorporación del flujo documental completo (MTR, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y Acta de Cierre), formalización del uso de `pytest.fixture`, actualización de los criterios de cierre de Hitos y consolidación de la metodología documental del proyecto. |
 | 2.3 | 08/07/2026 | Actualización derivada del Sprint 8. Formalización del estándar oficial de imports (`src.` entre paquetes e imports relativos dentro del mismo paquete), incorporación del patrón Factory como mecanismo oficial de ensamblado de dependencias, adopción de la validación incremental mediante microentregas y consolidación de la política de no introducir cambios arquitectónicos sin análisis previo de impacto. |
 | 2.4 | 09/07/2026 | Actualización derivada del Sprint 9. Incorporación del flujo documental optimizado (MTR al final del proceso), formalización de la revisión arquitectónica previa al cierre, consolidación de los estándares permanentes del proyecto (interfaces, Factory Pattern, configuración centralizada, tipado fuerte y validación incremental) y actualización del pipeline RAG con el módulo Context Builder. |
-| **2.5** | **10/07/2026** | Actualización derivada del Sprint 10. Formalización del uso de contratos públicos mediante interfaces cuando corresponda, consolidación del modelo de validación incremental por microentregas, incorporación de la revisión de git diff --stat antes del commit y actualización de la organización del paquete llm para reflejar la incorporación del Decision Engine. |
+| 2.5 | 10/07/2026 | Actualización derivada del Sprint 10. Formalización del uso de contratos públicos mediante interfaces cuando corresponda, consolidación del modelo de validación incremental por microentregas, incorporación de la revisión de git diff --stat antes del commit y actualización de la organización del paquete llm para reflejar la incorporación del Decision Engine. |
+| **2.6** | **11/07/2026** | Actualización derivada del Sprint 11. Formalización de la generación independiente de la documentación por Sprint/Hito (PLAN, SDS, MTR y Acta de Cierre), consolidación del principio de validar únicamente la API pública en las pruebas automatizadas, incorporación de la separación entre especificación técnica y decisiones arquitectónicas mediante ADR, y establecimiento de la validación de consistencia documental como requisito previo a la publicación de una Release. |

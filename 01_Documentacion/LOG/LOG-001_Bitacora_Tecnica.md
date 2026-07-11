@@ -1255,3 +1255,273 @@ El sistema ya es capaz de:
 - generar una solicitud (LLMRequest) preparada para un proveedor LLM.
 
 El próximo Sprint estará orientado al desarrollo del **LLM Provider**, responsable de consumir las solicitudes generadas por el Decision Engine e integrar Google Gemini mediante una arquitectura desacoplada y extensible.
+
+
+
+
+## 2026-07-11 -- Cierre del Hito 9
+
+### Sprint 11 - Hito 9
+
+### Registro de avance
+
+Hito 9 – Tools
+v0.9.0
+
+#### Objetivo
+
+Implementar la infraestructura base del módulo **Tools**, responsable de administrar herramientas especializadas mediante una arquitectura desacoplada basada en interfaces y Factory Pattern, preparando el pipeline RAG para incorporar capacidades adicionales sin modificar el núcleo del sistema.
+
+---
+
+#### Actividades realizadas
+
+##### Planificación
+
+- Definición del alcance del módulo Tools.
+- Identificación de los requisitos funcionales RF-901 a RF-908.
+- Diseño de la estrategia de administración de herramientas.
+- Definición de los contratos públicos del módulo.
+
+##### Diseño
+
+- Elaboración del documento **SDS-009 – Tools**.
+- Definición de la arquitectura basada en interfaces.
+- Diseño de `ToolInterface`.
+- Diseño de `ToolManagerInterface`.
+- Diseño del patrón Factory para el ensamblado del módulo.
+- Definición de la estrategia de extensibilidad para futuras herramientas.
+
+##### Implementación
+
+Se implementaron los siguientes componentes:
+
+- ToolInterface
+- ToolManagerInterface
+- ToolManager
+- ToolFactory
+- DuplicateToolError
+
+También se incorporó:
+
+- DummyTool para pruebas unitarias.
+
+Se desarrollaron las siguientes funcionalidades:
+
+- registro de herramientas;
+- validación de implementaciones;
+- detección de registros duplicados;
+- búsqueda de herramientas;
+- ejecución desacoplada;
+- preservación del encapsulamiento mediante `has_tool()`.
+
+---
+
+#### Decisiones de arquitectura
+
+Durante el desarrollo del módulo se adoptaron las siguientes decisiones arquitectónicas:
+
+- DA-1101
+
+Implementar `ToolInterface` como contrato público para todas las herramientas.
+
+- DA-1102
+
+Implementar `ToolManagerInterface` para desacoplar la administración de herramientas de su implementación.
+
+- DA-1103
+
+Implementar `ToolFactory` como punto único de ensamblado del módulo.
+
+- DA-1104
+
+Mantener el `DecisionEngine` independiente de cualquier herramienta concreta.
+
+- DA-1105
+
+Aplicar el principio **YAGNI**, evitando incorporar modelos (`ToolRequest` y `ToolResponse`) hasta que exista una necesidad funcional real.
+
+- DA-1106
+
+Incorporar `has_tool()` para preservar el encapsulamiento y eliminar el acceso directo al estado interno del `ToolManager`.
+
+---
+
+#### Problemas encontrados
+
+Durante el Sprint se identificaron y resolvieron los siguientes inconvenientes:
+
+- definición del alcance del módulo Tools;
+- ubicación definitiva de las interfaces;
+- reutilización del archivo centralizado `exceptions.py`;
+- definición del punto correcto para el ensamblado mediante Factory;
+- eliminación del acceso directo a `_tools` desde las pruebas;
+- organización de `DummyTool` para reutilización.
+
+Todos los problemas fueron resueltos durante el desarrollo del Sprint.
+
+---
+
+#### Pruebas
+
+Se implementó la suite automatizada:
+
+```text
+tests/
+├── test_tools_interface.py
+├── test_tool_manager.py
+└── test_tool_factory.py
+```
+
+Resultado obtenido:
+
+```text
+40 passed
+1 warning
+```
+
+Se validaron satisfactoriamente:
+
+- ToolInterface;
+- ToolManagerInterface;
+- ToolManager;
+- ToolFactory;
+- DuplicateToolError;
+- registro de herramientas;
+- ejecución desacoplada;
+- comportamiento cuando ninguna herramienta puede atender una consulta.
+
+El warning corresponde a ChromaDB con Python 3.14 y queda fuera del alcance del proyecto.
+
+---
+
+#### Refactorización
+
+Durante el Sprint se realizaron diversas actividades de mejora del código:
+
+- incorporación de `ToolManagerInterface`;
+- fortalecimiento del encapsulamiento mediante `has_tool()`;
+- centralización del ensamblado mediante `ToolFactory`;
+- reutilización del archivo `exceptions.py`;
+- consolidación del patrón Factory;
+- fortalecimiento de las pruebas unitarias.
+
+---
+
+#### Mejoras metodológicas
+
+Durante este Sprint se consolidaron nuevas prácticas de desarrollo:
+
+- documentación independiente por Sprint/Hito;
+- incorporación de ADR para registrar decisiones arquitectónicas relevantes;
+- validación de contratos antes de implementar componentes;
+- revisión arquitectónica previa a la ejecución de pruebas;
+- fortalecimiento de la estrategia incremental basada en análisis, implementación, validación y documentación.
+
+---
+
+#### Archivos creados
+
+- src/tools/interfaces.py
+- src/tools/tool_manager.py
+- src/tools/tool_factory.py
+- tests/fixtures/dummy_tool.py
+- tests/test_tools_interface.py
+- tests/test_tool_manager.py
+- tests/test_tool_factory.py
+
+---
+
+#### Archivos actualizados
+
+- src/core/exceptions.py
+- README.md
+- PLAN-009.md
+- SDS-009_Tools.md
+- CHANGELOG.md
+- LOG-001_Bitacora_Tecnica.md
+- ROADMAP.md
+- HANDBOOK.md
+- MTR-001_Matriz_Trazabilidad.md
+
+---
+
+#### Resultado
+
+##### Tools
+
+✔ ToolInterface
+
+✔ ToolManagerInterface
+
+✔ ToolManager
+
+✔ ToolFactory
+
+✔ Pruebas automatizadas
+
+##### Estado pipeline
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader        ✔
+      │
+      ▼
+Text Splitter          ✔
+      │
+      ▼
+Metadata Manager       ✔
+      │
+      ▼
+Embeddings Engine      ✔
+      │
+      ▼
+Vector Store           ✔
+      │
+      ▼
+Retriever              ✔
+      │
+      ▼
+Context Builder        ✔
+      │
+      ▼
+Decision Engine        ✔
+      │
+      ▼
+Tools                  ✔
+      │
+      ▼
+LLM Provider           ⏳
+```
+
+---
+
+#### Lecciones aprendidas
+
+- Diseñar primero las interfaces simplifica la evolución del módulo.
+- Mantener el ensamblado mediante Factory favorece el desacoplamiento.
+- Las decisiones arquitectónicas deben documentarse mediante ADR.
+- Las pruebas deben validar la API pública y no el estado interno de las clases.
+- La documentación sincronizada reduce inconsistencias entre artefactos del proyecto.
+
+---
+
+#### Observaciones
+
+Con la finalización del módulo **Tools**, el proyecto completa la infraestructura necesaria para incorporar herramientas especializadas al pipeline RAG.
+
+El sistema ya es capaz de:
+
+- cargar documentos;
+- fragmentarlos;
+- enriquecer su metadata;
+- generar embeddings;
+- almacenar información vectorial;
+- recuperar documentos relevantes;
+- construir el contexto;
+- generar solicitudes para el modelo de lenguaje;
+- administrar herramientas mediante una arquitectura desacoplada.
+
+El próximo Sprint estará orientado al desarrollo del **LLM Provider**, responsable de consumir las solicitudes generadas por el Decision Engine e integrar Google Gemini manteniendo la arquitectura basada en interfaces y Factory Pattern.

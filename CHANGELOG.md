@@ -17,6 +17,158 @@ Cada Release registra:
 
 Las versiones se publican al cierre de cada Sprint/Hito estable del proyecto.
 
+
+
+## [0.9.0] - 2026-07-11
+
+### Added
+
+- Implementación del módulo **Tools**.
+- Implementación de `ToolInterface`.
+- Implementación de `ToolManagerInterface`.
+- Implementación de `ToolManager`.
+- Implementación de `ToolFactory`.
+- Incorporación de `DuplicateToolError`.
+- Incorporación de `DummyTool` para pruebas unitarias.
+- Registro y administración de herramientas mediante `ToolManager`.
+- Ejecución de herramientas a través de una interfaz desacoplada.
+- Preparación de la arquitectura para futuras herramientas especializadas (FAQ, Inventario, Políticas, entre otras).
+- Pruebas automatizadas mediante `pytest`.
+- Archivos:
+  - `tests/test_tools_interface.py`
+  - `tests/test_tool_manager.py`
+  - `tests/test_tool_factory.py`
+
+### Changed
+
+- Actualización del `README.md`.
+- Actualización de `PLAN-009`.
+- Actualización de `SDS-009_Tools.md`.
+- Actualización del `HANDBOOK`.
+- Actualización del `ROADMAP`.
+- Actualización de `MTR-001`.
+- Actualización del `LOG`.
+- Actualización del pipeline RAG incorporando la infraestructura del módulo **Tools**.
+- Consolidación de la arquitectura basada en interfaces y Factory Pattern para el registro y ejecución de herramientas.
+- Incorporación de `ToolManagerInterface` para mantener el desacoplamiento entre consumidores e implementación.
+- Incorporación del método `has_tool()` para preservar el encapsulamiento y eliminar el acceso directo al estado interno del `ToolManager`.
+
+### Validated
+
+- Registro correcto de herramientas.
+- Validación del contrato `ToolInterface`.
+- Validación del contrato `ToolManagerInterface`.
+- Validación de `ToolManager`.
+- Validación de `ToolFactory`.
+- Detección de registros duplicados mediante `DuplicateToolError`.
+- Ejecución de herramientas registradas.
+- Validación del comportamiento cuando ninguna herramienta puede atender una consulta.
+- Ejecución satisfactoria de las pruebas automatizadas.
+- Validación arquitectónica del desacoplamiento entre el Decision Engine y el módulo Tools.
+
+### Pipeline actualizado
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Decision Engine
+      │
+      ▼
+Tool Manager
+```
+
+
+
+## [0.8.0] - 2026-07-10
+
+### Added
+
+- Implementación del módulo Decision Engine.
+- Implementación de `DecisionEngineInterface`.
+- Implementación de `DecisionEngine`.
+- Implementación de `DecisionEngineFactory`.
+- Implementación del modelo `LLMRequest`.
+- Construcción de solicitudes desacopladas del proveedor LLM.
+- Preparación de la arquitectura para soportar múltiples proveedores LLM.
+- Pruebas automatizadas mediante `pytest`.
+- Archivos:
+  - `tests/test_models.py`
+  - `tests/test_decision_engine.py`
+  - `tests/test_decision_engine_factory.py`
+
+### Changed
+
+- Actualización del `README.md`.
+- Actualización de `PLAN-008`.
+- Actualización de `SDS-008_Decision_Engine.md`.
+- Actualización del `HANDBOOK`.
+- Actualización del `ROADMAP`.
+- Actualización de `MTR-001`.
+- Actualización del `LOG`.
+- Actualización del pipeline RAG incorporando el módulo Decision Engine.
+- Consolidación de la arquitectura basada en interfaces y Factory Pattern para el módulo LLM.
+
+### Validated
+
+- Construcción correcta de `LLMRequest`.
+- Validación de `DecisionEngine`.
+- Validación de `DecisionEngineFactory`.
+- Construcción desacoplada de solicitudes para proveedores LLM.
+- Ejecución satisfactoria de las pruebas automatizadas.
+- Validación arquitectónica del desacoplamiento entre Context Builder y Decision Engine.
+
+### Pipeline actualizado
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Decision Engine
+```
+
 ## [0.7.0] - 2026-07-09
 
 ### Added

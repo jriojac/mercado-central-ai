@@ -4,7 +4,7 @@
 | -------------------- | ---------------------- |
 | Código               | MTR-001                |
 | Nombre               | Matriz de Trazabilidad |
-| Versión              | 2.3                    |
+| Versión              | 2.4                    |
 | Estado               | Activo                 |
 | Proyecto             | Mercado Central AI     |
 | Responsable          | Jacqueline Rioja       |
@@ -83,8 +83,8 @@ Esta metodología fue aprobada durante la Auditoría Arquitectónica (DOC-014).
 | Vector Store       |  Sprint 7 |  Hito 5 | **RF-501 – RF-506**   | SDS-005 | `vector_store.py`               | `test_vector_store.py`                                |  v0.5.0 |    ✅   |
 | Retriever          |  Sprint 8 |  Hito 6 | **RF-601 – RF-607**   | SDS-006 | `retriever/`                  | `test_retriever.py`                                   |  v0.6.0 |    ✅    |
 | Context Builder    |  Sprint 9 |  Hito 7 | **RF-701 – RF-707**   | SDS-007 | `context_builder.py`            | `test_context_builder.py`                             |  v0.7.0 |    ✅   |
-| Decision Engine    | Sprint 10 |  Hito 8 | **RF-801 – RF-805**   | SDS-008 | `decision_engine.py`            | `test_decision_engine.py`                             |  v0.8.0 |    ⏳   |
-| Tools              | Sprint 11 |  Hito 9 | **RF-901 – RF-905**   | SDS-009 | `tools/*.py`                    | `test_tools.py`                                       |  v0.9.0 |    ⏳   |
+| Decision Engine    | Sprint 10 |  Hito 8 | **RF-801 – RF-805**   | SDS-008 | `decision_engine.py`            | `test_decision_engine.py`                             |  v0.8.0 |    ✅   |
+| Tools              | Sprint 11 |  Hito 9 | **RF-901 – RF-905**   | SDS-009 | `tools/*.py`                    | `test_tools.py`                                       |  v0.9.0 |    ✅   |
 | Interfaz Streamlit | Sprint 12 | Hito 10 | **RF-1001 – RF-1005** | SDS-010 | `app.py`                        | `test_ui.py`                                          |  v1.0.0 |    ⏳   |
 
 
@@ -601,6 +601,85 @@ Decision Engine
 - 29 pruebas aprobadas.
 
 ---
+
+## 5.9 Sprint 11 – Hito 9
+
+### Módulo
+
+Tools
+
+### Información general
+
+| Campo   | Valor                     |
+| ------- | ------------------------- |
+| Sprint  | 11                        |
+| Hito    | 9                         |
+| Módulo  | Tools                     |
+| Estado  | ✅ Implementado y validado |
+| Release | v0.9.0                    |
+
+---
+
+### Matriz de trazabilidad
+
+| RF     | Descripción                                          | SDS     | Implementación | Código                 | Caso   |
+| ------ | ---------------------------------------------------- | ------- | -------------- | ---------------------- | ------ |
+| RF-901 | Definir `ToolInterface`                              | SDS-009 | IMP-901        | `interfaces.py`        | CP-901 |
+| RF-902 | Definir `ToolManagerInterface`                       | SDS-009 | IMP-902        | `interfaces.py`        | CP-902 |
+| RF-903 | Implementar `ToolManager`                            | SDS-009 | IMP-903        | `tool_manager.py`      | CP-903 |
+| RF-904 | Implementar `ToolFactory`                            | SDS-009 | IMP-904        | `tool_factory.py`      | CP-904 |
+| RF-905 | Registrar herramientas                               | SDS-009 | IMP-905        | `tool_manager.py`      | CP-905 |
+| RF-906 | Ejecutar herramientas registradas                    | SDS-009 | IMP-906        | `tool_manager.py`      | CP-906 |
+| RF-907 | Detectar registros duplicados                        | SDS-009 | Arquitectura   | `exceptions.py`        | CP-907 |
+| RF-908 | Mantener independencia del Decision Engine           | SDS-009 | Arquitectura   | Interfaces + Factory   | CP-908 |
+
+---
+
+### Cobertura de requisitos
+
+| Tipo             | Cantidad |
+| ---------------- | -------: |
+| RF               |        8 |
+| Implementaciones |        6 |
+| Casos de prueba  |        8 |
+| Cobertura        | **100 %** |
+
+---
+
+### Inventario de artefactos
+
+| Categoría             | Artefacto                     |
+| --------------------- | ----------------------------- |
+| Código                | `interfaces.py`               |
+| Código                | `tool_manager.py`             |
+| Código                | `tool_factory.py`             |
+| Código                | `exceptions.py`               |
+| Configuración         | `settings.py`                 |
+| Pruebas automatizadas | `test_tools_interface.py`     |
+| Pruebas automatizadas | `test_tool_manager.py`        |
+| Pruebas automatizadas | `test_tool_factory.py`        |
+| Documentación         | `SDS-009_Tools.md`            |
+| Release               | `v0.9.0`                      |
+
+---
+
+### Resultados
+
+El módulo **Tools** fue implementado como el noveno componente del pipeline RAG, proporcionando una infraestructura desacoplada para el registro y ejecución de herramientas especializadas.
+
+Durante este Sprint se definieron los contratos públicos del módulo mediante `ToolInterface` y `ToolManagerInterface`, permitiendo mantener la independencia entre los consumidores del módulo y sus implementaciones concretas.
+
+Asimismo, se implementó `ToolManager` como responsable de administrar el registro y ejecución de herramientas, incorporando validaciones para evitar registros duplicados y preservando el encapsulamiento mediante una API pública.
+
+La creación del módulo quedó centralizada en `ToolFactory`, manteniendo el mismo patrón arquitectónico utilizado en los módulos Retriever, Context Builder y Decision Engine.
+
+Finalmente, se desarrolló una suite de pruebas automatizadas para validar las interfaces, el administrador de herramientas y el Factory, alcanzando **40 pruebas automatizadas aprobadas**, sin introducir regresiones en los módulos implementados previamente.
+
+El Sprint concluyó con la publicación de la **Release v0.9.0**, consolidando la infraestructura necesaria para incorporar herramientas especializadas en futuras versiones del proyecto.
+
+
+---
+
 ## 5.X Sprint Y – Hito Z
 
 ### Módulo
@@ -615,19 +694,7 @@ Decision Engine
 
 ### Resultados
 
----## 5.X Sprint Y – Hito Z
-
-### Módulo
-
-### Información general
-
-### Matriz de trazabilidad
-
-### Cobertura de requisitos
-
-### Inventario de artefactos
-
-### Resultados
+---
 
 ---
 ## 5.X Sprint Y – Hito Z

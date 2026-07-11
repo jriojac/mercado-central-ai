@@ -8,23 +8,25 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 
 ## Estado del Proyecto
 
-> **Versión estable:** **v0.8.0**
+> **Versión estable:** **v0.9.0**
 
 > **Estado:** Desarrollo activo
 
 | Elemento                              | Estado                 |
-| ------------------------------------- | ---------------------- |
-| Arquitectura                          | ✅ Consolidada          |
-| Documentación                         | ✅ Actualizada          |
-| Sprint 3 – Hito 1 – Document Loader   | ✅ Finalizado           |
-| Sprint 4 – Hito 2 – Text Splitter     | ✅ Finalizado           |
-| Sprint 5 – Hito 3 – Metadata Manager  | ✅ Finalizado           |
-| Sprint 6 – Hito 4 – Embeddings Engine | ✅ Finalizado           |
-| Sprint 7 – Hito 5 – Vector Store      | ✅ Finalizado           |
-| Sprint 8 – Hito 6 – Retriever         | ✅ Finalizado           |
-| Sprint 9 – Hito 7 – Retriever         | ✅ Finalizado           |
-| Release estable                       | **v0.8.0**              |
-| Próxima Release                       | **v0.9.0** |
+| --------------------------------------------- | ---------------------- |
+| Arquitectura                                  | ✅ Consolidada          |
+| Documentación                                 | ✅ Actualizada          |
+| Sprint 3 – Hito 1 – Document Loader           | ✅ Finalizado           |
+| Sprint 4 – Hito 2 – Text Splitter             | ✅ Finalizado           |
+| Sprint 5 – Hito 3 – Metadata Manager          | ✅ Finalizado           |
+| Sprint 6 – Hito 4 – Embeddings Engine         | ✅ Finalizado           |
+| Sprint 7 – Hito 5 – Vector Store              | ✅ Finalizado           |
+| Sprint 8 – Hito 6 – Retriever                 | ✅ Finalizado           |
+| Sprint 9 – Hito 7 – Context Builder           | ✅ Finalizado           |
+| Sprint 10 – Hito 8 – Decision Engine          | ✅ Finalizado           |
+| Sprint 11 – Hito 9 – Tools (Infraestructura)  | ✅ Finalizado           |
+| Release estable                               | **v0.9.0**               |
+| Próxima Release                               | **v0.10.0**              |
 
 ---
 
@@ -75,13 +77,16 @@ Context Builder
 Decision Engine
         │
         ▼
+Tool Manager
+        │
+        ▼
 LLM Provider
         │
         ▼
 Respuesta
 ```
 
-A partir de la Release v0.8.0, el Decision Engine desacopla el pipeline RAG del proveedor LLM mediante el modelo LLMRequest y una arquitectura basada en interfaces y Factory Pattern.
+A partir de la Release v0.9.0, el proyecto incorpora el módulo Tools, que introduce una infraestructura desacoplada para el registro y ejecución de herramientas especializadas mediante interfaces y Factory Pattern. Esta incorporación prepara la arquitectura para integrar capacidades adicionales sin modificar el núcleo del pipeline RAG.
 
 ---
 
@@ -115,23 +120,27 @@ Retriever               ✅
 
 ↓
 
-Context Builder        ✅
+Context Builder         ✅
 
 ↓
 
-Decision Engine        ✅
+Decision Engine         ✅
 
 ↓
 
-LLM Provider           ⏳
+Tools                   ✅
 
 ↓
 
-Gemini                 ⏳
+LLM Provider            ⏳
 
 ↓
 
-Respuesta              ⏳
+Gemini                  ⏳
+
+↓
+
+Respuesta               ⏳
 
 ## Metodología del Proyecto
 
@@ -201,7 +210,8 @@ mercado-central-ai/
 ├── README.md
 └── app.py
 ```
-```text
+
+
 | Carpeta           | Descripción                                                          |
 | ----------------- | -------------------------------------------------------------------- |
 | `config`          | Configuración centralizada.                                          |
@@ -213,11 +223,10 @@ mercado-central-ai/
 | `temp`            | Pruebas manuales e integración.                                      |
 | `llm`             | Modelos, interfaces, Decision Engine y futuros proveedores LLM.      |
 
-```
+
 
 ## Roadmap
 
-```text
 | Sprint    | Hito                                                          | Estado  |
 | --------- | ------------------------------------------------------------- | ----    |
 | Sprint 3  | Document Loader                                               |    ✅   |
@@ -228,11 +237,10 @@ mercado-central-ai/
 | Sprint 8  | Retriever                                                     |    ✅   |
 | Sprint 9  | Context Builder                                               |    ✅   |
 | Sprint 10 | Decision Engine                                               |    ✅   |
-| Sprint 11 | LLM Provider / Tools                                          |    ⏳   |
-| Sprint 12 | Streamlit                                                     |    ⏳   |
+| Sprint 11 | Tools                                                         |    ✅   |
+| Sprint 12 | LLM Provider                                                  |    ⏳   |
+| Sprint 13 | Streamlit                                                     |    ⏳   |
 
-
-```
 ---
 
 # Módulos implementados
@@ -246,8 +254,9 @@ mercado-central-ai/
 | Vector Store          | ✅ |
 | Retriever             | ✅ |
 | Context Builder       | ✅ |
-| Decision Engine       | ⏳ |
+| Decision Engine       | ✅ |
 | Tools                 | ⏳ |
+| LLM Provider          | ⏳ |
 | Streamlit UI          | ⏳ |
 
 ---
@@ -272,6 +281,9 @@ Scripts disponibles:
 - check_text_splitter.py
 - check_loader_splitter.py
 - check_metadata.py
+- ToolInterface
+- ToolManager
+- ToolFactory
 
 Estas pruebas permiten validar la integración progresiva del pipeline RAG durante el desarrollo.
 
@@ -389,8 +401,8 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 | v0.5.0 | Vector Store |
 | v0.6.0 | Retriever |
 | v0.7.0 | Context Builder |
-| **v0.8.0** | Decision Engine |
-
+| v0.8.0 | Decision Engine |
+| **v0.9.0** | Tools     |
 
 
 ## Incluye:
@@ -430,25 +442,30 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 - DecisionEngineInterface
 - DecisionEngineFactory
 - Arquitectura desacoplada del proveedor LLM
+- ToolInterface
+- ToolManagerInterface
+- ToolManager
+- ToolFactory
+- DuplicateToolError
+- DummyTool
 
 
 ## Estadísticas del proyecto
 
-| Indicador             |  Valor |
-| --------------------- | -----: |
-| Sprint completados    |      8 |
-| Release estable       | v0.8.0 |
-| Módulos implementados |      8 |
-| Pruebas automatizadas |     29 |
-| Pruebas exitosas      |     29 |
+| Indicador             |      Valor |
+| --------------------- | ---------: |
+| Sprint completados    |      **9** |
+| Release estable       | **v0.9.0** |
+| Módulos implementados |      **9** |
+| Pruebas automatizadas |     **40** |
+| Pruebas exitosas      |     **40** |
 
 
 ## Próximo objetivo
 
-## Sprint 11 – LLM Provider
+## Sprint 12 – LLM Provider
 
-Implementar el proveedor LLM responsable de consumir las solicitudes generadas por el Decision Engine, integrar Google Gemini y preparar la arquitectura para soportar múltiples proveedores de modelos de lenguaje.
-
+Implementar el proveedor LLM responsable de consumir las solicitudes generadas por el Decision Engine, integrar Google Gemini y completar el flujo del pipeline RAG manteniendo el desacoplamiento mediante interfaces y Factory Pattern.
 ---
 
 ## Licencia
