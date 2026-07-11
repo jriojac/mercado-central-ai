@@ -8,7 +8,7 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 
 ## Estado del Proyecto
 
-> **Versión estable:** **v0.6.0**
+> **Versión estable:** **v0.8.0**
 
 > **Estado:** Desarrollo activo
 
@@ -22,9 +22,9 @@ El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Re
 | Sprint 6 – Hito 4 – Embeddings Engine | ✅ Finalizado           |
 | Sprint 7 – Hito 5 – Vector Store      | ✅ Finalizado           |
 | Sprint 8 – Hito 6 – Retriever         | ✅ Finalizado           |
-| Release estable                       | **v0.7.0**              |
-| Próxima Release                       | **v0.8.0** |
-
+| Sprint 9 – Hito 7 – Retriever         | ✅ Finalizado           |
+| Release estable                       | **v0.8.0**              |
+| Próxima Release                       | **v0.9.0** |
 
 ---
 
@@ -75,11 +75,14 @@ Context Builder
 Decision Engine
         │
         ▼
-Gemini
+LLM Provider
         │
         ▼
 Respuesta
 ```
+
+A partir de la Release v0.8.0, el Decision Engine desacopla el pipeline RAG del proveedor LLM mediante el modelo LLMRequest y una arquitectura basada en interfaces y Factory Pattern.
+
 ---
 
 ## Estado del Pipeline RAG
@@ -112,17 +115,23 @@ Retriever               ✅
 
 ↓
 
-Context Builder         ✅
+Context Builder        ✅
 
 ↓
 
-Gemini                  ⏳
+Decision Engine        ✅
 
 ↓
 
-Respuesta               ⏳
+LLM Provider           ⏳
 
+↓
 
+Gemini                 ⏳
+
+↓
+
+Respuesta              ⏳
 
 ## Metodología del Proyecto
 
@@ -170,95 +179,60 @@ HANDBOOK-001_Guia_Desarrollo
 
 
 ## Estructura del Proyecto
-Challenge-Alura-Agente-IA/
-│
-├── 01_Documentacion/
-│   ├── ADR/
-│   ├── DIA/
-│   ├── DOC/
-│   │   ├── Hito_01/
-│   │   └── Hito_02/
-│   │   └── Hito_03&
-│   ├── HANDBOOK/
-│   ├── INST/
-│   ├── LOG/
-│   ├── MTR/
-│   ├── ROADMAP/
-│   └── SDS/
-│
-├── 02_Recursos_Alura/
-│
-├── 03_Knowledge_Base/
-│ 
-├── 04_Desarrollo/
-│   └── mercado-central-ai/
-│       ├── src/
-│       │   ├── config/
-│       │       ├──settings.py
-│       │   ├── core/
-│       │       ├── exceptions.py
-│       │   ├── knowledge/
-│       │       ├── loader.py
-│       │       ├── text_splitter.py
-│       │       ├── metadata.py
-│       │       ├── embeddings.py
-│       │       ├── vector_store.py
-│       │       ├── provider.py
-│       │       ├── constants.py
-│       │       ├── types.py
-│       │       ├── providers/
-│       │       ├── chroma_provider.py
-│       │   ├── llm/
-│       │       ├── embedding_provider.py
-│       │   ├── retriever/
-│       │       ├── interfaces.py
-│       │       ├── chroma_retriever.py
-│       │       ├── retriever_factory.py
-│       │   ├──context_builder/
-│       │       ├── __init__.py
-│       │       ├── interfaces.py
-│       │       ├── simple_context_builder.py
-│       │       └── context_builder_factory.py
-│       │   ├── prompts/
-│       │   ├── tools/
-│       │   └── utils/
-│       ├── temp/
-│       │    ├── check_settings.py
-│       │    ├── check_loader.py
-│       │    ├── check_text_splitter.py
-│       │    ├── check_loader_splitter.py
-│       │    ├── check_metadata.py
-│       │    ├── check_pipeline_embeddings.py
-│       ├── tests/
-│       │    ├── test_metadata.py
-│       │    ├── test_embeddings.py
-│       │    ├── test_vector_store.py
-│       │    ├── test_retriever.py
-│       │    ├── test_context_builde.py
-│       └── app.py
-│
-├── 05_Pruebas/
-├── 06_Presentacion/
-├── 07_Entregables/
-├── 08_Backups/
-└── 09_Gestion_Proyecto/
 
+```text
+mercado-central-ai/
+│
+├── src/
+│   ├── config/
+│   ├── core/
+│   ├── knowledge/
+│   ├── retriever/
+│   ├── context_builder/
+│   ├── prompts/
+│   ├── tools/
+│   └── utils/
+│
+├── llm/
+├── tests/
+├── temp/
+│
+├── requirements.txt
+├── README.md
+└── app.py
+```
+```text
+| Carpeta           | Descripción                                                          |
+| ----------------- | -------------------------------------------------------------------- |
+| `config`          | Configuración centralizada.                                          |
+| `core`            | Componentes base del sistema.                                        |
+| `knowledge`       | Pipeline RAG (Loader, Splitter, Metadata, Embeddings, Vector Store). |
+| `retriever`       | Recuperación semántica de documentos.                                |
+| `context_builder` | Construcción del contexto para el LLM.                               |
+| `tests`           | Pruebas automatizadas con `pytest`.                                  |
+| `temp`            | Pruebas manuales e integración.                                      |
+| `llm`             | Modelos, interfaces, Decision Engine y futuros proveedores LLM.      |
+
+```
 
 ## Roadmap
 
-Sprint	Hito	Estado
-|---------|------|:------:|
-Sprint 3	Document Loader	✅
-Sprint 4	Text Splitter	✅
-Sprint 5	Metadata Manager✅
-Sprint 6	Embeddings	✅
-Sprint 7	Vector Store	✅
-Sprint 8	Retriever	✅
-Sprint 9	Context Builder	✅
-Sprint 10	Decision Engine	⏳
-Sprint 11	Tools	        ⏳
-Sprint 12	Streamlit	⏳
+```text
+| Sprint    | Hito                                                          | Estado  |
+| --------- | ------------------------------------------------------------- | ----    |
+| Sprint 3  | Document Loader                                               |    ✅   |
+| Sprint 4  | Text Splitter                                                 |    ✅   |
+| Sprint 5  | Metadata Manager                                              |    ✅   |
+| Sprint 6  | Embeddings Engine                                             |    ✅   |
+| Sprint 7  | Vector Store                                                  |    ✅   |
+| Sprint 8  | Retriever                                                     |    ✅   |
+| Sprint 9  | Context Builder                                               |    ✅   |
+| Sprint 10 | Decision Engine                                               |    ✅   |
+| Sprint 11 | LLM Provider / Tools                                          |    ⏳   |
+| Sprint 12 | Streamlit                                                     |    ⏳   |
 
+
+```
 ---
 
 # Módulos implementados
@@ -270,8 +244,8 @@ Sprint 12	Streamlit	⏳
 | Metadata Manager      | ✅ |
 | Embeddings            | ✅ |
 | Vector Store          | ✅ |
-| Retriever             | ✅  |
-| Context Builder       | ⏳ |
+| Retriever             | ✅ |
+| Context Builder       | ✅ |
 | Decision Engine       | ⏳ |
 | Tools                 | ⏳ |
 | Streamlit UI          | ⏳ |
@@ -322,6 +296,9 @@ Actualmente se encuentran implementadas las pruebas automatizadas para:
 - Vector Store
 - Retriever
 - Context Builder
+- Decision Engine
+- Decision Engine Factory
+- LLMRequest
 
 Ejecución:
 
@@ -358,7 +335,7 @@ python -m temp.check_vector_store
 
 ```
 
-El módulo Vector Store fue validado mediante pruebas automatizadas implementadas con pytest.
+Las pruebas del **Decision Engine** se validan mediante pytest, al no requerir scripts manuales específicos en esta versión.
 
 ## Documentación
 
@@ -412,6 +389,8 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 | v0.5.0 | Vector Store |
 | v0.6.0 | Retriever |
 | v0.7.0 | Context Builder |
+| **v0.8.0** | Decision Engine |
+
 
 
 ## Incluye:
@@ -446,14 +425,29 @@ El archivo `.env` no debe incluirse en el repositorio y se utiliza para configur
 - SimpleContextBuilder
 - ContextBuilderFactory
 - Construcción de contexto
-- Configuración del Context Builder
+- LLMRequest
+- DecisionEngine
+- DecisionEngineInterface
+- DecisionEngineFactory
+- Arquitectura desacoplada del proveedor LLM
+
+
+## Estadísticas del proyecto
+
+| Indicador             |  Valor |
+| --------------------- | -----: |
+| Sprint completados    |      8 |
+| Release estable       | v0.8.0 |
+| Módulos implementados |      8 |
+| Pruebas automatizadas |     29 |
+| Pruebas exitosas      |     29 |
 
 
 ## Próximo objetivo
 
-## Sprint 10 - Hito 8 – Decision Engine 
+## Sprint 11 – LLM Provider
 
-Implementar el módulo responsable de recibir el contexto generado por el Context Builder, aplicar la estrategia de decisión, construir la solicitud para el modelo Gemini y coordinar la generación de la respuesta del agente.
+Implementar el proveedor LLM responsable de consumir las solicitudes generadas por el Decision Engine, integrar Google Gemini y preparar la arquitectura para soportar múltiples proveedores de modelos de lenguaje.
 
 ---
 

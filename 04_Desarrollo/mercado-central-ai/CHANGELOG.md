@@ -78,3 +78,77 @@ Vector Store
       │
       ▼
 Retriever
+```
+
+
+## \[0.8.0\] - 2026-07-10
+
+### Added
+
+- Implementación del módulo Decision Engine.
+- Implementación de DecisionEngineInterface.
+- Implementación del modelo LLMRequest.
+- Implementación de DecisionEngine.
+- Implementación de DecisionEngineFactory.
+- Preparación del pipeline para proveedores LLM desacoplados.
+- Pruebas automatizadas del módulo.
+- Archivo tests/test_models.py.
+- Archivo tests/test_decision_engine.py.
+- Archivo tests/test_decision_engine_factory.py.
+- Cuatro nuevos casos de prueba automatizados.
+
+### Changed
+
+- Actualización del README.
+- Actualización del PLAN-008.
+- Actualización del SDS-008_Decision_Engine.md.
+- Actualización del HANDBOOK.
+- Actualización del ROADMAP.
+- Actualización del MTR-001.
+- Actualización del LOG.
+- Actualización del pipeline RAG incorporando el Decision Engine.
+- Consolidación de la arquitectura desacoplada entre Context Builder y el proveedor LLM mediante LLMRequest.
+
+### Fixed
+
+- 
+
+### Validated
+
+- Construcción correcta de objetos LLMRequest.
+- Validación de DecisionEngine.
+- Validación de DecisionEngineFactory.
+- Ejecución satisfactoria de 29 pruebas automatizadas.
+- Validación arquitectónica del desacoplamiento entre Context Builder, Decision Engine y el futuro proveedor LLM.
+
+### Pipeline actualizado
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Decision Engine
+      │
+      ▼
+LLM Provider

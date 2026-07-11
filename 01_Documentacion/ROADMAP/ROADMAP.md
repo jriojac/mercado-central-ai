@@ -11,11 +11,11 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Campo               | Valor                          |
 | ------------------- | ------------------------------ |
 | Proyecto            | Mercado Central AI             |
-| **Versión estable** | **v0.7.0**                     |
-| **Sprint actual**   | **Sprint 9**                   |
-| **Hito actual**     | **Hito 7 – Context Builder**         |
+| **Versión estable** | **v0.8.0**                     |
+| **Sprint actual**   | **Sprint 10**                   |
+| **Hito actual**     | **Hito 8 – Context Builder**         |
 | **Estado**          | ✅ Finalizado                   |
-| **Próximo Sprint**  | **Sprint 10 – Decision Engine** |
+| **Próximo Sprint**  | **Sprint 11 – Tools** |
 
 ---
 
@@ -30,9 +30,10 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Sprint 7 | Hito 5 | Vector Store | v0.5.0 | ✅ |
 | Sprint 8 | Hito 6 | Retriever | v0.6.0 | ✅ |
 | Sprint 9 | Hito 7 | Context Builder | v0.7.0 | ✅ |
-| Sprint 10 | Hito 8 | Decision Engine | v0.8.0 | ⏳ |
+| Sprint 10 | Hito 8 | Decision Engine | v0.8.0 | ✅ |
 | Sprint 11 | Hito 9 | Tools | v0.9.0 | ⏳ |
 | Sprint 12 | Hito 10 | Interfaz Streamlit | v1.0.0 | ⏳ |
+
 
 ---
 
@@ -47,32 +48,31 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Vector Store    |    ✅   |
 | Retriever       |    ✅   |
 | Context Builder |    ✅   |
-| Decision Engine |    ⏳   |
+| Decision Engine |    ✅    |
 
 
 ---
 
 # Avance del proyecto
 
-| Indicador             |                                      Valor |
-| --------------------- | -----------------------------------------: |
-| Sprint completados    |                                 **7 / 10** |
-| Releases publicadas   |                                      **7** |
-| Avance estimado       |                                   **70 %** |
-| Pruebas automatizadas |                                     **25** |
-| Versión estable       |                                 **v0.7.0** |
-| Próxima Release       |                                 **v0.8.0** |
+| Indicador             |      Valor |
+| --------------------- | ---------: |
+| Sprint completados    | **8 / 10** |
+| Releases publicadas   |      **8** |
+| Avance estimado       |   **80 %** |
+| Pruebas automatizadas |     **29** |
+| Versión estable       | **v0.8.0** |
+| Próxima Release       | **v0.9.0** |
 
 
 ---
 
 # Objetivos de las próximas Releases
 
-| Release    | Objetivo                                               |
-| ---------- | ------------------------------------------------------ |
-| **v0.8.0** | Implementar el Decision Engine del Agente.             |
-| **v0.9.0** | Integrar las Tools del Agente IA.                      |
-| **v1.0.0** | Desarrollar Streamlit e integrar el pipeline completo. |
+| Release    | Objetivo                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------- |
+| **v0.9.0** | Implementar el LLM Provider e integrar Google Gemini mediante una arquitectura desacoplada. |
+| **v1.0.0** | Completar Tools, interfaz Streamlit e integración total del pipeline RAG.                   |
 
 ---
 
@@ -90,6 +90,7 @@ Objetivos de la versión estable:
 - Interfaz web desarrollada con Streamlit.
 - Documentación técnica completa.
 - Cobertura de pruebas automatizadas para todos los módulos.
+- Decision Engine desacoplado mediante LLMRequest.
 
 ---
 
@@ -103,10 +104,11 @@ Objetivos de la versión estable:
 | v0.4.0     |    6   | Embeddings Engine   |    ✅   |
 | v0.5.0     |    7   | Vector Store        |    ✅   |
 | v0.6.0     |    8   | Retriever           |    ✅   |
-| **v0.7.0** |  **9** | **Context Builder** |    ✅   |
-| v0.8.0     |   10   | Decision Engine     |    ⏳   |
+| v0.7.0     |    9   | Context Builder     |    ✅   |
+| v0.8.0     |   10   | Decision Engine     |    ✅    |
 | v0.9.0     |   11   | Tools               |    ⏳   |
 | v1.0.0     |   12   | Streamlit           |    ⏳   |
+
 
 
 
@@ -124,3 +126,5 @@ Cada Release representa una versión estable del sistema y se publica únicament
 - Cierre formal del Sprint.
 
 El ROADMAP se actualiza al cierre de cada Sprint y constituye la referencia oficial para el seguimiento del avance del proyecto.
+
+Con la Release v0.8.0 el proyecto completa la preparación del pipeline RAG hasta la generación de solicitudes (LLMRequest), estableciendo una separación clara entre la lógica del pipeline y el proveedor LLM. A partir del Sprint 11 comenzará la integración funcional con Google Gemini mediante un proveedor desacoplado.

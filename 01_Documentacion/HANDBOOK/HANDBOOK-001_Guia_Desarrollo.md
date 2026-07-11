@@ -2,7 +2,7 @@
 
 **Código:** HANDBOOK-001
 
-**Versión:** 2.4
+**Versión:** 2.5
 
 **Estado:** Activo
 
@@ -185,6 +185,7 @@ Implementación del pipeline RAG, incluyendo carga documental, fragmentación, g
 ```text
 llm/
 ```
+Modelos, contratos públicos, Decision Engine y componentes de integración con proveedores LLM.
 
 Adaptadores de modelos.
 
@@ -343,6 +344,7 @@ Cada nuevo módulo deberá incluir como mínimo:
 - Release correspondiente.
 - Revisión arquitectónica.
 - Refactorización antes del cierre documental.
+- Diseño del contrato público mediante interfaces (cuando aplique).
 
 
 | Actividad                   | Obligatoria |
@@ -353,6 +355,7 @@ Cada nuevo módulo deberá incluir como mínimo:
 | Validación incremental      |      ✅      |
 | **Revisión arquitectónica** |      ✅      |
 | **Refactorización**         |      ✅      |
+| **Validación incremental mediante microentregas**         |      ✅      |
 | Pruebas                     |      ✅      |
 | Documentación               |      ✅      |
 | Release                     |      ✅      |
@@ -371,6 +374,8 @@ Cada documento debe contener:
 - control de versiones.
 
 Toda mejora metodológica aprobada durante un Sprint deberá incorporarse al HANDBOOK antes de la publicación de la Release correspondiente.
+
+Toda decisión arquitectónica permanente deberá reflejarse primero en el SDS correspondiente y posteriormente incorporarse al HANDBOOK únicamente cuando represente un estándar reutilizable para futuros Sprint.
 
 Antes de incorporar una mejora arquitectónica o metodológica, deberá analizarse su impacto sobre los Sprint previamente cerrados. Ninguna modificación estructural se implementará sin una evaluación previa y su correspondiente aprobación.
 
@@ -392,9 +397,10 @@ Cada Hito deberá finalizar con:
 2. Ejecución de pruebas automatizadas.
 3. Actualización de la documentación.
 4. Revisión del estado del repositorio (`git status`).
-5. Commit descriptivo.
-6. Push al repositorio remoto.
-7. Creación del tag de Release (cuando corresponda).
+5. git diff --stat ,con el fin de verificar que únicamente se incorporan los archivos previstos para la Release.
+6. Commit descriptivo.
+7. Push al repositorio remoto.
+8. Creación del tag de Release (cuando corresponda).
 
 Las Releases únicamente se publicarán cuando el Hito haya sido completamente validado.
 
@@ -406,7 +412,7 @@ Un Hito se considerará finalizado únicamente cuando se cumplan todos los sigui
 
 - SDS aprobado.
 - Implementación completada.
-- Pruebas de integración ejecutadas.
+- Pruebas de integración ejecutadas cuando correspondan al alcance del Hito.
 - Pruebas automatizadas aprobadas.
 - Cobertura completa de los Casos de Prueba (CP).
 - Documentación actualizada.
@@ -447,6 +453,8 @@ Las mejoras metodológicas deberán incorporarse respetando la estabilidad de lo
 
 Toda mejora metodológica deberá ser analizada, justificada y aprobada antes de incorporarse al HANDBOOK.
 
+Las mejoras metodológicas deberán mantenerse compatibles con los Sprint previamente cerrados y no implicarán modificaciones retroactivas de la arquitectura sin un análisis formal de impacto.
+
 ---
 
 # Control de versiones
@@ -458,4 +466,5 @@ Toda mejora metodológica deberá ser analizada, justificada y aprobada antes de
 | 2.1 | 03/07/2026 | Incorporación de la estrategia oficial de pruebas con pytest, separación entre pruebas de integración y automatizadas, reglas para instalación de dependencias, actualización del flujo de cierre de Hitos y formalización de las mejoras metodológicas derivadas del Sprint 5. |
 | 2.2 | 05/07/2026  | Actualización metodológica derivada del Sprint 7. Incorporación del flujo documental completo (MTR, README, CHANGELOG, LOG, ROADMAP, HANDBOOK y Acta de Cierre), formalización del uso de `pytest.fixture`, actualización de los criterios de cierre de Hitos y consolidación de la metodología documental del proyecto. |
 | 2.3 | 08/07/2026 | Actualización derivada del Sprint 8. Formalización del estándar oficial de imports (`src.` entre paquetes e imports relativos dentro del mismo paquete), incorporación del patrón Factory como mecanismo oficial de ensamblado de dependencias, adopción de la validación incremental mediante microentregas y consolidación de la política de no introducir cambios arquitectónicos sin análisis previo de impacto. |
-| **2.4** | **09/07/2026** | Actualización derivada del Sprint 9. Incorporación del flujo documental optimizado (MTR al final del proceso), formalización de la revisión arquitectónica previa al cierre, consolidación de los estándares permanentes del proyecto (interfaces, Factory Pattern, configuración centralizada, tipado fuerte y validación incremental) y actualización del pipeline RAG con el módulo Context Builder. |
+| 2.4 | 09/07/2026 | Actualización derivada del Sprint 9. Incorporación del flujo documental optimizado (MTR al final del proceso), formalización de la revisión arquitectónica previa al cierre, consolidación de los estándares permanentes del proyecto (interfaces, Factory Pattern, configuración centralizada, tipado fuerte y validación incremental) y actualización del pipeline RAG con el módulo Context Builder. |
+| **2.5** | **10/07/2026** | Actualización derivada del Sprint 10. Formalización del uso de contratos públicos mediante interfaces cuando corresponda, consolidación del modelo de validación incremental por microentregas, incorporación de la revisión de git diff --stat antes del commit y actualización de la organización del paquete llm para reflejar la incorporación del Decision Engine. |

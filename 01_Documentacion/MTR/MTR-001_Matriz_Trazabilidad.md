@@ -4,7 +4,7 @@
 | -------------------- | ---------------------- |
 | Código               | MTR-001                |
 | Nombre               | Matriz de Trazabilidad |
-| Versión              | 2.2                    |
+| Versión              | 2.3                    |
 | Estado               | Activo                 |
 | Proyecto             | Mercado Central AI     |
 | Responsable          | Jacqueline Rioja       |
@@ -542,6 +542,65 @@ Context Builder
 - 18 pruebas aprobadas.
 ---
 
+## 5.8 Sprint 10 – Hito 8
+
+### Módulo
+
+Decision Engine
+
+### Información general
+
+| Campo   | Valor                     |
+| ------- | ------------------------- |
+| Sprint  | 10                         |
+| Hito    | 8                         |
+| Módulo  | Decision Engine          |
+| Estado  | ✅ Implementado y validado |
+| Release | v0.780                    |
+
+### Matriz de trazabilidad
+
+| RF     | Descripción                                     | SDS     | Implementación | Código                       | Caso   |
+| ------ | ----------------------------------------------- | ------- | -------------- | ---------------------------- | ------ |
+| RF-801 | Definir `DecisionEngineInterface`               | SDS-008 | IMP-801        | `interfaces.py`              | CP-801 |
+| RF-802 | Implementar `LLMRequest`                        | SDS-008 | IMP-802        | `models.py`                  | CP-802 |
+| RF-803 | Construir solicitudes LLM                       | SDS-008 | IMP-803        | `decision_engine.py`         | CP-803 |
+| RF-804 | Implementar `DecisionEngineFactory`             | SDS-008 | IMP-804        | `decision_engine_factory.py` | CP-804 |
+| RF-805 | Mantener independencia del proveedor LLM        | SDS-008 | Arquitectura   | Interfaces + Factory         | CP-805 |
+| RF-806 | Preparar la integración con futuros proveedores | SDS-008 | Arquitectura   | `LLMRequest`                 | CP-806 |
+
+
+### Cobertura de requisitos
+
+| Tipo             |  Cantidad |
+| ---------------- | --------: |
+| RF               |         6 |
+| Implementaciones |         6 |
+| Casos de prueba  |        29 |
+| Cobertura        | **100 %** |
+
+
+### Inventario de artefactos
+
+- interfaces.py
+- models.py
+- decision_engine.py
+- decision_engine_factory.py
+- test_models.py
+- test_decision_engine.py
+- test_decision_engine_factory.py
+- SDS-008
+- Release v0.8.0
+
+### Resultados
+
+- implementación del DecisionEngine;
+- implementación de DecisionEngineInterface;
+- implementación de LLMRequest;
+- implementación de DecisionEngineFactory;
+- 29 pruebas aprobadas.
+
+---
 ## 5.X Sprint Y – Hito Z
 
 ### Módulo
@@ -556,8 +615,21 @@ Context Builder
 
 ### Resultados
 
----
+---## 5.X Sprint Y – Hito Z
 
+### Módulo
+
+### Información general
+
+### Matriz de trazabilidad
+
+### Cobertura de requisitos
+
+### Inventario de artefactos
+
+### Resultados
+
+---
 ## 5.X Sprint Y – Hito Z
 
 ### Módulo
@@ -607,16 +679,17 @@ La numeración se reinicia por Sprint utilizando centenas para facilitar la iden
 | Sprint 7 | RF-501 | IMP-501 | CP-501 |
 | Sprint 8 | RF-601 | IMP-601 | CP-601 |
 | Sprint 9 | RF-701 | IMP-701 | CP-701 |
+| Sprint 10 | RF-801 | IMP-801 | CP-801 |
 
 
 ## Estados
 
 | Estado | Significado             |
 | ------ | ----------------------- |
-| ✅      | Implementado y validado |
-| ⏳      | Planificado             |
-| 🔄     | En desarrollo           |
-| ❌      | No implementado         |
+| ✅    | Implementado y validado |
+| ⏳    | Planificado             |
+| 🔄    | En desarrollo           |
+| ❌    | No implementado         |
 
 ## Cobertura
 
@@ -673,7 +746,7 @@ Esta trazabilidad permite auditar el ciclo completo de desarrollo de cada funcio
 
 ## Estado actual del proyecto
 
-Al cierre del Sprint 8 – Hito 6, el proyecto cuenta con cinco módulos funcionales implementados y validados:
+Al cierre del Sprint 10 – Hito 8, el proyecto cuenta con cinco módulos funcionales implementados y validados:
 
 - ✅ Document Loader
 - ✅ Text Splitter
@@ -682,7 +755,7 @@ Al cierre del Sprint 8 – Hito 6, el proyecto cuenta con cinco módulos funcion
 - ✅ Vector Store
 - ✅ Retriever
 - ✅ Context Builder
-- ⏳ Decision Engine
+- ✅ Decision Engine
 - ⏳ Tools
 - ⏳ Interfaz Streamlit
 

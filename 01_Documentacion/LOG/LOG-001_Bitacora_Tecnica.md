@@ -865,7 +865,7 @@ Context Builder        ⏳
 
 #### Observaciones
 
-Con la finalización del módulo Retriever, el proyecto completa la etapa de recuperación documental del pipeline RAG.
+Con la finalización del módulo **Context Builder**, el proyecto completa la etapa de recuperación documental del pipeline RAG.
 
 El sistema ya es capaz de:
 
@@ -1062,3 +1062,196 @@ El sistema ya es capaz de:
 - construir un contexto textual listo para ser consumido por el siguiente módulo.
 
 El próximo Sprint estará orientado al desarrollo del **Decision Engine**, responsable de recibir el contexto generado, construir la solicitud para el modelo Gemini y coordinar la generación de respuestas del agente.
+
+
+## 2026-07-10 -- Cierre del Hito 8
+
+### Sprint 10 - Hito 8
+
+### Registro de avance
+Hito 8 – Decision Engine
+v0.8.0
+
+#### Objetivo
+
+Implementar el módulo Decision Engine, responsable de construir una solicitud (`LLMRequest`) a partir de la consulta del usuario y del contexto generado por el Context Builder, manteniendo independencia respecto al proveedor LLM y preparando la arquitectura para soportar múltiples modelos de lenguaje.
+
+####  Actividades realizadas
+
+##### Planificación
+
+- Definición del alcance del Decision Engine.
+- Identificación de los requisitos funcionales RF-801 a RF-806.
+- Definición del contrato público mediante DecisionEngineInterface.
+- Diseño de la estrategia para la construcción de solicitudes LLM independientes del proveedor.
+
+##### Diseño
+
+- Elaboración del documento SDS-008 – Decision Engine.
+- Definición de la arquitectura basada en interfaces.
+- Diseño del patrón Factory para el ensamblado del módulo.
+- Definición del modelo LLMRequest.
+- Preparación de la arquitectura para futuros proveedores LLM.
+
+##### Implementación
+Se implementaron los siguientes componentes:
+- DecisionEngineInterface
+- LLMRequest
+- DecisionEngine
+
+DecisionEngineFactory
+Se desarrollaron las siguientes funcionalidades:
+
+- construcción de LLMRequest;
+- recepción de query;
+- recepción de context;
+- desacoplamiento del proveedor LLM;
+- implementación del patrón Factory.
+
+#### Decisiones de arquitectura
+Durante el desarrollo del módulo se adoptaron las siguientes decisiones arquitectónicas:
+
+- DA-1001
+Utilizar DecisionEngineInterface como contrato público..
+
+- DA-1002
+Implementar LLMRequest para desacoplar el pipeline del proveedor LLM.
+
+- DA-1003
+Implementar DecisionEngineFactory como punto único de creación del módulo.
+
+- DA-1004
+Mantener independencia total respecto a Gemini.
+
+
+
+#### Problemas encontrados
+Durante el Sprint se identificaron y resolvieron los siguientes inconvenientes:
+- definición del alcance del Decision Engine;
+- reutilización del paquete llm existente;
+- decisión sobre el uso de Factory Pattern;
+- ajuste de imports durante las pruebas;
+- restauración accidental de __init__.py.
+
+Todos los problemas fueron resueltos durante el desarrollo del Sprint.
+
+#### Pruebas
+Se implementó la suite automatizada:
+tests/
+├── test_models.py
+├── test_decision_engine.py
+└── test_decision_engine_factory.py
+
+Resultado obtenido : 29 passed
+
+Se validaron satisfactoriamente:
+
+- LLMRequest;
+- DecisionEngine;
+- DecisionEngineFactory;
+- integración con el Context Builder mediante contratos públicos.
+
+#### Refactorización
+Durante el Sprint se realizaron diversas actividades de mejora del código:
+
+- fortalecimiento del tipado fuerte;
+- separación del contrato público mediante DecisionEngineInterface;
+- consolidación del modelo LLMRequest;
+- mantenimiento del patrón Factory;
+- revisión de imports y estructura del paquete llm.
+
+#### Mejoras metodológicas
+Durante este Sprint se consolidaron nuevas prácticas de desarrollo:
+
+- inicio de la integración entre módulos del pipeline RAG;
+- incorporación de un modelo de intercambio (LLMRequest) entre componentes;
+- consolidación de la arquitectura desacoplada del proveedor LLM;
+- validación incremental mediante microentregas;
+- fortalecimiento de la trazabilidad documental.
+
+#### Archivos creados
+- src/llm/interfaces.py
+- src/llm/models.py
+- src/llm/decision_engine.py
+- src/llm/decision_engine_factory.py
+
+- tests/test_models.py
+- tests/test_decision_engine.py
+- tests/test_decision_engine_factory.py
+
+#### Archivos actualizados
+- README.md
+- PLAN-008.md
+- SDS-008_Decision_Engine.md
+- CHANGELOG.md
+- LOG-001_Bitacora_Tecnica.md
+- ROADMAP.md
+- HANDBOOK.md
+- MTR-001_Matriz_Trazabilidad.md
+
+#### Resultado
+##### Decision Engine
+
+✔ DecisionEngineInterface
+
+✔ LLMRequest
+
+✔ DecisionEngine
+
+✔ DecisionEngineFactory
+
+✔ Pruebas automatizadas
+
+##### Estado pipeline
+Knowledge Base
+      │
+      ▼
+Document Loader        ✔
+      │
+      ▼
+Text Splitter          ✔
+      │
+      ▼
+Metadata Manager       ✔
+      │
+      ▼
+Embeddings Engine      ✔
+      │
+      ▼
+Vector Store           ✔
+      │
+      ▼
+Retriever              ✔
+      │
+      ▼
+Context Builder        ✔
+      │
+      ▼
+Decision Engine        ✔
+      │
+      ▼
+LLM Provider           ⏳
+
+#### Lecciones aprendidas
+- Definir primero el contrato público facilita la evolución del módulo.
+- El uso de LLMRequest desacopla el pipeline del proveedor LLM.
+- Mantener el patrón Factory proporciona uniformidad arquitectónica.
+- Las microentregas reducen el riesgo de regresiones.
+- La validación continua mediante pytest mantiene la estabilidad del proyecto.
+
+#### Observaciones
+
+Con la finalización del **Decision Engine**, el proyecto completa la etapa de preparación de solicitudes para modelos de lenguaje dentro del pipeline RAG.
+
+El sistema ya es capaz de:
+
+- cargar documentos;
+- fragmentarlos;
+- enriquecer su metadata;
+- generar embeddings;
+- almacenar información vectorial;
+- recuperar documentos relevantes;
+- construir el contexto;
+- generar una solicitud (LLMRequest) preparada para un proveedor LLM.
+
+El próximo Sprint estará orientado al desarrollo del **LLM Provider**, responsable de consumir las solicitudes generadas por el Decision Engine e integrar Google Gemini mediante una arquitectura desacoplada y extensible.
