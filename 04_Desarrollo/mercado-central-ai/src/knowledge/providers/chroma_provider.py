@@ -32,7 +32,13 @@ class ChromaProvider(VectorStoreProvider):
                 path=str(VECTOR_DB_PATH)
             )
 
-            self._collection: Any | None = None
+            try:
+                self._collection = self._client.get_collection(
+                    name=VECTOR_DB_COLLECTION
+                )
+            except Exception:
+                # La colección todavía no existe.
+                self._collection = None
 
         except Exception as exc:
             raise ProviderError(
@@ -242,10 +248,19 @@ class ChromaProvider(VectorStoreProvider):
 
             return results
 
+     #   except Exception as exc:
+     #       raise ProviderError(
+     #           "No fue posible realizar la búsqueda por similitud."
+     #       ) from exc
+
+
         except Exception as exc:
-            raise ProviderError(
-                "No fue posible realizar la búsqueda por similitud."
-            ) from exc
+            import traceback
+
+            traceback.print_exc()
+
+            raise
+
 
     def delete_documents(
         self,

@@ -51,3 +51,21 @@ class Embeddings:
             document.metadata["embedding"] = embedding
 
         return documents
+
+    def generate_query_embedding(
+        self,
+        query: str,
+    ) -> list[float]:
+        """
+        Genera el embedding de una consulta del usuario.
+        """
+
+        if not query.strip():
+            raise ValueError(
+                "La consulta no puede estar vacía."
+            )
+
+        return self._provider.generate_query_embedding(
+            query
+        )
+    

@@ -21,7 +21,7 @@ load_dotenv()
 
 PROJECT_NAME = "Mercado Central AI"
 
-PROJECT_VERSION = "0.5.0-dev"
+PROJECT_VERSION = "v1.0.0"
 
 # -------------------------------------------------------
 # Directorio raíz del proyecto
@@ -117,6 +117,29 @@ GEMINI_TIMEOUT = 30
 
 GEMINI_MAX_RETRIES = 3
 
+
+# ==========================================================
+# PROMPTS
+# ==========================================================
+
+# Instrucciones base enviadas al modelo de lenguaje.
+# Son utilizadas por PromptBuilder para construir el
+# prompt final.
+
+PROMPT_SYSTEM_INSTRUCTIONS = """
+Eres el asistente virtual de Mercado Central AI.
+
+Responde únicamente utilizando la información contenida
+en el contexto proporcionado.
+
+Si la respuesta no puede obtenerse del contexto,
+indícalo claramente.
+
+No inventes información.
+
+Responde de forma clara, precisa y profesional.
+""".strip()
+
 # ==========================================================
 # EMBEDDINGS
 # ==========================================================
@@ -164,3 +187,26 @@ MAX_CONTEXT_CHARS = 12_000
 
 # Indica si el Context Builder debe incluir metadatos de los documentos.
 INCLUDE_METADATA = False
+
+
+# ==========================================================
+# STREAMLIT
+# ==========================================================
+
+STREAMLIT_TITLE = PROJECT_NAME
+
+STREAMLIT_DESCRIPTION = (
+    "Asistente inteligente basado en arquitectura RAG."
+)
+
+STREAMLIT_ICON = "🛒"
+
+STREAMLIT_LAYOUT = "wide"
+
+STREAMLIT_PLACEHOLDER = (
+    "Escriba su consulta..."
+)
+
+STREAMLIT_BUTTON_LABEL = "Consultar"
+
+

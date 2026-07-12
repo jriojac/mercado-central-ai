@@ -19,6 +19,7 @@ from src.config.settings import (
     RETRIEVER_VALIDATE_QUERY,
 )
 
+from src.knowledge.embeddings import Embeddings
 
 
 class ChromaRetriever(IRetriever):
@@ -43,30 +44,21 @@ class ChromaRetriever(IRetriever):
         """
         self._vector_store = vector_store
 
+        self._embeddings = Embeddings()
+
     def retrieve(
         self,
         query: str,
         top_k: int | None = None,
     ) -> list[Document]:
-        """
-        Recupera los documentos más relevantes para una consulta.
-
-        Args:
-            query:
-                Consulta del usuario.
-
-            top_k:
-                Número máximo de documentos a recuperar.
-                Si es None se utilizará el valor por defecto
-                del Vector Store.
-
-        Returns:
-            Lista de documentos ordenados por relevancia.
-        """
 
         k = top_k if top_k is not None else RETRIEVER_TOP_K
 
+        embedding = self._embeddings.generate_query_embedding(
+            query
+        )
+
         return self._vector_store.similarity_search(
-            query=query,
+            embedding=embedding,
             k=k,
         )

@@ -9,6 +9,7 @@ from abc import ABC, abstractmethod
 from src.llm.models import LLMRequest
 
 
+
 class DecisionEngineInterface(ABC):
     """
     Define el contrato para los motores de decisión.
@@ -47,16 +48,15 @@ class LLMProviderInterface(ABC):
     @abstractmethod
     def generate_response(
         self,
-        prompt: str,
+        request: LLMRequest,
     ) -> str:
         """
         Genera una respuesta utilizando un proveedor LLM.
 
         Parameters
         ----------
-        prompt:
-            Prompt completamente construido por el
-            Decision Engine.
+        request:
+            Solicitud preparada por el Decision Engine.
 
         Returns
         -------

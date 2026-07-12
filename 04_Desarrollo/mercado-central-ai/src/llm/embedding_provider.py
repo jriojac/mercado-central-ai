@@ -53,15 +53,27 @@ class EmbeddingProvider:
                 "el proveedor de embeddings."
             )
 
+#        try:
+#            self._embedding_model = GoogleGenerativeAIEmbeddings(
+#                model=EMBEDDING_MODEL
+#            )
+#
+#        except Exception as error:
+#            raise EmbeddingConfigurationError(
+#                "No fue posible inicializar el modelo de embeddings."
+#            ) from error
+
         try:
             self._embedding_model = GoogleGenerativeAIEmbeddings(
                 model=EMBEDDING_MODEL
             )
 
         except Exception as error:
-            raise EmbeddingConfigurationError(
-                "No fue posible inicializar el modelo de embeddings."
-            ) from error
+            import traceback
+
+            traceback.print_exc()
+
+            raise
 
     def generate_document_embedding(
         self,

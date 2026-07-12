@@ -87,7 +87,8 @@ class VectorStore:
 
     def similarity_search(
         self,
-        query: str,
+        #query: str,
+        embedding: list[float],
         k: int = 4,
     ) -> list[Any]:
         """
