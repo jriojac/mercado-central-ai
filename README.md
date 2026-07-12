@@ -1,38 +1,43 @@
 # Mercado Central AI
 
-Sistema de atención inteligente basado en IA para **Mercado Central 24h (México)**.
+Sistema inteligente de atención al cliente basado en Inteligencia Artificial para **Mercado Central 24h (México)**.
 
-El proyecto implementa un agente conversacional utilizando un pipeline **RAG (Retrieval-Augmented Generation)**, desarrollado como parte del **Challenge de Alura + Oracle Next Education**.
+El proyecto implementa un agente conversacional utilizando una arquitectura **RAG (Retrieval-Augmented Generation)**, desarrollado como parte del **Challenge de Alura + Oracle Next Education**.
+
+La solución integra un pipeline modular basado en **Python**, **LangChain**, **ChromaDB** y **Google Gemini**, siguiendo una arquitectura desacoplada mediante **Interfaces**, **Factory Pattern** y **Configuración Centralizada**.
 
 ---
 
-## Estado del Proyecto
+# Estado del Proyecto
 
-> **Versión estable:** **v0.9.0**
+> **Versión estable:** **v1.0.0**
 
 > **Estado:** Desarrollo activo
 
-| Elemento                              | Estado                 |
-| --------------------------------------------- | ---------------------- |
-| Arquitectura                                  | ✅ Consolidada          |
-| Documentación                                 | ✅ Actualizada          |
-| Sprint 3 – Hito 1 – Document Loader           | ✅ Finalizado           |
-| Sprint 4 – Hito 2 – Text Splitter             | ✅ Finalizado           |
-| Sprint 5 – Hito 3 – Metadata Manager          | ✅ Finalizado           |
-| Sprint 6 – Hito 4 – Embeddings Engine         | ✅ Finalizado           |
-| Sprint 7 – Hito 5 – Vector Store              | ✅ Finalizado           |
-| Sprint 8 – Hito 6 – Retriever                 | ✅ Finalizado           |
-| Sprint 9 – Hito 7 – Context Builder           | ✅ Finalizado           |
-| Sprint 10 – Hito 8 – Decision Engine          | ✅ Finalizado           |
-| Sprint 11 – Hito 9 – Tools (Infraestructura)  | ✅ Finalizado           |
-| Release estable                               | **v0.9.0**               |
-| Próxima Release                               | **v0.10.0**              |
+| Elemento | Estado |
+|----------|:------:|
+| Arquitectura | ✅ Consolidada |
+| Documentación | ✅ Actualizada |
+| Sprint 3 – Hito 1 – Document Loader | ✅ |
+| Sprint 4 – Hito 2 – Text Splitter | ✅ |
+| Sprint 5 – Hito 3 – Metadata Manager | ✅ |
+| Sprint 6 – Hito 4 – Embeddings Engine | ✅ |
+| Sprint 7 – Hito 5 – Vector Store | ✅ |
+| Sprint 8 – Hito 6 – Retriever | ✅ |
+| Sprint 9 – Hito 7 – Context Builder | ✅ |
+| Sprint 10 – Hito 8 – Decision Engine | ✅ |
+| Sprint 11 – Hito 9 – Tools | ✅ |
+| Sprint 12 – Hito 10 – LLM Provider | ✅ |
+| Release estable | **v1.0.0** |
+| Próximo Sprint | **Sprint 13 – Streamlit UI** |
 
 ---
 
-## Objetivo
+# Objetivo
 
-Construir un agente inteligente capaz de responder consultas relacionadas con:
+Construir un agente inteligente capaz de responder consultas relacionadas con la operación de **Mercado Central 24h**, utilizando exclusivamente la información disponible en la Base de Conocimiento del proyecto.
+
+Actualmente el sistema es capaz de procesar información relacionada con:
 
 - Atención al cliente.
 - Operación del supermercado.
@@ -41,13 +46,12 @@ Construir un agente inteligente capaz de responder consultas relacionadas con:
 - Inventario.
 - Información corporativa.
 
-La información proviene exclusivamente de la Base de Conocimiento del proyecto.
-
+El proyecto mantiene una arquitectura modular que permite evolucionar el pipeline RAG de forma incremental, preservando el desacoplamiento entre sus componentes y facilitando la incorporación de nuevas capacidades en futuras versiones.
 
 
 ---
 
-## Arquitectura General
+# Arquitectura General
 
 ```text
 Knowledge Base
@@ -77,117 +81,128 @@ Context Builder
 Decision Engine
         │
         ▼
-Tool Manager
+LLMRequest
         │
         ▼
 LLM Provider
         │
         ▼
+Google Gemini
+        │
+        ▼
 Respuesta
 ```
 
-A partir de la Release v0.9.0, el proyecto incorpora el módulo Tools, que introduce una infraestructura desacoplada para el registro y ejecución de herramientas especializadas mediante interfaces y Factory Pattern. Esta incorporación prepara la arquitectura para integrar capacidades adicionales sin modificar el núcleo del pipeline RAG.
+La arquitectura implementa un pipeline **RAG (Retrieval-Augmented Generation)** completamente desacoplado.
+
+Cada módulo posee una única responsabilidad y se comunica mediante contratos públicos (Interfaces), permitiendo evolucionar el sistema sin afectar los componentes ya implementados.
+
+La incorporación del **LLM Provider** completa la capa de integración con modelos de lenguaje y desacopla completamente el resto del sistema de LangChain y Google Gemini.
 
 ---
 
-## Estado del Pipeline RAG
+# Estado del Pipeline RAG
 
-Knowledge Base          ✅
+| Componente | Estado |
+|------------|:------:|
+| Knowledge Base | ✅ |
+| Document Loader | ✅ |
+| Text Splitter | ✅ |
+| Metadata Manager | ✅ |
+| Embeddings Engine | ✅ |
+| Vector Store | ✅ |
+| Retriever | ✅ |
+| Context Builder | ✅ |
+| Decision Engine | ✅ |
+| Tools | ✅ |
+| LLM Provider | ✅ |
+| Google Gemini | ✅ |
+| Streamlit UI | ⏳ |
 
-↓
+Actualmente la infraestructura principal del pipeline RAG se encuentra completamente implementada.
 
-Document Loader         ✅
+El siguiente Sprint estará orientado a incorporar la interfaz de usuario mediante **Streamlit**, reutilizando todos los componentes desarrollados durante los Sprint anteriores.
 
-↓
+---
 
-Text Splitter           ✅
+# Metodología del Proyecto
 
-↓
+El desarrollo sigue una metodología incremental basada en entregas funcionales y documentación sincronizada.
 
-Metadata Manager        ✅
+Cada Sprint desarrolla un único módulo del pipeline RAG siguiendo el flujo:
 
-↓
-
-Embeddings Engine       ✅
-
-↓
-
-Vector Store            ✅
-
-↓
-
-Retriever               ✅
-
-↓
-
-Context Builder         ✅
-
-↓
-
-Decision Engine         ✅
-
-↓
-
-Tools                   ✅
-
-↓
-
-LLM Provider            ⏳
-
-↓
-
-Gemini                  ⏳
-
-↓
-
-Respuesta               ⏳
-
-## Metodología del Proyecto
-
-### El desarrollo sigue una metodología incremental basada en:
-
+```text
 Sprint
-   │
-   ▼
+    │
+    ▼
 Hito
-   │
-   ▼
+    │
+    ▼
 Implementación
-   │
-   ▼
+    │
+    ▼
 Pruebas
-   │
-   ▼
+    │
+    ▼
 Documentación
-   │
-   ▼
+    │
+    ▼
 Release
+```
 
-### Cada Hito sigue obligatoriamente el siguiente flujo:
+Cada Hito se desarrolla mediante microentregas siguiendo el proceso:
 
-Planificación
-      ↓
-SDS
-      ↓
-Implementación
-      ↓
-Pruebas
-      ↓
-Documentación
-      ↓
-Git
-      ↓
-Release
+```text
+Analizar
+      │
+      ▼
+Proponer
+      │
+      ▼
+Implementar
+      │
+      ▼
+Validar
+      │
+      ▼
+Refactorizar
+      │
+      ▼
+Documentar
+      │
+      ▼
+Publicar
+```
 
+Toda la metodología del proyecto se encuentra documentada en:
 
-## La metodología completa se encuentra documentada en:
-
+```text
 01_Documentacion/
-HANDBOOK/
-HANDBOOK-001_Guia_Desarrollo
+└── HANDBOOK/
+    └── HANDBOOK-001_Guia_Desarrollo.md
+```
 
+---
 
-## Estructura del Proyecto
+# Roadmap
+
+| Sprint | Módulo | Estado |
+|---------|--------|:------:|
+| Sprint 3 | Document Loader | ✅ |
+| Sprint 4 | Text Splitter | ✅ |
+| Sprint 5 | Metadata Manager | ✅ |
+| Sprint 6 | Embeddings Engine | ✅ |
+| Sprint 7 | Vector Store | ✅ |
+| Sprint 8 | Retriever | ✅ |
+| Sprint 9 | Context Builder | ✅ |
+| Sprint 10 | Decision Engine | ✅ |
+| Sprint 11 | Tools | ✅ |
+| Sprint 12 | LLM Provider | ✅ |
+| Sprint 13 | Streamlit UI | ⏳ |
+
+---
+
+# Estructura del Proyecto
 
 ```text
 mercado-central-ai/
@@ -198,11 +213,11 @@ mercado-central-ai/
 │   ├── knowledge/
 │   ├── retriever/
 │   ├── context_builder/
+│   ├── llm/
 │   ├── prompts/
 │   ├── tools/
 │   └── utils/
 │
-├── llm/
 ├── tests/
 ├── temp/
 │
@@ -211,81 +226,65 @@ mercado-central-ai/
 └── app.py
 ```
 
-
-| Carpeta           | Descripción                                                          |
-| ----------------- | -------------------------------------------------------------------- |
-| `config`          | Configuración centralizada.                                          |
-| `core`            | Componentes base del sistema.                                        |
-| `knowledge`       | Pipeline RAG (Loader, Splitter, Metadata, Embeddings, Vector Store). |
-| `retriever`       | Recuperación semántica de documentos.                                |
-| `context_builder` | Construcción del contexto para el LLM.                               |
-| `tests`           | Pruebas automatizadas con `pytest`.                                  |
-| `temp`            | Pruebas manuales e integración.                                      |
-| `llm`             | Modelos, interfaces, Decision Engine y futuros proveedores LLM.      |
-
-
-
-## Roadmap
-
-| Sprint    | Hito                                                          | Estado  |
-| --------- | ------------------------------------------------------------- | ----    |
-| Sprint 3  | Document Loader                                               |    ✅   |
-| Sprint 4  | Text Splitter                                                 |    ✅   |
-| Sprint 5  | Metadata Manager                                              |    ✅   |
-| Sprint 6  | Embeddings Engine                                             |    ✅   |
-| Sprint 7  | Vector Store                                                  |    ✅   |
-| Sprint 8  | Retriever                                                     |    ✅   |
-| Sprint 9  | Context Builder                                               |    ✅   |
-| Sprint 10 | Decision Engine                                               |    ✅   |
-| Sprint 11 | Tools                                                         |    ✅   |
-| Sprint 12 | LLM Provider                                                  |    ⏳   |
-| Sprint 13 | Streamlit                                                     |    ⏳   |
+| Carpeta | Descripción |
+|----------|-------------|
+| `config` | Configuración centralizada del proyecto. |
+| `core` | Componentes y excepciones compartidas. |
+| `knowledge` | Document Loader, Text Splitter, Metadata, Embeddings y Vector Store. |
+| `retriever` | Recuperación semántica de documentos. |
+| `context_builder` | Construcción del contexto para el LLM. |
+| `llm` | Decision Engine, modelos, interfaces, Provider y Factory del LLM. |
+| `tools` | Infraestructura para herramientas especializadas. |
+| `tests` | Pruebas automatizadas con `pytest`. |
+| `temp` | Validaciones manuales e integración incremental. |
 
 ---
 
 # Módulos implementados
 
 | Módulo | Estado |
-|--------|:------:|
-| Document Loader       | ✅ |
-| Text Splitter         | ✅ |
-| Metadata Manager      | ✅ |
-| Embeddings            | ✅ |
-| Vector Store          | ✅ |
-| Retriever             | ✅ |
-| Context Builder       | ✅ |
-| Decision Engine       | ✅ |
-| Tools                 | ⏳ |
-| LLM Provider          | ⏳ |
-| Streamlit UI          | ⏳ |
+|---------|:------:|
+| Document Loader | ✅ |
+| Text Splitter | ✅ |
+| Metadata Manager | ✅ |
+| Embeddings Engine | ✅ |
+| Vector Store | ✅ |
+| Retriever | ✅ |
+| Context Builder | ✅ |
+| Decision Engine | ✅ |
+| Tools | ✅ |
+| LLM Provider | ✅ |
+| Streamlit UI | ⏳ |
 
 ---
 
 # Estrategia de Pruebas
 
-El proyecto utiliza dos niveles de validación.
+El proyecto utiliza dos niveles de validación para garantizar la calidad del código.
 
-## 1. Pruebas de integración
+## 1. Validaciones manuales
 
 Ubicación:
-Estos scripts se utilizan durante el desarrollo para realizar validaciones rápidas de integración entre módulos.
 
 ```text
 temp/
 ```
 
-Scripts disponibles:
+Estos scripts permiten comprobar de forma incremental el funcionamiento de cada módulo antes de incorporarlo a la suite de pruebas automatizadas.
 
-- check_settings.py
-- check_loader.py
-- check_text_splitter.py
-- check_loader_splitter.py
-- check_metadata.py
-- ToolInterface
-- ToolManager
-- ToolFactory
+Entre las validaciones disponibles se encuentran:
 
-Estas pruebas permiten validar la integración progresiva del pipeline RAG durante el desarrollo.
+- Configuración (`settings.py`)
+- Document Loader
+- Text Splitter
+- Metadata Manager
+- Embeddings
+- Vector Store
+- Retriever
+- Context Builder
+- Decision Engine
+- GoogleGeminiProvider
+- LLMProviderFactory
 
 ---
 
@@ -299,18 +298,21 @@ tests/
 
 Framework utilizado:
 
-- pytest
+- `pytest`
+- `unittest.mock`
 
-Actualmente se encuentran implementadas las pruebas automatizadas para:
+Actualmente el proyecto incluye pruebas automatizadas para:
 
+- Document Loader
+- Text Splitter
 - Metadata Manager
 - Embeddings Engine
 - Vector Store
 - Retriever
 - Context Builder
 - Decision Engine
-- Decision Engine Factory
-- LLMRequest
+- LLM Provider
+- LLM Provider Factory
 
 Ejecución:
 
@@ -324,150 +326,133 @@ o
 python -m pytest tests
 ```
 
----
+Resultado actual:
 
-
-
-## Validaciones oficiales
-
-Los scripts oficiales del proyecto se ejecutan como módulos de Python:
-
-```bash
-python -m temp.check_settings
-
-python -m temp.check_loader
-
-python -m temp.check_text_splitter
-
-python -m temp.check_loader_splitter
-
-python -m temp.check_pipeline_embeddings
-
-python -m temp.check_vector_store  
-
+```text
+43 passed
+1 warning (ChromaDB con Python 3.14)
 ```
 
-Las pruebas del **Decision Engine** se validan mediante pytest, al no requerir scripts manuales específicos en esta versión.
+---
 
-## Documentación
+# Configuración
 
-La documentación del proyecto se organiza por categorías:
+El proyecto utiliza un archivo `.env` ubicado en la raíz del repositorio para almacenar las credenciales necesarias.
 
-| Documento | Propósito |
-|-----------|-----------|
-| HANDBOOK | Metodología |
-| ROADMAP | Planificación |
-| LOG | Bitácora técnica |
-| MTR | Matriz de trazabilidad |
-| SDS | Diseño técnico |
-| DOC | Documentación funcional |
-| ADR | Decisiones arquitectónicas |
-
-
-## Configuración
-
-### Variables de entorno
-
-El proyecto utiliza un archivo `.env` ubicado en la raíz de `04_Desarrollo/mercado-central-ai`.
-
-Variables requeridas:
+Variables principales:
 
 ```env
 GOOGLE_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-El archivo `.env` no debe incluirse en el repositorio y se utiliza para configurar de forma segura el acceso a Google Generative AI.
+La configuración específica del sistema permanece centralizada en:
+
+```text
+src/config/settings.py
+```
+
+El archivo `.env` no debe incluirse en el repositorio Git.
 
 
-## Tecnologías
+---
 
-- Python
-- LangChain
-- Google Gemini
-- PyPDF
-- python-dotenv
-- pytest
-- ChromaDB
-- Streamlit *(planificado)*
+# Tecnologías utilizadas
 
-## Versiones
+El proyecto fue desarrollado utilizando las siguientes tecnologías:
+
+| Tecnología | Uso |
+|------------|-----|
+| Python | Lenguaje principal del proyecto. |
+| LangChain | Orquestación de componentes LLM. |
+| Google Gemini | Modelo de lenguaje utilizado por el sistema. |
+| ChromaDB | Base de datos vectorial. |
+| PyPDF | Carga y procesamiento de documentos PDF. |
+| python-dotenv | Gestión de variables de entorno. |
+| pytest | Pruebas automatizadas. |
+| unittest.mock | Simulación de dependencias durante las pruebas. |
+| Streamlit | Interfaz de usuario (Sprint 13). |
+
+---
+
+# Historial de versiones
 
 | Versión | Contenido |
 |----------|-----------|
 | v0.1.1 | Document Loader |
 | v0.2.0 | Text Splitter |
 | v0.3.0 | Metadata Manager |
-| v0.4.0 | Embeddings |
+| v0.4.0 | Embeddings Engine |
 | v0.5.0 | Vector Store |
 | v0.6.0 | Retriever |
 | v0.7.0 | Context Builder |
 | v0.8.0 | Decision Engine |
-| **v0.9.0** | Tools     |
+| v0.9.0 | Tools |
+| **v1.0.0** | **LLM Provider** |
 
-
-## Incluye:
-
-- Document Loader
-- Text Splitter
-- Metadata Manager
-- Excepciones personalizadas
-- Scripts oficiales de integración
-- Pruebas automatizadas con pytest
-- Arquitectura RAG
-- Auditoría Arquitectónica
-- Documentación técnica
-- Matriz de trazabilidad
-- Embeddings
-- Embedding Provider
-- Integración con Google Generative AI
-- Vector Store
-- VectorStoreProvider
-- ChromaProvider
-- ChromaDB
-- Persistencia vectorial
-- Búsqueda por similitud
-- Gestión de colecciones
-- IRetriever
-- ChromaRetriever
-- RetrieverFactory
-- Configuración del Retriever
-- Arquitectura basada en interfaces
-- Factory Pattern
-- ContextBuilderInterface
-- SimpleContextBuilder
-- ContextBuilderFactory
-- Construcción de contexto
-- LLMRequest
-- DecisionEngine
-- DecisionEngineInterface
-- DecisionEngineFactory
-- Arquitectura desacoplada del proveedor LLM
-- ToolInterface
-- ToolManagerInterface
-- ToolManager
-- ToolFactory
-- DuplicateToolError
-- DummyTool
-
-
-## Estadísticas del proyecto
-
-| Indicador             |      Valor |
-| --------------------- | ---------: |
-| Sprint completados    |      **9** |
-| Release estable       | **v0.9.0** |
-| Módulos implementados |      **9** |
-| Pruebas automatizadas |     **40** |
-| Pruebas exitosas      |     **40** |
-
-
-## Próximo objetivo
-
-## Sprint 12 – LLM Provider
-
-Implementar el proveedor LLM responsable de consumir las solicitudes generadas por el Decision Engine, integrar Google Gemini y completar el flujo del pipeline RAG manteniendo el desacoplamiento mediante interfaces y Factory Pattern.
 ---
 
-## Licencia
+# Principales funcionalidades implementadas
 
-Proyecto desarrollado con fines académicos como parte del Challenge Alura + Oracle Next Education.
+El proyecto incorpora actualmente:
+
+- Arquitectura RAG completa.
+- Document Loader.
+- Text Splitter.
+- Metadata Manager.
+- Embeddings Engine.
+- Vector Store.
+- Retriever semántico.
+- Context Builder.
+- Decision Engine.
+- Infraestructura de Tools.
+- LLM Provider.
+- Integración con Google Gemini.
+- Configuración centralizada mediante `settings.py`.
+- Arquitectura basada en Interfaces.
+- Factory Pattern.
+- Validaciones manuales.
+- Pruebas automatizadas con `pytest`.
+- Documentación técnica sincronizada.
+- Arquitectura desacoplada y extensible.
+
+---
+
+# Estadísticas del proyecto
+
+| Indicador | Valor |
+|-----------|------:|
+| Sprint completados | 10 |
+| Releases publicadas | 10 |
+| Módulos implementados | 10 |
+| Pruebas automatizadas | 43 |
+| Pruebas exitosas | 43 |
+| Fallos | 0 |
+
+---
+
+# Próximo objetivo
+
+## Sprint 13 – Interfaz Streamlit
+
+El siguiente Sprint estará orientado a desarrollar la interfaz de usuario del proyecto utilizando **Streamlit**.
+
+Los objetivos principales serán:
+
+- Integrar el pipeline RAG completo.
+- Consumir el módulo **LLM Provider**.
+- Mostrar respuestas generadas por Google Gemini.
+- Diseñar una interfaz sencilla para consultas.
+- Preparar el sistema para una demostración funcional de extremo a extremo (End-to-End).
+
+Con este Sprint se completará el flujo principal del proyecto **Mercado Central AI**, permitiendo interactuar con el agente conversacional desde una interfaz gráfica.
+
+---
+
+# Licencia
+
+Proyecto desarrollado con fines académicos como parte del **Challenge Alura + Oracle Next Education**.
+
+
+
+
+

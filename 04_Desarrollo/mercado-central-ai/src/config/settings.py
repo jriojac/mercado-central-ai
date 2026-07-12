@@ -104,6 +104,20 @@ DEFAULT_CATEGORY = None
 GEMINI_MODEL = "gemini-2.5-flash"
 
 # ==========================================================
+# LLM
+# ==========================================================
+
+LLM_PROVIDER = "google"
+
+GEMINI_TEMPERATURE = 0.2
+
+GEMINI_MAX_OUTPUT_TOKENS = 2048
+
+GEMINI_TIMEOUT = 30
+
+GEMINI_MAX_RETRIES = 3
+
+# ==========================================================
 # EMBEDDINGS
 # ==========================================================
 

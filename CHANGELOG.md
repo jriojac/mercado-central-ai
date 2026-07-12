@@ -17,7 +17,103 @@ Cada Release registra:
 
 Las versiones se publican al cierre de cada Sprint/Hito estable del proyecto.
 
+## [1.0.0] - 2026-07-11
 
+### Added
+
+- Implementación del módulo **LLM Provider**.
+- Implementación de `LLMProviderInterface`.
+- Implementación de `GoogleGeminiProvider`.
+- Implementación de `LLMProviderFactory`.
+- Integración del proveedor Google Gemini mediante LangChain.
+- Configuración centralizada del proveedor mediante `settings.py`.
+- Incorporación de las variables:
+  - `LLM_PROVIDER`
+  - `GEMINI_MODEL`
+  - `GEMINI_TEMPERATURE`
+  - `GEMINI_MAX_OUTPUT_TOKENS`
+- Validaciones manuales:
+  - `temp/check_google_provider.py`
+  - `temp/check_llm_factory.py`
+- Pruebas automatizadas:
+  - `tests/test_google_gemini_provider.py`
+  - `tests/test_llm_factory.py`
+
+### Changed
+
+- Actualización del `README.md`.
+- Actualización de `PLAN-010`.
+- Actualización de `SDS-010`.
+- Actualización del `HANDBOOK`.
+- Actualización del `ROADMAP`.
+- Actualización del `MTR-010`.
+- Actualización del `LOG`.
+- Actualización del pipeline RAG incorporando el módulo **LLM Provider**.
+- Consolidación de la arquitectura desacoplada entre el Decision Engine y el proveedor LLM.
+- Centralización de la configuración del proveedor mediante `settings.py`.
+- Incorporación de pruebas unitarias utilizando `unittest.mock`.
+
+### Validated
+
+- Implementación correcta de `LLMProviderInterface`.
+- Validación de `GoogleGeminiProvider`.
+- Validación de `LLMProviderFactory`.
+- Validación del contrato público del Provider.
+- Validación de `generate_response()`.
+- Validación mediante Mock sin consumir la API de Google Gemini.
+- Ejecución satisfactoria de las pruebas automatizadas.
+- **43 pruebas ejecutadas.**
+- **43 pruebas exitosas.**
+- Validación arquitectónica del desacoplamiento entre el Decision Engine y el proveedor LLM.
+
+### Pipeline actualizado
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Splitter
+      │
+      ▼
+Metadata Manager
+      │
+      ▼
+Embeddings Engine
+      │
+      ▼
+Vector Store
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Decision Engine
+      │
+      ▼
+LLMRequest
+      │
+      ▼
+LLM Provider
+      │
+      ▼
+Google Gemini
+      │
+      ▼
+Respuesta
+```
+
+### Architectural Decisions
+
+- El Decision Engine mantiene la responsabilidad exclusiva de construir `LLMRequest`.
+- La comunicación con Google Gemini queda encapsulada dentro de `GoogleGeminiProvider`.
+- La creación del proveedor se centraliza mediante `LLMProviderFactory`.
+- El resto del sistema depende exclusivamente de `LLMProviderInterface`.
 
 ## [0.9.0] - 2026-07-11
 

@@ -80,7 +80,8 @@ Cada Release representa un estado estable y validado del sistema.
 | Sprint 9 | Hito 7 – Context Builder | v0.7.0 |
 | Sprint 10 | Hito 8 – Decision Engine | v0.8.0 |
 | Sprint 11 | Hito 9 – Tools | v0.9.0 |
-| Sprint 12 | Hito 10 – Interfaz Streamlit | v1.0.0 |
+| Sprint 12 | Hito 10 – LLM Provider | v1.0.0 |
+| Sprint 13 | Hito 11 – Streamlit UI | v1.1.0 |
 
 ---
 
@@ -178,9 +179,9 @@ Implementación del pipeline RAG, incluyendo carga documental, fragmentación, g
 ```text
 llm/
 ```
-Modelos, contratos públicos, Decision Engine y componentes de integración con proveedores LLM.
+Modelos, contratos públicos, Decision Engine, LLM Provider, Factories y componentes de integración con proveedores de modelos de lenguaje.
 
-Adaptadores de modelos.
+El paquete `llm` constituye la capa de abstracción entre el pipeline RAG y los modelos LLM, manteniendo el desacoplamiento respecto a implementaciones concretas.
 
 ```text
 prompts/
@@ -289,6 +290,22 @@ pytest
 
 Las pruebas automatizadas validan el cumplimiento de los requisitos funcionales definidos en cada SDS.
 
+### Principios de validación
+
+Las pruebas automatizadas deberán validar el comportamiento observable del módulo y el cumplimiento de sus contratos públicos.
+
+Siempre que sea posible:
+
+- validar Interfaces en lugar de implementaciones concretas;
+- utilizar Mock para aislar dependencias externas;
+- evitar dependencias con servicios remotos;
+- evitar validar atributos privados;
+- favorecer pruebas estables frente a cambios internos de implementación.
+
+Esta estrategia mejora la mantenibilidad de la suite de pruebas y facilita la evolución de la arquitectura.
+
+
+
 Ejecución oficial:
 
 ```bash
@@ -342,6 +359,9 @@ Cada nuevo módulo deberá incluir como mínimo:
 - Revisión arquitectónica.
 - Refactorización antes del cierre documental.
 - Diseño del contrato público mediante interfaces (cuando aplique).
+- Definición explícita de responsabilidades del módulo.
+- Evaluación del impacto arquitectónico antes de modificar componentes existentes.
+- Registro de decisiones arquitectónicas relevantes mediante ADR.
 
 
 | Actividad                   | Obligatoria |
@@ -473,4 +493,5 @@ Las mejoras metodológicas deberán mantenerse compatibles con los Sprint previa
 | 2.3 | 08/07/2026 | Actualización derivada del Sprint 8. Formalización del estándar oficial de imports (`src.` entre paquetes e imports relativos dentro del mismo paquete), incorporación del patrón Factory como mecanismo oficial de ensamblado de dependencias, adopción de la validación incremental mediante microentregas y consolidación de la política de no introducir cambios arquitectónicos sin análisis previo de impacto. |
 | 2.4 | 09/07/2026 | Actualización derivada del Sprint 9. Incorporación del flujo documental optimizado (MTR al final del proceso), formalización de la revisión arquitectónica previa al cierre, consolidación de los estándares permanentes del proyecto (interfaces, Factory Pattern, configuración centralizada, tipado fuerte y validación incremental) y actualización del pipeline RAG con el módulo Context Builder. |
 | 2.5 | 10/07/2026 | Actualización derivada del Sprint 10. Formalización del uso de contratos públicos mediante interfaces cuando corresponda, consolidación del modelo de validación incremental por microentregas, incorporación de la revisión de git diff --stat antes del commit y actualización de la organización del paquete llm para reflejar la incorporación del Decision Engine. |
-| **2.6** | **11/07/2026** | Actualización derivada del Sprint 11. Formalización de la generación independiente de la documentación por Sprint/Hito (PLAN, SDS, MTR y Acta de Cierre), consolidación del principio de validar únicamente la API pública en las pruebas automatizadas, incorporación de la separación entre especificación técnica y decisiones arquitectónicas mediante ADR, y establecimiento de la validación de consistencia documental como requisito previo a la publicación de una Release. |
+| 2.6 | 11/07/2026 | Actualización derivada del Sprint 11. Formalización de la generación independiente de la documentación por Sprint/Hito (PLAN, SDS, MTR y Acta de Cierre), consolidación del principio de validar únicamente la API pública en las pruebas automatizadas, incorporación de la separación entre especificación técnica y decisiones arquitectónicas mediante ADR, y establecimiento de la validación de consistencia documental como requisito previo a la publicación de una Release. |
+| **2.7** | **11/07/2026** | Actualización derivada del Sprint 12. Formalización del principio de validar el comportamiento observable mediante contratos públicos, adopción del uso sistemático de `Mock` para aislar dependencias externas, consolidación del análisis de responsabilidades antes de implementar nuevos módulos, fortalecimiento del registro de decisiones arquitectónicas (ADR) y actualización de la organización del paquete `llm` para incorporar la capa `LLM Provider`. |

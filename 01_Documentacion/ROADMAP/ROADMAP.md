@@ -8,14 +8,14 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 
 # Estado actual
 
-| Campo               | Valor                        |
-| ------------------- | ---------------------------- |
-| Proyecto            | Mercado Central AI           |
-| **Versión estable** | **v0.9.0**                   |
-| **Sprint actual**   | **Sprint 11**                |
-| **Hito actual**     | **Hito 9 – Tools**           |
-| **Estado**          | ✅ Finalizado                 |
-| **Próximo Sprint**  | **Sprint 12 – LLM Provider** |
+| Campo | Valor |
+|-------|-------|
+| Proyecto | Mercado Central AI |
+| **Versión estable** | **v1.0.0** |
+| **Sprint actual** | **Sprint 12** |
+| **Hito actual** | **Hito 10 – LLM Provider** |
+| **Estado** | ✅ Finalizado |
+| **Próximo Sprint** | **Sprint 13 – Streamlit UI** |
 
 
 ---
@@ -23,7 +23,7 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 # Plan de desarrollo
 
 | Sprint | Hito | Módulo | Release | Estado |
-|:------:|:-----:|-------------------------|:-------:|:------:|
+|:------:|:----:|----------------------|:-------:|:------:|
 | Sprint 3 | Hito 1 | Document Loader | v0.1.1 | ✅ |
 | Sprint 4 | Hito 2 | Text Splitter | v0.2.0 | ✅ |
 | Sprint 5 | Hito 3 | Metadata Manager | v0.3.0 | ✅ |
@@ -32,98 +32,119 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Sprint 8 | Hito 6 | Retriever | v0.6.0 | ✅ |
 | Sprint 9 | Hito 7 | Context Builder | v0.7.0 | ✅ |
 | Sprint 10 | Hito 8 | Decision Engine | v0.8.0 | ✅ |
-| Sprint 11 | Hito 9  | Tools           | **v0.9.0** |    ✅   |
-| Sprint 12 | Hito 10 | LLM Provider    | **v1.0.0** |    ⏳   |
-
+| Sprint 11 | Hito 9 | Tools | v0.9.0 | ✅ |
+| Sprint 12 | Hito 10 | LLM Provider | v1.0.0 | ✅ |
+| Sprint 13 | Hito 11 | Streamlit UI | v1.1.0 | ⏳ |
 
 ---
 
 # Estado del Pipeline RAG
 
-| Elemento          | Estado |
-| ----------------- | :----: |
-| Document Loader   |    ✅   |
-| Text Splitter     |    ✅   |
-| Metadata Manager  |    ✅   |
-| Embeddings Engine |    ✅   |
-| Vector Store      |    ✅   |
-| Retriever         |    ✅   |
-| Context Builder   |    ✅   |
-| Decision Engine   |    ✅   |
-| **Tools**         |    ✅   |
-| **LLM Provider**  |    ⏳   |
-| **Gemini**        |    ⏳   |
-| **Respuesta**     |    ⏳   |
+# Estado del Pipeline RAG
+
+| Elemento | Estado |
+|-----------|:------:|
+| Knowledge Base | ✅ |
+| Document Loader | ✅ |
+| Text Splitter | ✅ |
+| Metadata Manager | ✅ |
+| Embeddings Engine | ✅ |
+| Vector Store | ✅ |
+| Retriever | ✅ |
+| Context Builder | ✅ |
+| Decision Engine | ✅ |
+| Tools | ✅ |
+| LLM Provider | ✅ |
+| Google Gemini | ✅ |
+| Streamlit UI | ⏳ |
 
 ---
 
 # Avance del proyecto
 
-| Indicador             |      Valor |
-| --------------------- | ---------: |
-| Sprint completados    | **9 / 10** |
-| Releases publicadas   |      **9** |
-| Avance estimado       |   **90 %** |
-| Pruebas automatizadas |     **40** |
-| Versión estable       | **v0.9.0** |
-| Próxima Release       | **v1.0.0** |
+| Indicador | Valor |
+|-----------|------:|
+| Sprint completados | **10 / 11** |
+| Releases publicadas | **10** |
+| Avance estimado | **95 %** |
+| Pruebas automatizadas | **43** |
+| Versión estable | **v1.0.0** |
+| Próxima Release | **v1.1.0** |
 
 ---
 
 # Objetivos de las próximas Releases
 
-| Release    | Objetivo                                                                                                                                                |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **v1.0.0** | Implementar el **LLM Provider**, integrar Google Gemini y completar el pipeline RAG manteniendo la arquitectura basada en interfaces y Factory Pattern. |
+| Release | Objetivo |
+|----------|----------|
+| **v1.1.0** | Desarrollar la **Interfaz Streamlit**, integrando el pipeline RAG completo y proporcionando una experiencia de usuario de extremo a extremo. |
 
 ---
 
-# Release final
+# Release actual
 
-## v1.0.0 — Mercado Central AI
+## v1.0.0 — LLM Provider
 
-Objetivos de la versión estable:
+La Release **v1.0.0** representa un hito importante en la evolución del proyecto, al completar la infraestructura principal del pipeline RAG.
 
-- Pipeline RAG completamente funcional.
-- Recuperación semántica mediante Retriever.
-- Construcción automática de contexto.
-- Administración de herramientas mediante ToolManager.
-- Integración con Google Gemini.
-- Arquitectura modular basada en proveedores.
-- Interfaz web desarrollada con Streamlit.
-- Documentación técnica completa.
-- Cobertura de pruebas automatizadas para todos los módulos.
-- Decision Engine desacoplado mediante LLMRequest.
+### Componentes incorporados
+
+- LLMProviderInterface.
+- GoogleGeminiProvider.
+- LLMProviderFactory.
+- Integración con Google Gemini mediante LangChain.
+- Configuración centralizada del proveedor.
+- Validaciones manuales.
+- Pruebas automatizadas.
+
+### Resultados obtenidos
+
+- Pipeline RAG completamente implementado.
+- Arquitectura desacoplada mediante Interfaces.
+- Factory Pattern consolidado.
+- Comunicación con Google Gemini encapsulada.
+- Decision Engine desacoplado mediante `LLMRequest`.
+- 43 pruebas automatizadas exitosas.
+- Documentación técnica sincronizada.
+
+La siguiente etapa del proyecto estará orientada al desarrollo de la interfaz de usuario mediante **Streamlit**.
 
 ---
 
 # Historial de Releases
 
-| Release    | Sprint | Módulo              | Estado |
-| ---------- | :----: | ------------------- | :----: |
-| v0.1.1     |    3   | Document Loader     |    ✅   |
-| v0.2.0     |    4   | Text Splitter       |    ✅   |
-| v0.3.0     |    5   | Metadata Manager    |    ✅   |
-| v0.4.0     |    6   | Embeddings Engine   |    ✅   |
-| v0.5.0     |    7   | Vector Store        |    ✅   |
-| v0.6.0     |    8   | Retriever           |    ✅   |
-| v0.7.0     |    9   | Context Builder     |    ✅   |
-| v0.8.0     |   10   | Decision Engine  |    ✅   |
-| **v0.9.0** | **11** | **Tools**        |  **✅** |
-| **v1.0.0** | **12** | **LLM Provider** |  **⏳** |
+| Release | Sprint | Módulo | Estado |
+|----------|:------:|----------------------|:------:|
+| v0.1.1 | 3 | Document Loader | ✅ |
+| v0.2.0 | 4 | Text Splitter | ✅ |
+| v0.3.0 | 5 | Metadata Manager | ✅ |
+| v0.4.0 | 6 | Embeddings Engine | ✅ |
+| v0.5.0 | 7 | Vector Store | ✅ |
+| v0.6.0 | 8 | Retriever | ✅ |
+| v0.7.0 | 9 | Context Builder | ✅ |
+| v0.8.0 | 10 | Decision Engine | ✅ |
+| v0.9.0 | 11 | Tools | ✅ |
+| **v1.0.0** | **12** | **LLM Provider** | **✅** |
+| **v1.1.0** | **13** | **Streamlit UI** | **⏳** |
 
 # Observaciones
 
-El desarrollo del proyecto sigue una metodología incremental basada en **Sprint → Hito → Release**, donde cada Sprint incorpora un nuevo módulo funcional al pipeline RAG.
+El proyecto continúa siguiendo la metodología oficial basada en:
 
-Cada Release representa una versión estable del sistema y se publica únicamente después de completar:
+```text
+Sprint
+    │
+    ▼
+Hito
+    │
+    ▼
+Release
+```
 
-- Implementación.
-- Pruebas.
-- Documentación técnica.
-- Actualización de la trazabilidad.
-- Cierre formal del Sprint.
+Cada Sprint incorpora un nuevo módulo funcional al pipeline RAG y genera una Release estable, documentada y validada mediante pruebas automatizadas.
 
-El ROADMAP se actualiza al cierre de cada Sprint y constituye la referencia oficial para el seguimiento del avance del proyecto.
+Con la publicación de la **Release v1.0.0**, el proyecto completa la infraestructura principal del pipeline RAG, incorporando el módulo **LLM Provider** y la integración con **Google Gemini**, manteniendo la arquitectura desacoplada basada en Interfaces, Factory Pattern y configuración centralizada.
 
-Con la Release v0.9.0, el proyecto incorpora la infraestructura del módulo Tools, consolidando un mecanismo desacoplado para el registro y ejecución de herramientas mediante interfaces y Factory Pattern. Con ello, el pipeline RAG queda preparado para integrar el LLM Provider y Google Gemini en el siguiente Sprint, manteniendo la compatibilidad con la arquitectura establecida desde los módulos anteriores.
+La siguiente fase del proyecto estará orientada al desarrollo de la **Interfaz Streamlit**, reutilizando todos los componentes implementados hasta la fecha para ofrecer una aplicación funcional de extremo a extremo.
+
+El ROADMAP constituye la referencia oficial para el seguimiento del avance del proyecto y se actualiza al cierre de cada Sprint.

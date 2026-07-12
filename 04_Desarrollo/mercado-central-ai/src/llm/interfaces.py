@@ -36,3 +36,30 @@ class DecisionEngineInterface(ABC):
         LLMRequest
             Solicitud preparada para un proveedor LLM.
         """
+
+
+class LLMProviderInterface(ABC):
+    """
+    Define el contrato para los proveedores de Modelos
+    de Lenguaje (LLM).
+    """
+
+    @abstractmethod
+    def generate_response(
+        self,
+        prompt: str,
+    ) -> str:
+        """
+        Genera una respuesta utilizando un proveedor LLM.
+
+        Parameters
+        ----------
+        prompt:
+            Prompt completamente construido por el
+            Decision Engine.
+
+        Returns
+        -------
+        str
+            Respuesta generada por el modelo.
+        """

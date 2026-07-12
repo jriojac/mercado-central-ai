@@ -1,14 +1,14 @@
 # MTR-001 – Matriz de Trazabilidad
 
-| Campo                | Valor                  |
-| -------------------- | ---------------------- |
-| Código               | MTR-001                |
-| Nombre               | Matriz de Trazabilidad |
-| Versión              | 2.4                    |
-| Estado               | Activo                 |
-| Proyecto             | Mercado Central AI     |
-| Responsable          | Jacqueline Rioja       |
-| Última actualización | Julio 2026             |
+| Campo | Valor |
+|----------------------|----------------------|
+| Código | MTR-001 |
+| Nombre | Matriz de Trazabilidad |
+| **Versión** | **2.5** |
+| Estado | Activo |
+| Proyecto | Mercado Central AI |
+| Responsable | Jacqueline Rioja |
+| Última actualización | 11/07/2026 |
 
 ---
 
@@ -74,19 +74,19 @@ Esta metodología fue aprobada durante la Auditoría Arquitectónica (DOC-014).
 
 # 4. Matriz de trazabilidad
 
-| Módulo             |   Sprint  |   Hito  | RF                    | SDS     | Código                          | Validación                                            | Release | Estado |
-| ------------------ | :-------: | :-----: | --------------------- | ------- | ------------------------------- | ----------------------------------------------------- | :-----: | :----: |
-| Document Loader    |  Sprint 3 |  Hito 1 | **RF-101 – RF-105**   | SDS-001 | `loader.py`                     | `check_loader.py`                                     |  v0.1.1 |    ✅   |
-| Text Splitter      |  Sprint 4 |  Hito 2 | **RF-201 – RF-205**   | SDS-002 | `text_splitter.py`              | `check_text_splitter.py` / `check_loader_splitter.py` |  v0.2.0 |    ✅   |
-| Metadata Manager   |  Sprint 5 |  Hito 3 | **RF-301 – RF-305**   | SDS-003 | `metadata.py` + `exceptions.py` | `check_metadata.py` / `test_metadata.py`              |  v0.3.0 |    ✅   |
-| Embeddings Engine  |  Sprint 6 |  Hito 4 | **RF-401 – RF-405**   | SDS-004 | `embeddings.py`                 | `test_embeddings.py`                                  |  v0.4.0 |    ✅   |
-| Vector Store       |  Sprint 7 |  Hito 5 | **RF-501 – RF-506**   | SDS-005 | `vector_store.py`               | `test_vector_store.py`                                |  v0.5.0 |    ✅   |
-| Retriever          |  Sprint 8 |  Hito 6 | **RF-601 – RF-607**   | SDS-006 | `retriever/`                  | `test_retriever.py`                                   |  v0.6.0 |    ✅    |
-| Context Builder    |  Sprint 9 |  Hito 7 | **RF-701 – RF-707**   | SDS-007 | `context_builder.py`            | `test_context_builder.py`                             |  v0.7.0 |    ✅   |
-| Decision Engine    | Sprint 10 |  Hito 8 | **RF-801 – RF-805**   | SDS-008 | `decision_engine.py`            | `test_decision_engine.py`                             |  v0.8.0 |    ✅   |
-| Tools              | Sprint 11 |  Hito 9 | **RF-901 – RF-905**   | SDS-009 | `tools/*.py`                    | `test_tools.py`                                       |  v0.9.0 |    ✅   |
-| Interfaz Streamlit | Sprint 12 | Hito 10 | **RF-1001 – RF-1005** | SDS-010 | `app.py`                        | `test_ui.py`                                          |  v1.0.0 |    ⏳   |
-
+| Módulo | Sprint | Hito | RF | SDS | Código | Validación | Release | Estado |
+|--------|:------:|:----:|----|------|--------|------------|:------:|:------:|
+| Document Loader | Sprint 3 | Hito 1 | RF-101 – RF-105 | SDS-001 | `loader.py` | `check_loader.py` | v0.1.1 | ✅ |
+| Text Splitter | Sprint 4 | Hito 2 | RF-201 – RF-205 | SDS-002 | `text_splitter.py` | `check_text_splitter.py` | v0.2.0 | ✅ |
+| Metadata Manager | Sprint 5 | Hito 3 | RF-301 – RF-305 | SDS-003 | `metadata.py` | `test_metadata.py` | v0.3.0 | ✅ |
+| Embeddings Engine | Sprint 6 | Hito 4 | RF-401 – RF-405 | SDS-004 | `embeddings.py` | `test_embeddings.py` | v0.4.0 | ✅ |
+| Vector Store | Sprint 7 | Hito 5 | RF-501 – RF-506 | SDS-005 | `vector_store.py` | `test_vector_store.py` | v0.5.0 | ✅ |
+| Retriever | Sprint 8 | Hito 6 | RF-601 – RF-607 | SDS-006 | `retriever/` | `test_retriever.py` | v0.6.0 | ✅ |
+| Context Builder | Sprint 9 | Hito 7 | RF-701 – RF-707 | SDS-007 | `context_builder.py` | `test_context_builder.py` | v0.7.0 | ✅ |
+| Decision Engine | Sprint 10 | Hito 8 | RF-801 – RF-806 | SDS-008 | `decision_engine.py` | `test_decision_engine.py` | v0.8.0 | ✅ |
+| Tools | Sprint 11 | Hito 9 | RF-901 – RF-908 | SDS-009 | `tools/*.py` | `test_tools*.py` | v0.9.0 | ✅ |
+| **LLM Provider** | **Sprint 12** | **Hito 10** | **RF-1001 – RF-1006** | **SDS-010** | **`google_gemini_provider.py` + `llm_factory.py`** | **`test_google_gemini_provider.py` + `test_llm_factory.py`** | **v1.0.0** | **✅** |
+| **Streamlit UI** | **Sprint 13** | **Hito 11** | **RF-1101 – RF-110X** | **SDS-011** | `app.py` | `test_streamlit.py` | **v1.1.0** | ⏳ |
 
 ---
 
@@ -679,43 +679,19 @@ El Sprint concluyó con la publicación de la **Release v0.9.0**, consolidando l
 
 
 ---
+### Trazabilidad validada
 
-## 5.X Sprint Y – Hito Z
+| Elemento | Estado |
+|----------|:------:|
+| RF documentados | ✅ |
+| SDS actualizado | ✅ |
+| Implementación | ✅ |
+| Casos de prueba | ✅ |
+| Release | ✅ |
 
-### Módulo
-
-### Información general
-
-### Matriz de trazabilidad
-
-### Cobertura de requisitos
-
-### Inventario de artefactos
-
-### Resultados
+La trazabilidad del Sprint quedó completamente validada antes de la publicación de la Release correspondiente.
 
 ---
-
----
-## 5.X Sprint Y – Hito Z
-
-### Módulo
-
-### Información general
-
-### Matriz de trazabilidad
-
-### Cobertura de requisitos
-
-### Inventario de artefactos
-
-### Resultados
-
----
-
-
-
-------------
 
 # 6. Convenciones
 
@@ -747,6 +723,9 @@ La numeración se reinicia por Sprint utilizando centenas para facilitar la iden
 | Sprint 8 | RF-601 | IMP-601 | CP-601 |
 | Sprint 9 | RF-701 | IMP-701 | CP-701 |
 | Sprint 10 | RF-801 | IMP-801 | CP-801 |
+| Sprint 11 | RF-901 | IMP-901 | CP-901 |
+| **Sprint 12** | **RF-1001** | **IMP-1001** | **CP-1001** |
+| **Sprint 13** | **RF-1101** | **IMP-1101** | **CP-1101** |
 
 
 ## Estados
@@ -813,7 +792,7 @@ Esta trazabilidad permite auditar el ciclo completo de desarrollo de cada funcio
 
 ## Estado actual del proyecto
 
-Al cierre del Sprint 10 – Hito 8, el proyecto cuenta con cinco módulos funcionales implementados y validados:
+Al cierre del Sprint 12 – Hito 10, el proyecto cuenta con los siguientes módulos implementados y validados:
 
 - ✅ Document Loader
 - ✅ Text Splitter
@@ -823,7 +802,10 @@ Al cierre del Sprint 10 – Hito 8, el proyecto cuenta con cinco módulos funcio
 - ✅ Retriever
 - ✅ Context Builder
 - ✅ Decision Engine
-- ⏳ Tools
-- ⏳ Interfaz Streamlit
+- ✅ Tools
+- ✅ LLM Provider
+- ⏳ Streamlit UI
 
-Estos componentes constituyen la infraestructura base del pipeline RAG y preparan el proyecto para el desarrollo del módulo Retriever, correspondiente al Sprint 8 – Hito 6.
+La infraestructura principal del pipeline RAG se encuentra completamente implementada y validada.
+
+El siguiente Sprint estará orientado al desarrollo de la interfaz de usuario mediante Streamlit, reutilizando los módulos existentes para ofrecer una aplicación funcional de extremo a extremo.

@@ -1525,3 +1525,254 @@ El sistema ya es capaz de:
 - administrar herramientas mediante una arquitectura desacoplada.
 
 El próximo Sprint estará orientado al desarrollo del **LLM Provider**, responsable de consumir las solicitudes generadas por el Decision Engine e integrar Google Gemini manteniendo la arquitectura basada en interfaces y Factory Pattern.
+
+
+
+
+
+
+
+## 2026-07-11 -- Cierre del Hito 10
+
+### Sprint 12 - Hito 10
+
+### Registro de avance
+
+Hito 10 – LLM Provider  
+v1.0.0
+
+#### Objetivo
+
+Implementar el módulo **LLM Provider**, responsable de abstraer la comunicación entre el pipeline RAG y los proveedores de modelos de lenguaje, incorporando Google Gemini mediante una arquitectura basada en Interfaces y Factory Pattern, preservando el desacoplamiento del resto del sistema.
+
+---
+
+#### Actividades realizadas
+
+##### Planificación
+
+- Definición del alcance del módulo LLM Provider.
+- Identificación de las responsabilidades del proveedor.
+- Diseño del contrato público `LLMProviderInterface`.
+- Definición de la estrategia para soportar múltiples proveedores LLM.
+
+##### Diseño
+
+- Elaboración del documento **SDS-010 – LLM Provider**.
+- Definición de la arquitectura basada en Interfaces.
+- Diseño de `LLMProviderInterface`.
+- Diseño de `LLMProviderFactory`.
+- Definición de la integración con Google Gemini mediante LangChain.
+- Análisis de la interacción con `DecisionEngine`.
+
+##### Implementación
+
+Se implementaron los siguientes componentes:
+
+- `LLMProviderInterface`
+- `GoogleGeminiProvider`
+- `LLMProviderFactory`
+
+Se desarrollaron las siguientes funcionalidades:
+
+- inicialización del proveedor LLM;
+- integración con `ChatGoogleGenerativeAI`;
+- generación de respuestas mediante `generate_response()`;
+- configuración centralizada mediante `settings.py`;
+- desacoplamiento entre el proveedor y el resto del pipeline.
+
+---
+
+#### Decisiones de arquitectura
+
+Durante el Sprint se consolidaron las siguientes decisiones:
+
+- **DA-1201**  
+  Implementar `LLMProviderInterface` como contrato público del módulo.
+
+- **DA-1202**  
+  Centralizar la creación del proveedor mediante `LLMProviderFactory`.
+
+- **DA-1203**  
+  Encapsular completamente el uso de LangChain y Google Gemini dentro de `GoogleGeminiProvider`.
+
+- **DA-1204**  
+  Mantener al `DecisionEngine` exclusivamente como responsable de construir `LLMRequest`, preservando el principio de Responsabilidad Única (SRP).
+
+- **DA-1205**  
+  Validar el proveedor mediante `Mock`, evitando dependencias con Internet, API Keys y cuota de Google Gemini.
+
+---
+
+#### Problemas encontrados
+
+Durante el Sprint se identificaron y resolvieron los siguientes inconvenientes:
+
+- definición del alcance del módulo;
+- ubicación definitiva de `LLMProviderInterface`;
+- estrategia de integración con `DecisionEngine`;
+- validación del Provider sin consumir la API de Gemini;
+- organización de las pruebas unitarias mediante `unittest.mock`.
+
+Todos los problemas fueron resueltos durante el desarrollo del Sprint.
+
+---
+
+#### Pruebas
+
+Se implementó la suite automatizada:
+
+```text
+tests/
+├── test_google_gemini_provider.py
+└── test_llm_factory.py
+```
+
+Resultado obtenido:
+
+```text
+43 passed
+1 warning
+```
+
+Se validaron satisfactoriamente:
+
+- `LLMProviderInterface`;
+- `GoogleGeminiProvider`;
+- `LLMProviderFactory`;
+- `generate_response()`;
+- integración mediante Mock.
+
+El warning corresponde a ChromaDB con Python 3.14 y permanece fuera del alcance del proyecto.
+
+---
+
+#### Refactorización
+
+Durante el Sprint se realizaron las siguientes mejoras:
+
+- consolidación del contrato público del módulo;
+- centralización del ensamblado mediante Factory;
+- encapsulamiento completo del proveedor LLM;
+- fortalecimiento de las pruebas unitarias;
+- revisión de la arquitectura para preservar el desacoplamiento.
+
+---
+
+#### Mejoras metodológicas
+
+Durante este Sprint se consolidaron nuevas prácticas:
+
+- validación de contratos antes de implementar Providers;
+- documentación de decisiones arquitectónicas mediante ADR;
+- pruebas unitarias basadas en comportamiento observable;
+- utilización de `Mock` para aislar dependencias externas;
+- mantenimiento del flujo incremental:
+  Análisis → Implementación → Validación → Documentación.
+
+---
+
+#### Archivos creados
+
+- `src/llm/providers/google_gemini_provider.py`
+- `src/llm/llm_factory.py`
+- `tests/test_google_gemini_provider.py`
+- `tests/test_llm_factory.py`
+
+---
+
+#### Archivos actualizados
+
+- `src/llm/interfaces.py`
+- `src/config/settings.py`
+- `README.md`
+- `PLAN-010.md`
+- `SDS-010.md`
+- `CHANGELOG.md`
+- `LOG-001_Bitacora_Tecnica.md`
+- `ROADMAP.md`
+- `HANDBOOK.md`
+- `MTR-010.md`
+
+---
+
+#### Resultado
+
+##### LLM Provider
+
+✔ LLMProviderInterface
+
+✔ GoogleGeminiProvider
+
+✔ LLMProviderFactory
+
+✔ Configuración centralizada
+
+✔ Pruebas automatizadas
+
+##### Estado del pipeline
+
+```text
+Knowledge Base
+      │
+      ▼
+Document Loader        ✔
+      │
+      ▼
+Text Splitter          ✔
+      │
+      ▼
+Metadata Manager       ✔
+      │
+      ▼
+Embeddings Engine      ✔
+      │
+      ▼
+Vector Store           ✔
+      │
+      ▼
+Retriever              ✔
+      │
+      ▼
+Context Builder        ✔
+      │
+      ▼
+Decision Engine        ✔
+      │
+      ▼
+Tools                  ✔
+      │
+      ▼
+LLM Provider           ✔
+      │
+      ▼
+Google Gemini          ✔
+      │
+      ▼
+Streamlit UI           ⏳
+```
+
+---
+
+#### Lecciones aprendidas
+
+- Definir primero el contrato público facilita la incorporación de nuevos proveedores.
+- Encapsular bibliotecas externas reduce el acoplamiento del sistema.
+- Las pruebas con `Mock` permiten validar el comportamiento sin depender de servicios externos.
+- Mantener la responsabilidad del `DecisionEngine` limitada a `LLMRequest` simplifica la arquitectura.
+- La validación incremental evitó regresiones y permitió cerrar el Sprint con **43 pruebas exitosas**.
+
+---
+
+#### Observaciones
+
+Con la finalización del módulo **LLM Provider**, el pipeline RAG incorpora la capa responsable de interactuar con modelos de lenguaje, manteniendo el desacoplamiento respecto a Google Gemini y LangChain.
+
+El proyecto dispone ahora de una infraestructura preparada para incorporar nuevos proveedores LLM sin modificar el resto del pipeline.
+
+El siguiente Sprint estará orientado al desarrollo de la **Interfaz Streamlit**, integrando todos los módulos implementados en una aplicación funcional de extremo a extremo.
+
+
+
+
+##
