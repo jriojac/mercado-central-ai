@@ -15,7 +15,7 @@ from src.config.settings import (
 )
 from src.core.exceptions import ProviderError
 from src.knowledge.provider import VectorStoreProvider
-
+from langchain_core.documents import Document
 
 class ChromaProvider(VectorStoreProvider):
     """
@@ -104,7 +104,19 @@ class ChromaProvider(VectorStoreProvider):
 
             contents.append(document.page_content)
 
-            metadatas.append(document.metadata)
+            #metadatas.append(document.metadata)
+
+            clean_metadata: dict[str, Any] = {}
+
+            for key, value in document.metadata.items():
+
+                if value is None:
+                    continue
+
+                clean_metadata[str(key)] = value
+
+            metadatas.append(clean_metadata)
+
 
             embeddings.append(document.embedding)
 
@@ -200,12 +212,35 @@ class ChromaProvider(VectorStoreProvider):
                 self._to_chroma_format(documents)
             )
 
+            for i, metadata in enumerate(metadatas):
+
+                for key, value in metadata.items():
+
+                    if not isinstance(
+                        value,
+                        (str, int, float, bool, type(None)),
+                    ):
+
+                        print()
+                        print("=================================")
+                        print(f"Documento: {i}")
+                        print(f"Campo: {key}")
+                        print(f"Tipo: {type(value)}")
+                        print(f"Valor: {value}")
+                        print("=================================")
+
+
             self._collection.add(
                 ids=ids,
                 documents=contents,
                 metadatas=metadatas,
                 embeddings=embeddings,
             )
+
+            print()
+            print("Documentos en colección:", self._collection.count())
+            print()
+
 
         except Exception as exc:
             raise ProviderError(
@@ -216,22 +251,9 @@ class ChromaProvider(VectorStoreProvider):
         self,
         embedding: list[float],
         k: int = 4,
-    ) -> list[Any]:
+    ) -> list[Document]:
         """
         Realiza una búsqueda por similitud sobre la colección activa.
-
-        Parameters
-        ----------
-        query : str
-            Texto de consulta.
-
-        k : int, default=4
-            Número máximo de resultados.
-
-        Returns
-        -------
-        list[Any]
-            Resultados obtenidos desde ChromaDB.
         """
 
         if self._collection is None:
@@ -246,21 +268,30 @@ class ChromaProvider(VectorStoreProvider):
                 n_results=k,
             )
 
-            return results
+            documents = []
 
-     #   except Exception as exc:
-     #       raise ProviderError(
-     #           "No fue posible realizar la búsqueda por similitud."
-     #       ) from exc
+            retrieved_docs = results.get("documents", [[]])[0]
+            retrieved_metadata = results.get("metadatas", [[]])[0]
 
+            for text, metadata in zip(
+                retrieved_docs,
+                retrieved_metadata,
+            ):
+                documents.append(
+                    Document(
+                        page_content=text,
+                        metadata=metadata or {},
+                    )
+                )
 
-        except Exception as exc:
+            return documents
+
+        except Exception:
             import traceback
 
             traceback.print_exc()
 
             raise
-
 
     def delete_documents(
         self,
@@ -324,21 +355,23 @@ class ChromaProvider(VectorStoreProvider):
         """
         Reinicia completamente la colección activa.
 
-        Elimina la colección existente y crea una nueva con
-        el mismo nombre configurado.
+        Si la colección existe, la elimina y la crea nuevamente.
+        Si no existe, simplemente crea una nueva colección.
         """
 
-        if self._collection is None:
-            raise ProviderError(
-                "No existe una colección cargada."
-            )
         try:
 
             name = self._resolve_collection_name(None)
 
-            self._client.delete_collection(
-                name=name,
-            )
+            try:
+
+                self._client.delete_collection(
+                    name=name,
+                )
+
+            except Exception:
+                # La colección aún no existe.
+                pass
 
             self._collection = self._client.create_collection(
                 name=name,

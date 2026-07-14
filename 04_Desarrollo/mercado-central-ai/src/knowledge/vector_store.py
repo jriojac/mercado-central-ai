@@ -87,7 +87,6 @@ class VectorStore:
 
     def similarity_search(
         self,
-        #query: str,
         embedding: list[float],
         k: int = 4,
     ) -> list[Any]:
@@ -96,8 +95,8 @@ class VectorStore:
 
         Parameters
         ----------
-        query : str
-            Consulta de búsqueda.
+        embedding : list[float]
+            Embedding de la consulta.
 
         k : int
             Número máximo de resultados.
@@ -107,7 +106,10 @@ class VectorStore:
         list[Any]
             Documentos recuperados por similitud.
         """
-        return self._provider.similarity_search(query, k)
+        return self._provider.similarity_search(
+            embedding,
+            k,
+        )
 
     def delete_documents(
         self,

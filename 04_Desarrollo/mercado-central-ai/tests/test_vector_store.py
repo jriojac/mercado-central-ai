@@ -9,10 +9,10 @@ Pruebas unitarias del proveedor de Vector Store.
 
 import pytest
 
+from langchain_core.documents import Document
+
 from src.knowledge.providers.chroma_provider import ChromaProvider
-
 from src.knowledge.types import VectorDocument
-
 
 TEST_COLLECTION = "test_vector_store"
 
@@ -130,7 +130,27 @@ def test_similarity_search(
         k=1,
     )
 
-    assert result["ids"][0][0] == "DOC-001"
+    assert len(result) == 1
+
+    assert isinstance(
+        result[0],
+        Document,
+    )
+
+    assert (
+        result[0].page_content
+        == "Documento de prueba."
+    )
+
+    assert (
+        result[0].metadata["source"]
+        == "pytest"
+    )
+
+    assert (
+        result[0].metadata["page"]
+        == 1
+    )
 
 def test_delete_documents(
     provider: ChromaProvider,

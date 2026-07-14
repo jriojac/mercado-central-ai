@@ -3,6 +3,8 @@ from langchain_core.documents import Document
 from src.core.exceptions import InvalidDocumentError
 from src.llm.embedding_provider import EmbeddingProvider
 
+import time
+from google.api_core.exceptions import ResourceExhausted
 
 class Embeddings:
     """
@@ -19,15 +21,6 @@ class Embeddings:
         self,
         documents: list[Document],
     ) -> list[Document]:
-        """
-        Genera embeddings para cada documento de la colección.
-
-        Args:
-            documents: Lista de documentos enriquecidos por Metadata Manager.
-
-        Returns:
-            Lista de documentos con el embedding almacenado en metadata.
-        """
 
         if not isinstance(documents, list):
             raise InvalidDocumentError(
@@ -37,7 +30,14 @@ class Embeddings:
         if not documents:
             return documents
 
-        for document in documents:
+        for index, document in enumerate(
+            documents,
+            start=1,
+        ):
+
+            print(
+                f"🧠 Embedding {index}/{len(documents)}"
+            )
 
             if not isinstance(document, Document):
                 raise InvalidDocumentError(

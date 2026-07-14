@@ -1,4 +1,4 @@
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from langchain_core.documents import Document
 
@@ -24,20 +24,27 @@ def test_retrieve_calls_vector_store_similarity_search() -> None:
 
     mock_vector_store.similarity_search.return_value = fake_documents
 
-    retriever = ChromaRetriever(mock_vector_store)
+    fake_embedding = [0.1, 0.2, 0.3]
 
-    # -----------------------------------------------------------------
-    # Act
-    # -----------------------------------------------------------------
+    with patch(
+        "src.retriever.chroma_retriever.Embeddings.generate_query_embedding",
+        return_value=fake_embedding,
+    ):
 
-    result = retriever.retrieve("consulta")
+        retriever = ChromaRetriever(mock_vector_store)
+
+        # -----------------------------------------------------------------
+        # Act
+        # -----------------------------------------------------------------
+
+        result = retriever.retrieve("consulta")
 
     # -----------------------------------------------------------------
     # Assert
     # -----------------------------------------------------------------
 
     mock_vector_store.similarity_search.assert_called_once_with(
-        query="consulta",
+        embedding=fake_embedding,
         k=4,
     )
 

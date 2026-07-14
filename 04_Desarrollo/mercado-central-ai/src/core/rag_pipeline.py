@@ -98,3 +98,57 @@ class RAGPipeline:
         )
 
         return response
+    
+    def answer(
+        self,
+        question: str,
+    ) -> str:
+
+        question = question.strip()
+
+        print("=" * 80)
+        print("PREGUNTA")
+        print(question)
+
+        documents = self._retriever.retrieve(question)
+
+        print("=" * 80)
+        print("DOCUMENTOS")
+        print(documents)
+
+        context = self._context_builder.build_context(
+            documents
+        )
+
+        print("=" * 80)
+        print("CONTEXTO")
+        print(context)
+
+        request = self._decision_engine.build_request(
+            question,
+            context,
+        )
+
+        print("=" * 80)
+        print("REQUEST")
+        print(request)
+
+        prompt = self._prompt_builder.build(
+            request
+        )
+
+        print("=" * 80)
+        print("PROMPT")
+        print(prompt)
+
+        response = self._llm_provider.generate_response(
+            prompt
+        )
+
+        print("=" * 80)
+        print("RESPUESTA")
+        print(repr(response))
+        print("=" * 80)
+
+        return response
+    

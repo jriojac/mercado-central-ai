@@ -58,7 +58,27 @@ class ChromaRetriever(IRetriever):
             query
         )
 
-        return self._vector_store.similarity_search(
+        documents = self._vector_store.similarity_search(
             embedding=embedding,
             k=k,
         )
+
+        print()
+        print("========== RETRIEVER ==========")
+        print("Documentos recuperados:", len(documents))
+
+        for i, doc in enumerate(documents):
+            print(f"{i+1}.", doc.page_content[:120])
+
+        print("===============================")
+        print()
+
+        return documents
+
+
+
+
+     #   return self._vector_store.similarity_search(
+     #       embedding=embedding,
+     #       k=k,
+     #   )

@@ -77,8 +77,8 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 # -------------------------------------------------------
 
 TEXT_SPLITTER = {
-    "chunk_size": 1000,
-    "chunk_overlap": 200,
+    "chunk_size": 2500,
+    "chunk_overlap": 100,
     "separators": [
         "\n\n",
         "\n",
@@ -101,7 +101,9 @@ DEFAULT_CATEGORY = None
 # GEMINI
 # ==========================================================
 
-GEMINI_MODEL = "gemini-2.5-flash"
+#GEMINI_MODEL = "gemini-2.5-flash"
+#GEMINI_MODEL = "gemini-2.5-flash-lite"
+GEMINI_MODEL = "gemini-3-flash-preview"
 
 # ==========================================================
 # LLM

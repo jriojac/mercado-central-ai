@@ -1,57 +1,192 @@
-"""
-Document Mapper.
 
-Convierte documentos enriquecidos del pipeline RAG al modelo
-VectorDocument utilizado por el Vector Store.
+"""
+Pruebas unitarias para DocumentMapper.
 """
 
-from uuid import uuid4
+import pytest
 
 from langchain_core.documents import Document
 
 from src.core.exceptions import InvalidDocumentError
+from src.knowledge.document_mapper import DocumentMapper
+from src.knowledge.types import VectorDocument
 
-from .types import VectorDocument
 
-
-class DocumentMapper:
+@pytest.fixture
+def mapper() -> DocumentMapper:
     """
-    Convierte documentos LangChain al modelo VectorDocument.
+    Instancia reutilizable del mapper.
+    """
+    return DocumentMapper()
+
+
+@pytest.fixture
+def sample_document() -> Document:
+    """
+    Documento válido con embedding.
+    """
+    return Document(
+        page_content="Documento de prueba",
+        metadata={
+            "source": "test.pdf",
+            "page": 1,
+            "embedding": [0.1, 0.2, 0.3],
+        },
+    )
+
+
+def test_map_documents_returns_vector_documents(
+    mapper: DocumentMapper,
+    sample_document: Document,
+):
+    """
+    Debe convertir documentos LangChain en VectorDocument.
     """
 
-    def map_documents(
-        self,
-        documents: list[Document],
-    ) -> list[VectorDocument]:
+    result = mapper.map_documents(
+        [sample_document]
+    )
 
-        if not isinstance(documents, list):
-            raise InvalidDocumentError(
-                "La colección de documentos debe ser una lista."
-            )
+    assert len(result) == 1
 
-        vector_documents: list[VectorDocument] = []
+    assert isinstance(
+        result[0],
+        VectorDocument,
+    )
 
-        for document in documents:
 
-            if not isinstance(document, Document):
-                raise InvalidDocumentError(
-                    "Todos los elementos deben ser objetos Document."
-                )
+def test_map_documents_preserves_content(
+    mapper: DocumentMapper,
+    sample_document: Document,
+):
+    """
+    Debe conservar el contenido.
+    """
 
-            embedding = document.metadata.get("embedding")
+    result = mapper.map_documents(
+        [sample_document]
+    )
 
-            if embedding is None:
-                raise InvalidDocumentError(
-                    "El documento no contiene embedding."
-                )
+    assert (
+        result[0].page_content
+        == sample_document.page_content
+    )
 
-            vector_documents.append(
-                VectorDocument(
-                    id=str(uuid4()),
-                    page_content=document.page_content,
-                    metadata=document.metadata,
-                    embedding=embedding,
-                )
-            )
 
-        return vector_documents
+def test_map_documents_preserves_metadata(
+    mapper: DocumentMapper,
+    sample_document: Document,
+):
+    """
+    Debe conservar el metadata.
+    """
+
+    result = mapper.map_documents(
+        [sample_document]
+    )
+
+    assert result[0].metadata == {
+        "source": "test.pdf",
+        "page": 1,
+    }
+
+def test_map_documents_preserves_embedding(
+    mapper: DocumentMapper,
+    sample_document: Document,
+):
+    """
+    Debe conservar el embedding.
+    """
+
+    result = mapper.map_documents(
+        [sample_document]
+    )
+
+    assert (
+        result[0].embedding
+        == sample_document.metadata["embedding"]
+    )
+
+
+def test_map_documents_generates_id(
+    mapper: DocumentMapper,
+    sample_document: Document,
+):
+    """
+    Debe generar un identificador.
+    """
+
+    result = mapper.map_documents(
+        [sample_document]
+    )
+
+    assert result[0].id
+
+    assert isinstance(
+        result[0].id,
+        str,
+    )
+
+
+def test_map_documents_requires_list(
+    mapper: DocumentMapper,
+):
+    """
+    Debe validar que la entrada sea una lista.
+    """
+
+    with pytest.raises(
+        InvalidDocumentError
+    ):
+        mapper.map_documents(
+            "documento"
+        )
+
+
+def test_map_documents_requires_document_instances(
+    mapper: DocumentMapper,
+):
+    """
+    Todos los elementos deben ser Document.
+    """
+
+    with pytest.raises(
+        InvalidDocumentError
+    ):
+        mapper.map_documents(
+            [object()]
+        )
+
+
+def test_map_documents_requires_embedding(
+    mapper: DocumentMapper,
+):
+    """
+    El documento debe contener embedding.
+    """
+
+    document = Document(
+        page_content="Texto",
+        metadata={},
+    )
+
+    with pytest.raises(
+        InvalidDocumentError
+    ):
+        mapper.map_documents(
+            [document]
+        )
+
+
+def test_map_documents_empty_list(
+    mapper: DocumentMapper,
+):
+    """
+    Una lista vacía debe devolver una lista vacía.
+    """
+
+    result = mapper.map_documents(
+        []
+    )
+
+    assert result == []
