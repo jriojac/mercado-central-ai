@@ -39,6 +39,11 @@ Pruebe preguntas como:
 - ¿Qué productos perecederos pueden cambiarse?
 
 ---
+## Interfaz de la aplicación
+
+![Interfaz de Mercado Central AI](/imagen/MercadoCentralAI.png)
+
+---
 # Estado del Proyecto
 
 > **Versión estable:** **v1.2.0**
