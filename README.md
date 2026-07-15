@@ -1,13 +1,44 @@
 # Mercado Central AI
 
-Sistema inteligente de atención al cliente basado en Inteligencia Artificial para **Mercado Central 24h (México)**.
+Sistema inteligente basado en arquitectura **RAG (Retrieval-Augmented Generation)** desarrollado para el Challenge **Alura + Oracle Next Education**.
 
-El proyecto implementa un agente conversacional utilizando una arquitectura **RAG (Retrieval-Augmented Generation)**, desarrollado como parte del **Challenge de Alura + Oracle Next Education**.
+## Estado del proyecto
 
-La solución integra un pipeline modular basado en **Python**, **LangChain**, **ChromaDB** y **Google Gemini**, siguiendo una arquitectura desacoplada mediante **Interfaces**, **Factory Pattern** y **Configuración Centralizada**.
+**Versión:** v1.2.0
+
+**Estado:** Producción
+
+**Despliegue:** Render
+
+**URL pública:**
+
+https://mercado-central-ai.onrender.com
 
 ---
 
+# 🌐 Despliegue
+
+La aplicación se encuentra desplegada en la nube mediante Render.
+
+Puede utilizarse directamente desde cualquier navegador.
+
+URL:
+
+https://mercado-central-ai.onrender.com
+
+> Debido al uso del plan gratuito de Render, el primer acceso puede tardar algunos segundos si la aplicación estuvo inactiva.
+
+---
+# Demo
+
+Pruebe preguntas como:
+
+- ¿Cuál es la política de devoluciones?
+- ¿Cómo registrarse como proveedor?
+- ¿Cuál es el horario de atención?
+- ¿Qué productos perecederos pueden cambiarse?
+
+---
 # Estado del Proyecto
 
 > **Versión estable:** **v1.2.0**
@@ -56,42 +87,27 @@ El proyecto mantiene una arquitectura modular que permite evolucionar el pipelin
 
 ```text
 Usuario
-
-↓
-
-Streamlit
-
-↓
-
-RAG Pipeline
-
-↓
-
-Retriever
-
-↓
-
-Context Builder
-
-↓
-
-Decision Engine
-
-↓
-
-Prompt Builder
-
-↓
-
-Google Gemini Provider
-
-↓
-
-Gemini 3 Flash Preview
-
-↓
-
-Respuesta
+      │
+      ▼
+ Render Cloud
+      │
+      ▼
+ Streamlit
+      │
+      ▼
+ RAG Pipeline
+      │
+      ▼
+ Retriever
+      │
+      ▼
+ ChromaDB
+      │
+      ▼
+ Gemini
+      │
+      ▼
+ Respuesta
 ```
 
 La arquitectura implementa un pipeline **RAG (Retrieval-Augmented Generation)** completamente desacoplado.
