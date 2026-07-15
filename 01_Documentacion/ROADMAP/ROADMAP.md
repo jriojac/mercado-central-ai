@@ -2,21 +2,19 @@
 
 ## Objetivo
 
-Este documento presenta la planificación general del proyecto **Mercado Central AI**, mostrando la evolución del pipeline RAG mediante Sprint, Hitos y Releases, hasta alcanzar la versión estable **v1.0.0**.
+Este documento presenta la planificación general del proyecto **Mercado Central AI**, mostrando la evolución del pipeline RAG mediante Sprint, Hitos y Releases, hasta alcanzar la versión estable **v1.2.0**.
 
 ---
 
 # Estado actual
 
-| Campo | Valor |
-|-------|-------|
-| Proyecto | Mercado Central AI |
-| **Versión estable** | **v1.0.0** |
-| **Sprint actual** | **Sprint 12** |
-| **Hito actual** | **Hito 10 – LLM Provider** |
-| **Estado** | ✅ Finalizado |
-| **Próximo Sprint** | **Sprint 13 – Streamlit UI** |
-
+| Campo               | Valor                                                           |
+| ------------------- | --------------------------------------------------------------- |
+| Proyecto            | Mercado Central AI                                              |
+| **Versión estable** | **v1.2.0**                                                      |
+| **Sprint actual**   | **Sprint 14**                                                   |
+| **Hito actual**     | **Hito 12 – Inicialización Base Vectorial e Integración Final** |
+| **Estado**          | ✅ Finalizado                                                    |
 
 ---
 
@@ -34,11 +32,11 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Sprint 10 | Hito 8 | Decision Engine | v0.8.0 | ✅ |
 | Sprint 11 | Hito 9 | Tools | v0.9.0 | ✅ |
 | Sprint 12 | Hito 10 | LLM Provider | v1.0.0 | ✅ |
-| Sprint 13 | Hito 11 | Streamlit UI | v1.1.0 | ⏳ |
+| Sprint 13 | Hito 11 | Streamlit UI | v1.1.0 | ✅ |
+| Sprint 13 | Hito 11 | Base Vectorial e Integración Final | v1.2.0 | ⏳ |
+
 
 ---
-
-# Estado del Pipeline RAG
 
 # Estado del Pipeline RAG
 
@@ -56,58 +54,44 @@ Este documento presenta la planificación general del proyecto **Mercado Central
 | Tools | ✅ |
 | LLM Provider | ✅ |
 | Google Gemini | ✅ |
-| Streamlit UI | ⏳ |
+| Streamlit UI | ✅ |
 
 ---
 
 # Avance del proyecto
 
-| Indicador | Valor |
-|-----------|------:|
-| Sprint completados | **10 / 11** |
-| Releases publicadas | **10** |
-| Avance estimado | **95 %** |
-| Pruebas automatizadas | **43** |
-| Versión estable | **v1.0.0** |
-| Próxima Release | **v1.1.0** |
+| Indicador             |                                       Valor |
+| --------------------- | ------------------------------------------: |
+| Sprint completados    |                                 **12 / 12** |
+| Releases publicadas   |                                      **12** |
+| Avance estimado       |                                   **100 %** |
+| Pruebas automatizadas |                                      **43** |
+| Versión estable       |                                  **v1.2.0** |
+| Estado                |                     **Proyecto Finalizado** |
+
 
 ---
-
-# Objetivos de las próximas Releases
-
-| Release | Objetivo |
-|----------|----------|
-| **v1.1.0** | Desarrollar la **Interfaz Streamlit**, integrando el pipeline RAG completo y proporcionando una experiencia de usuario de extremo a extremo. |
-
----
-
 # Release actual
 
-## v1.0.0 — LLM Provider
-
-La Release **v1.0.0** representa un hito importante en la evolución del proyecto, al completar la infraestructura principal del pipeline RAG.
+## v1.2.0 — Integración Final del Pipeline RAG
 
 ### Componentes incorporados
 
-- LLMProviderInterface.
-- GoogleGeminiProvider.
-- LLMProviderFactory.
-- Integración con Google Gemini mediante LangChain.
-- Configuración centralizada del proveedor.
-- Validaciones manuales.
-- Pruebas automatizadas.
+- Streamlit UI.
+- Prompt Builder.
+- RAG Pipeline.
+- Inicialización de Base Vectorial.
+- Integración completa con Gemini.
+- Validación End-to-End.
 
 ### Resultados obtenidos
 
-- Pipeline RAG completamente implementado.
-- Arquitectura desacoplada mediante Interfaces.
-- Factory Pattern consolidado.
-- Comunicación con Google Gemini encapsulada.
-- Decision Engine desacoplado mediante `LLMRequest`.
-- 43 pruebas automatizadas exitosas.
-- Documentación técnica sincronizada.
-
-La siguiente etapa del proyecto estará orientada al desarrollo de la interfaz de usuario mediante **Streamlit**.
+- Pipeline completamente funcional.
+- Interfaz conversacional.
+- Recuperación semántica.
+- Base Vectorial inicializada.
+- Arquitectura desacoplada.
+- 43 pruebas exitosas.
 
 ---
 
@@ -124,8 +108,10 @@ La siguiente etapa del proyecto estará orientada al desarrollo de la interfaz d
 | v0.7.0 | 9 | Context Builder | ✅ |
 | v0.8.0 | 10 | Decision Engine | ✅ |
 | v0.9.0 | 11 | Tools | ✅ |
-| **v1.0.0** | **12** | **LLM Provider** | **✅** |
-| **v1.1.0** | **13** | **Streamlit UI** | **⏳** |
+| v1.0.0 | 12 | LLM Provider | ✅ |
+| v1.1.0 | 13 | Streamlit UI | ✅ |
+| v1.2.0 | 14 | Base Vectorial e Integración Final | ✅ |
+
 
 # Observaciones
 
@@ -141,10 +127,8 @@ Hito
 Release
 ```
 
-Cada Sprint incorpora un nuevo módulo funcional al pipeline RAG y genera una Release estable, documentada y validada mediante pruebas automatizadas.
+Con la publicación de la Release v1.2.0 se completa el desarrollo del proyecto Mercado Central AI.
 
-Con la publicación de la **Release v1.0.0**, el proyecto completa la infraestructura principal del pipeline RAG, incorporando el módulo **LLM Provider** y la integración con **Google Gemini**, manteniendo la arquitectura desacoplada basada en Interfaces, Factory Pattern y configuración centralizada.
+El sistema implementa un pipeline RAG completamente funcional, integrando recuperación semántica mediante ChromaDB, generación de respuestas con Google Gemini e interfaz gráfica desarrollada en Streamlit.
 
-La siguiente fase del proyecto estará orientada al desarrollo de la **Interfaz Streamlit**, reutilizando todos los componentes implementados hasta la fecha para ofrecer una aplicación funcional de extremo a extremo.
-
-El ROADMAP constituye la referencia oficial para el seguimiento del avance del proyecto y se actualiza al cierre de cada Sprint.
+El ROADMAP refleja el cierre de los doce Sprint ejecutados durante el Challenge Alura + Oracle Next Education.

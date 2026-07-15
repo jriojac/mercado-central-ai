@@ -2,18 +2,18 @@
 
 ## Estado del proyecto
 
-**Versión:** v0.1.0 (pre-release)
+**Versión:** v1.2.0
 
 ### Componentes
 
 -   ✅ Configuración del proyecto
 -   ✅ Document Loader
--   ⏳ Splitter
--   ⏳ Embeddings
--   ⏳ Vector Store
--   ⏳ Retriever
--   ⏳ Integración Gemini
--   ⏳ Interfaz Streamlit
+-   ✅ Splitter
+-   ✅ Embeddings
+-   ✅ Vector Store
+-   ✅ Retriever
+-   ✅ Integración Gemini
+-   ✅ Interfaz Streamlit
 
 ## Arquitectura
 

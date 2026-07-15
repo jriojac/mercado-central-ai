@@ -4,11 +4,12 @@
 |----------------------|----------------------|
 | Código | MTR-001 |
 | Nombre | Matriz de Trazabilidad |
-| **Versión** | **2.5** |
+| **Versión** | **2.7** |
 | Estado | Activo |
 | Proyecto | Mercado Central AI |
 | Responsable | Jacqueline Rioja |
-| Última actualización | 11/07/2026 |
+| Última actualización | 12/07/2026 |
+
 
 ---
 
@@ -85,8 +86,9 @@ Esta metodología fue aprobada durante la Auditoría Arquitectónica (DOC-014).
 | Context Builder | Sprint 9 | Hito 7 | RF-701 – RF-707 | SDS-007 | `context_builder.py` | `test_context_builder.py` | v0.7.0 | ✅ |
 | Decision Engine | Sprint 10 | Hito 8 | RF-801 – RF-806 | SDS-008 | `decision_engine.py` | `test_decision_engine.py` | v0.8.0 | ✅ |
 | Tools | Sprint 11 | Hito 9 | RF-901 – RF-908 | SDS-009 | `tools/*.py` | `test_tools*.py` | v0.9.0 | ✅ |
-| **LLM Provider** | **Sprint 12** | **Hito 10** | **RF-1001 – RF-1006** | **SDS-010** | **`google_gemini_provider.py` + `llm_factory.py`** | **`test_google_gemini_provider.py` + `test_llm_factory.py`** | **v1.0.0** | **✅** |
-| **Streamlit UI** | **Sprint 13** | **Hito 11** | **RF-1101 – RF-110X** | **SDS-011** | `app.py` | `test_streamlit.py` | **v1.1.0** | ⏳ |
+| LLM Provider | Sprint 12 | Hito 10 | RF-1001 – RF-1006 | SDS-010 | `google_gemini_provider.py` + `llm_factory.py` | `test_google_gemini_provider.py` + `test_llm_factory.py` | v1.0.0 | ✅ |
+| Streamlit UI | Sprint 13 | Hito 11 | RF-1101 – RF-110X | SDS-011 | `app.py` | `test_streamlit.py` | v1.1.0 | ✅ |
+| **Inicialización Base Vectorial e Integración Final** | **Sprint 14** | **Hito 12** | **RF-1201 – RF-1208** | **SDS-012** | `knowledge_initializer.py`, `rag_pipeline.py` | Validación End-to-End + Streamlit | **v1.2.0** |  **✅** |
 
 ---
 
@@ -693,6 +695,85 @@ La trazabilidad del Sprint quedó completamente validada antes de la publicació
 
 ---
 
+## 5.10 Sprint 14 – Hito 12
+
+### Módulo
+
+Inicialización Base Vectorial e Integración Final
+
+### Información general
+
+| Campo   | Valor                                             |
+| ------- | ------------------------------------------------- |
+| Sprint  | 14                                                |
+| Hito    | 12                                                |
+| Módulo  | Inicialización Base Vectorial e Integración Final |
+| Estado  | ✅ Implementado y validado                         |
+| Release | v1.2.0                                            |
+
+
+---
+
+### Matriz de trazabilidad
+
+| RF      | Descripción                          | SDS     | Implementación | Código                      | Caso    |
+| ------- | ------------------------------------ | ------- | -------------- | --------------------------- | ------- |
+| RF-1201 | Inicializar la Base Vectorial        | SDS-012 | IMP-1201       | `knowledge_initializer.py`  | CP-1201 |
+| RF-1202 | Integrar Retriever                   | SDS-012 | IMP-1202       | `rag_pipeline.py`           | CP-1202 |
+| RF-1203 | Integrar Context Builder             | SDS-012 | IMP-1203       | `rag_pipeline.py`           | CP-1203 |
+| RF-1204 | Integrar Decision Engine             | SDS-012 | IMP-1204       | `rag_pipeline.py`           | CP-1204 |
+| RF-1205 | Integrar Prompt Builder              | SDS-012 | IMP-1205       | `prompt_builder.py`         | CP-1205 |
+| RF-1206 | Integrar Google Gemini Provider      | SDS-012 | IMP-1206       | `google_gemini_provider.py` | CP-1206 |
+| RF-1207 | Validar flujo End-to-End             | SDS-012 | IMP-1207       | Pipeline                    | CP-1207 |
+| RF-1208 | Validar consultas mediante Streamlit | SDS-012 | IMP-1208       | `streamlit_app.py`          | CP-1208 |
+
+---
+
+### Cobertura de requisitos
+
+| Tipo             |  Cantidad |
+| ---------------- | --------: |
+| RF               |         8 |
+| Implementaciones |         8 |
+| Casos de prueba  |         8 |
+| Cobertura        | **100 %** |
+
+
+---
+
+### Inventario de artefactos
+
+| Categoría             | Artefacto                     |
+| --------------------- | ----------------------------- |
+| Código                | `knowledge_initializer.py`    |
+| Código                | `rag_pipeline.py`             |
+| Código                | `prompt_builder.py`           |
+| Código                | `google_gemini_provider.py`   |
+| Código                | `streamlit_app`               |
+| Documentación         | `SDS-012.md`                  |
+| Release               | `v0.12.0`                     |
+
+---
+
+### Resultados
+
+Se completó la integración funcional del pipeline RAG, incorporando la inicialización de la Base Vectorial, la interfaz Streamlit y la validación completa del flujo conversacional utilizando Google Gemini. El Sprint concluyó con la Release v1.2.0, validando el funcionamiento End-to-End mediante consultas reales y manteniendo la cobertura de pruebas automatizadas.
+
+
+---
+### Trazabilidad validada
+
+| Elemento | Estado |
+|----------|:------:|
+| RF documentados | ✅ |
+| SDS actualizado | ✅ |
+| Implementación | ✅ |
+| Casos de prueba | ✅ |
+| Release | ✅ |
+
+La trazabilidad del Sprint quedó completamente validada antes de la publicación de la Release correspondiente.
+
+---
 # 6. Convenciones
 
 ## Identificación de artefactos
@@ -724,8 +805,10 @@ La numeración se reinicia por Sprint utilizando centenas para facilitar la iden
 | Sprint 9 | RF-701 | IMP-701 | CP-701 |
 | Sprint 10 | RF-801 | IMP-801 | CP-801 |
 | Sprint 11 | RF-901 | IMP-901 | CP-901 |
-| **Sprint 12** | **RF-1001** | **IMP-1001** | **CP-1001** |
-| **Sprint 13** | **RF-1101** | **IMP-1101** | **CP-1101** |
+| Sprint 12 | RF-1001 | IMP-1001 | CP-1001 |
+| Sprint 13 | RF-1101 | IMP-110* | CP-1101 |
+| Sprint 14 | RF-1201 | IMP-1201 | CP-1201 |
+
 
 
 ## Estados
@@ -792,7 +875,7 @@ Esta trazabilidad permite auditar el ciclo completo de desarrollo de cada funcio
 
 ## Estado actual del proyecto
 
-Al cierre del Sprint 12 – Hito 10, el proyecto cuenta con los siguientes módulos implementados y validados:
+Al cierre del Sprint 14 – Hito 12, el proyecto cuenta con los siguientes módulos implementados y validados:
 
 - ✅ Document Loader
 - ✅ Text Splitter
@@ -804,8 +887,12 @@ Al cierre del Sprint 12 – Hito 10, el proyecto cuenta con los siguientes módu
 - ✅ Decision Engine
 - ✅ Tools
 - ✅ LLM Provider
-- ⏳ Streamlit UI
+- ✅ Streamlit UI
+- ✅ Inicialización Base Vectorial
+- ✅ Integración completa del Pipeline RAG
 
-La infraestructura principal del pipeline RAG se encuentra completamente implementada y validada.
+La arquitectura se encuentra completamente implementada y validada.
 
-El siguiente Sprint estará orientado al desarrollo de la interfaz de usuario mediante Streamlit, reutilizando los módulos existentes para ofrecer una aplicación funcional de extremo a extremo.
+La aplicación responde consultas utilizando recuperación semántica mediante ChromaDB y generación de respuestas con Google Gemini a través de una interfaz desarrollada con Streamlit.
+
+La Release **v1.2.0** representa el cierre funcional del proyecto.

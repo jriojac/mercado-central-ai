@@ -10,9 +10,9 @@ La solución integra un pipeline modular basado en **Python**, **LangChain**, **
 
 # Estado del Proyecto
 
-> **Versión estable:** **v1.0.0**
+> **Versión estable:** **v1.2.0**
 
-> **Estado:** Desarrollo activo
+> **Estado:** Proyecto funcional – Release Final Challenge
 
 | Elemento | Estado |
 |----------|:------:|
@@ -28,8 +28,9 @@ La solución integra un pipeline modular basado en **Python**, **LangChain**, **
 | Sprint 10 – Hito 8 – Decision Engine | ✅ |
 | Sprint 11 – Hito 9 – Tools | ✅ |
 | Sprint 12 – Hito 10 – LLM Provider | ✅ |
-| Release estable | **v1.0.0** |
-| Próximo Sprint | **Sprint 13 – Streamlit UI** |
+| Sprint 13 – Hito 11 – Streamlit UI | ✅ |
+| Sprint 14 – Hito 12 – Inicialización Base Vectorial e Integración Final | ✅ |
+| Release estable | **v1.2.0** |
 
 ---
 
@@ -54,42 +55,42 @@ El proyecto mantiene una arquitectura modular que permite evolucionar el pipelin
 # Arquitectura General
 
 ```text
-Knowledge Base
-        │
-        ▼
-Document Loader
-        │
-        ▼
-Text Splitter
-        │
-        ▼
-Metadata Manager
-        │
-        ▼
-Embeddings Engine
-        │
-        ▼
-Vector Store
-        │
-        ▼
+Usuario
+
+↓
+
+Streamlit
+
+↓
+
+RAG Pipeline
+
+↓
+
 Retriever
-        │
-        ▼
+
+↓
+
 Context Builder
-        │
-        ▼
+
+↓
+
 Decision Engine
-        │
-        ▼
-LLMRequest
-        │
-        ▼
-LLM Provider
-        │
-        ▼
-Google Gemini
-        │
-        ▼
+
+↓
+
+Prompt Builder
+
+↓
+
+Google Gemini Provider
+
+↓
+
+Gemini 3 Flash Preview
+
+↓
+
 Respuesta
 ```
 
@@ -99,6 +100,7 @@ Cada módulo posee una única responsabilidad y se comunica mediante contratos p
 
 La incorporación del **LLM Provider** completa la capa de integración con modelos de lenguaje y desacopla completamente el resto del sistema de LangChain y Google Gemini.
 
+El sistema permite responder consultas en lenguaje natural utilizando exclusivamente la información contenida en la Base de Conocimiento. Para ello implementa una arquitectura RAG completa con recuperación semántica mediante ChromaDB y generación de respuestas mediante Google Gemini.
 ---
 
 # Estado del Pipeline RAG
@@ -117,11 +119,11 @@ La incorporación del **LLM Provider** completa la capa de integración con mode
 | Tools | ✅ |
 | LLM Provider | ✅ |
 | Google Gemini | ✅ |
-| Streamlit UI | ⏳ |
+| Streamlit UI | ✅ |
 
-Actualmente la infraestructura principal del pipeline RAG se encuentra completamente implementada.
+Actualmente el pipeline RAG se encuentra completamente implementado e integrado.
 
-El siguiente Sprint estará orientado a incorporar la interfaz de usuario mediante **Streamlit**, reutilizando todos los componentes desarrollados durante los Sprint anteriores.
+El sistema permite responder consultas utilizando recuperación semántica mediante ChromaDB y generación de respuestas con Google Gemini a través de una interfaz desarrollada en Streamlit.
 
 ---
 
@@ -198,7 +200,8 @@ Toda la metodología del proyecto se encuentra documentada en:
 | Sprint 10 | Decision Engine | ✅ |
 | Sprint 11 | Tools | ✅ |
 | Sprint 12 | LLM Provider | ✅ |
-| Sprint 13 | Streamlit UI | ⏳ |
+| Sprint 13 | Streamlit UI | ✅  |
+| Sprint 14 | Inicialización Base Vectorial e Integración Final | ✅  |
 
 ---
 
@@ -254,7 +257,9 @@ mercado-central-ai/
 | Decision Engine | ✅ |
 | Tools | ✅ |
 | LLM Provider | ✅ |
-| Streamlit UI | ⏳ |
+| Streamlit UI | ✅ |
+| RAG Pipeline Integrado | ✅ |
+
 
 ---
 
@@ -364,13 +369,13 @@ El proyecto fue desarrollado utilizando las siguientes tecnologías:
 |------------|-----|
 | Python | Lenguaje principal del proyecto. |
 | LangChain | Orquestación de componentes LLM. |
-| Google Gemini | Modelo de lenguaje utilizado por el sistema. |
+| Gemini 3 Flash Preview| Modelo de lenguaje utilizado por el sistema. |
 | ChromaDB | Base de datos vectorial. |
 | PyPDF | Carga y procesamiento de documentos PDF. |
 | python-dotenv | Gestión de variables de entorno. |
 | pytest | Pruebas automatizadas. |
 | unittest.mock | Simulación de dependencias durante las pruebas. |
-| Streamlit | Interfaz de usuario (Sprint 13). |
+| Streamlit | Interfaz de usuario |
 
 ---
 
@@ -387,7 +392,10 @@ El proyecto fue desarrollado utilizando las siguientes tecnologías:
 | v0.7.0 | Context Builder |
 | v0.8.0 | Decision Engine |
 | v0.9.0 | Tools |
-| **v1.0.0** | **LLM Provider** |
+| v1.0.0 | LLM Provider |
+| v1.1.0  | Streamlit UI                                           |
+| v1.2.0  | Integración completa del Pipeline RAG + Base Vectorial |
+
 
 ---
 
@@ -414,6 +422,12 @@ El proyecto incorpora actualmente:
 - Pruebas automatizadas con `pytest`.
 - Documentación técnica sincronizada.
 - Arquitectura desacoplada y extensible.
+- Interfaz gráfica con Streamlit.
+- Pipeline RAG completamente integrado.
+- Inicialización automática de la Base Vectorial.
+- Consultas conversacionales.
+- Recuperación semántica mediante ChromaDB.
+- Respuestas fundamentadas exclusivamente en la Base de Conocimiento.
 
 ---
 
@@ -421,30 +435,23 @@ El proyecto incorpora actualmente:
 
 | Indicador | Valor |
 |-----------|------:|
-| Sprint completados | 10 |
+| Sprint completados | 12 |
 | Releases publicadas | 10 |
 | Módulos implementados | 10 |
 | Pruebas automatizadas | 43 |
 | Pruebas exitosas | 43 |
 | Fallos | 0 |
 
----
 
-# Próximo objetivo
+| Indicador             |                                                                                   Valor |
+| --------------------- | --------------------------------------------------------------------------------------: |
+| Sprint completados    |                                                                                  **12** |
+| Releases publicadas   |                                                                                  **12** |
+| Módulos implementados |                                                                                  **12** |
+| Pruebas automatizadas |                                                                                  **43** |
+| Pruebas exitosas      |                                                                                  **43** |
+| Fallos                |                                                                                   **0** |
 
-## Sprint 13 – Interfaz Streamlit
-
-El siguiente Sprint estará orientado a desarrollar la interfaz de usuario del proyecto utilizando **Streamlit**.
-
-Los objetivos principales serán:
-
-- Integrar el pipeline RAG completo.
-- Consumir el módulo **LLM Provider**.
-- Mostrar respuestas generadas por Google Gemini.
-- Diseñar una interfaz sencilla para consultas.
-- Preparar el sistema para una demostración funcional de extremo a extremo (End-to-End).
-
-Con este Sprint se completará el flujo principal del proyecto **Mercado Central AI**, permitiendo interactuar con el agente conversacional desde una interfaz gráfica.
 
 ---
 

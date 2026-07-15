@@ -17,6 +17,150 @@ Cada Release registra:
 
 Las versiones se publican al cierre de cada Sprint/Hito estable del proyecto.
 
+## [1.2.0] - 2026-07-12
+
+### Added
+
+- Implementación del proceso de inicialización de la Base Vectorial.
+- Integración completa del pipeline RAG de extremo a extremo (End-to-End).
+- Inicialización automática de la colección ChromaDB.
+- Integración definitiva entre Retriever, Context Builder, Decision Engine, Prompt Builder y LLM Provider.
+- Integración del modelo **Gemini 3 Flash Preview** como proveedor LLM.
+- Validación funcional mediante interfaz Streamlit.
+
+### Changed
+
+- Actualización de `README.md`.
+- Actualización del `HANDBOOK`.
+- Actualización del `ROADMAP`.
+- Actualización del `MTR-001`.
+- Actualización del `SDS-012`.
+- Actualización de la configuración del proveedor Gemini para utilizar un modelo compatible con Google AI Studio.
+- Consolidación de la arquitectura RAG completamente funcional.
+
+### Fixed
+
+- Corrección de la integración entre el pipeline RAG y el proveedor Google Gemini.
+- Ajustes en la inicialización de la Base Vectorial.
+- Corrección de compatibilidad con los modelos actuales de Google AI Studio.
+
+### Validated
+
+- Inicialización correcta de la Base Vectorial.
+- Recuperación semántica mediante ChromaDB.
+- Construcción correcta del contexto.
+- Construcción correcta del Prompt.
+- Generación de respuestas mediante Google Gemini.
+- Validación completa del flujo End-to-End desde Streamlit.
+- **43 pruebas automatizadas exitosas.**
+
+### Pipeline actualizado
+
+```text
+Usuario
+      │
+      ▼
+Streamlit
+      │
+      ▼
+RAG Pipeline
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Decision Engine
+      │
+      ▼
+Prompt Builder
+      │
+      ▼
+Google Gemini Provider
+      │
+      ▼
+Gemini 3 Flash Preview
+      │
+      ▼
+Respuesta
+```
+
+### Architectural Decisions
+- Se consolidó el pipeline RAG completamente desacoplado.
+- La inicialización de la Base Vectorial quedó integrada al proceso de despliegue.
+- El proveedor LLM utiliza Gemini 3 Flash Preview mediante LangChain.
+- El sistema responde exclusivamente utilizando la información de la Base de Conocimiento.
+
+---
+
+## [1.1.0] - 2026-07-11
+
+### Added
+
+- Implementación de la interfaz gráfica mediante Streamlit.
+- Integración de la interfaz con el pipeline RAG.
+- Construcción del módulo `PromptBuilder`.
+- Implementación del `RAGPipeline`.
+- Integración entre Retriever, Context Builder, Decision Engine y LLM Provider.
+- Interfaz conversacional para consultas en lenguaje natural.
+
+### Changed
+
+- Actualización del `README.md`.
+- Actualización del `HANDBOOK`.
+- Actualización del `ROADMAP`.
+- Actualización del `MTR-001`.
+- Actualización del `SDS-011`.
+- Integración completa del flujo conversacional.
+
+### Validated
+
+- Integración correcta entre Streamlit y el pipeline.
+- Construcción correcta del Prompt.
+- Integración con Google Gemini.
+- Validación funcional de consultas desde la interfaz.
+- Validación arquitectónica del flujo conversacional.
+
+### Pipeline actualizado
+
+```text
+Usuario
+      │
+      ▼
+Streamlit
+      │
+      ▼
+Retriever
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Decision Engine
+      │
+      ▼
+Prompt Builder
+      │
+      ▼
+LLM Provider
+      │
+      ▼
+Google Gemini
+      │
+      ▼
+Respuesta
+```
+
+### Architectural Decisions
+
+- Streamlit se incorpora como punto de entrada del sistema.
+- El RAG Pipeline centraliza la orquestación de todos los módulos.
+- Se mantiene el desacoplamiento mediante Interfaces y Factory Pattern.
+
+---
+
 ## [1.0.0] - 2026-07-11
 
 ### Added
@@ -102,7 +246,10 @@ LLMRequest
 LLM Provider
       │
       ▼
-Google Gemini
+Google Gemini Provider
+      │
+      ▼
+Gemini 3 Flash Preview
       │
       ▼
 Respuesta
