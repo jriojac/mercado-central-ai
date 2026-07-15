@@ -43,9 +43,20 @@ venv/
 # ChromaDB
 # ==========================================
 
-04_Desarrollo/mercado-central-ai/data/
-04_Desarrollo/mercado-central-ai/data/chroma/
+# ==========================================
+# ChromaDB
+# ==========================================
+
+# Base temporal (si algún día vuelve a existir)
 04_Desarrollo/mercado-central-ai/chroma/
+
+# Permitir versionar la base oficial del proyecto
+!04_Desarrollo/mercado-central-ai/data/
+!04_Desarrollo/mercado-central-ai/data/chroma/
+!04_Desarrollo/mercado-central-ai/data/chroma/**
+
+# No ignorar el SQLite de la base oficial
+!04_Desarrollo/mercado-central-ai/data/chroma/*.sqlite3
 
 
 *.sqlite3
